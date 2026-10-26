@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import { categories, products } from "../../data/catalog";
+
+export function getStaticPaths() {
+  return categories.map((c) => ({ params: { slug: c.slug }, props: { category: c } }));
+}
+const { category } = Astro.props;
+const items = products.filter((p) => p.categoryId === category.indexNo);
+const heading = category.pageHeading || category.name;
+const others = categories.filter((c) => c.indexNo !== category.indexNo);
+---
+<BaseLayout
+  title={`${category.name} — Oriental Equipments Trading Est.`}
+  description={`${items.length} ${category.name.toLowerCase()} items from the Oriental Equipments Trading Est. catalogue — Dammam, Saudi Arabia.`}
+>
+  <SiteHeader />
+  <main id="main" tabindex="-1" class="container section">
+    <Breadcrumbs trail={[
+      { label: "Home", href: "/" },
+      { label: "Products", href: "/products/" },
+      { label: category.name },
+    ]} />
+    <div class="head-row">
+      <span class="index-no" aria-hidden="true">{String(category.indexNo).padStart(2, "0")}</span>
+      <div>
+        <h1>{heading}</h1>
+        <p class="meta">
+          {items.length} items
+          {category.pageHeading && <span> · page heading as printed: “{category.pageHeading}”</span>}
+        </p>
+      </div>
+    </div>
+    <p class="intro">
+      {category.name} as listed in the official Oriental Equipments Trading Est.
+      catalogue. Specifications below are transcribed as printed; request a quotation
+      for current availability and pricing.
+    </p>
+
+    <form class="searchbar" action="/search" method="get" role="search">
+      <label class="spec" for="q">Search all {products.length} items</label>
+      <div class="row">
+        <input id="q" name="q" type="search" placeholder="e.g. E7018, 24KD, gouging…" autocomplete="off" />
+        <button type="submit">Search</button>
+      </div>
+    </form>
+
+    <div class="grid" data-reveal-group>
+      {items.map((p) => <ProductCard product={p} />)}
+    </div>
+
+    <nav class="others" aria-label="Other categories">
+      <h2>Other Categories</h2>
+      <ul>
+        {others.map((c) => <li><a href={`/products/${c.slug}/`}>{c.name}</a></li>)}
+      </ul>
+    </nav>
+  </main>
+  <SiteFooter />
+</BaseLayout>
+<style>
+  .head-row { display: flex; gap: var(--space-4); align-items: flex-start; }
+  .index-no { font-family: var(--font-heading); font-weight: 600; font-size: 44px;
+    line-height: 1; color: var(--green-brand); }
+  h1 { color: var(--red-deep); text-transform: uppercase; margin-bottom: var(--space-2); }
+  .intro { color: var(--ink-secondary); max-width: 70ch; }
+  .searchbar { margin: var(--space-6) 0; max-width: 560px; }
+  .searchbar label { display: block; margin-bottom: var(--space-2); }
+  .row { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+  input { flex: 1 1 160px; min-width: 0; font: inherit; padding: 10px 12px; border: var(--line-weight) solid var(--line);
+    background: var(--paper-card); color: var(--ink); border-radius: var(--radius);
+    transition: border-color var(--dur-fast) var(--ease-standard); }
+  input:hover { border-color: var(--ink-tertiary); }
+  input:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+  button { font: inherit; font-weight: 600; background: var(--red-brand); color: #fff;
+    border: none; border-radius: var(--radius); padding: 10px 20px; cursor: pointer;
+    transition: background-color var(--dur-fast) var(--ease-standard); }
+  button:hover { background: var(--red-deep); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);
+    margin-top: var(--space-5); }
+  .others { margin-top: var(--space-10); border-top: var(--line-weight) solid var(--line);
+    padding-top: var(--space-6); }
+  .others h2 { font-size: 20px; color: var(--red-deep); text-transform: uppercase;
+    margin-bottom: var(--space-4); }
+  .others ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4); }
+  .others a { font-family: var(--font-mono); font-size: 14px; color: var(--green-brand);
+    text-decoration: none; }
+  .others a:hover { color: var(--red-brand); text-decoration: underline; }
+  @media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
+</style>

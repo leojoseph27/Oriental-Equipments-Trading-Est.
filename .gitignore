@@ -25,7 +25,7 @@ pnpm-debug.log*
 
 # analysis / working artifacts (not part of the site)
 .playwright-mcp/
-pages/
+/pages/
 
 # playwright artifacts
 test-results/

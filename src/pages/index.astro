@@ -1,0 +1,233 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import VisionMission from "../components/VisionMission.astro";
+import CategoryIndex from "../components/CategoryIndex.astro";
+import IndustryGrid from "../components/IndustryGrid.astro";
+import BrandGrid from "../components/BrandGrid.astro";
+import CatalogueReader from "../components/CatalogueReader.astro";
+import { products } from "../data/catalog";
+---
+<BaseLayout title="Oriental Equipments Trading Est. — Welding Equipment & Consumables Supplier, Dammam">
+  <SiteHeader />
+  <main id="main" tabindex="-1">
+    <span id="top"></span>
+
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-media" id="hero-media" aria-hidden="false">
+        <img
+          class="hero-img"
+          src="/images/hero/hero.webp"
+          alt="Welder at work with sparks — cover image from the company catalogue"
+          width="1600" height="849" fetchpriority="high"
+        />
+      </div>
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <h1 id="hero-heading">Welding consumables and equipment for Saudi industry</h1>
+        <p class="support">
+          Oriental Equipments Trading Est. supplies high-grade welding electrodes,
+          wires, fluxes and comprehensive consumables from Dammam, Eastern Province —
+          serving oil &amp; gas, petrochemical, fabrication and marine sectors.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="/products/">Browse the Catalogue</a>
+          <a class="btn ghost" href="/catalogue/">View Digital Catalogue</a>
+          <a class="btn ghost" href="/contact/">Contact Us</a>
+        </div>
+        <p class="hero-meta spec">{products.length} items · 20 categories · Dammam, Kingdom of Saudi Arabia</p>
+      </div>
+    </section>
+
+    <!-- Positioning -->
+    <section class="section container positioning" aria-labelledby="positioning-heading" data-reveal>
+      <h2 id="positioning-heading">A supplier for critical welding work</h2>
+      <div class="pos-grid">
+        <p>
+          Oriental Equipments Trading Est. is a premier industrial supplier
+          specializing in high-grade welding electrodes, wires, fluxes and
+          comprehensive consumables. Headquartered in the Eastern Province, we serve
+          critical sectors including oil &amp; gas, petrochemicals, structural steel
+          fabrication and marine engineering across Saudi Arabia.
+        </p>
+        <p>
+          We commit to supplying only certified, high-performance alloys engineered to
+          meet rigorous international standards — backed by extensive safety stocks of
+          AWS-classified consumables, from mild and stainless steel electrodes to
+          nickel alloys, aluminium and gouging rods.
+        </p>
+      </div>
+    </section>
+
+    <VisionMission />
+    <CategoryIndex />
+
+    <!-- Digital catalogue band -->
+    <section class="section digital-catalogue-band" aria-labelledby="digital-catalogue-heading" data-reveal>
+      <div class="container dcb-inner">
+        <div class="dcb-copy">
+          <h2 id="digital-catalogue-heading">The printed catalogue, page by page</h2>
+          <p>
+            Browse the full company profile and product catalogue as an interactive
+            digital book — turn pages, jump via thumbnails, zoom in on specifications,
+            or download the original PDF.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="/catalogue/">View Digital Catalogue</a>
+            <a class="btn ghost" href="/pdfs/oriental-catalogue.pdf" download>Download PDF</a>
+          </div>
+        </div>
+        <div class="dcb-book">
+          <CatalogueReader compact />
+        </div>
+      </div>
+    </section>
+
+    <IndustryGrid />
+    <BrandGrid />
+
+    <!-- Contact -->
+    <section class="section container contact" id="contact" data-route="/contact/" aria-labelledby="contact-heading" data-reveal>
+      <h2 id="contact-heading">Contact &amp; Enquiries</h2>
+      <p class="intro">
+        Request a quotation or ask about product availability — our team responds to
+        email and phone enquiries during working hours.
+      </p>
+      <div class="contact-grid">
+        <div class="card">
+          <h3>Office</h3>
+          <p class="addr">
+            Abu Obaidah Ibn Al Harith, Al Amamrah,<br />
+            Dammam, Eastern Province,<br />
+            Kingdom of Saudi Arabia
+          </p>
+          <h3>Phone</h3>
+          <p><a href="tel:+966580208504">+966-58-020-8504</a><br />
+             <a href="tel:+966594345166">+966-59-434-5166</a></p>
+          <h3>Email</h3>
+          <p><a href="mailto:orientaltradest@gmail.com">orientaltradest@gmail.com</a></p>
+        </div>
+        <div class="card cta-card">
+          <h3>Request a Quote</h3>
+          <p>
+            Email us your requirements — include the product name, AWS
+            classification or model, sizes and quantities. You can also browse the
+            catalogue and contact us with the item numbers.
+          </p>
+          <a class="btn primary" href="/contact/">Request a Quote Online</a>
+          <p class="meta">Use our dedicated contact page to send a quotation enquiry, or email us directly.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <SiteFooter />
+  <script src="../scripts/catalogue-reader.ts"></script>
+</BaseLayout>
+<script>
+  // Balanced 3D: a bounded (≤2°) pointer tilt on the hero image only.
+  // Fine pointers + no reduced motion only; rAF-throttled; resets on leave.
+  const media = document.getElementById("hero-media");
+  const fine = matchMedia("(pointer: fine)");
+  const calm = matchMedia("(prefers-reduced-motion: reduce)");
+  if (media && fine.matches && !calm.matches) {
+    let raf = 0;
+    const apply = (rx: number, ry: number) => {
+      media.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      raf = 0;
+    };
+    const hero = media.parentElement as HTMLElement;
+    hero.addEventListener("pointermove", ((e: PointerEvent) => {
+      if (raf) return;
+      const b = hero.getBoundingClientRect();
+      const px = (e.clientX - b.left) / b.width - 0.5;
+      const py = (e.clientY - b.top) / b.height - 0.5;
+      raf = requestAnimationFrame(() => apply(Math.round(-py * 200) / 100, Math.round(px * 200) / 100));
+    }) as EventListener, { passive: true });
+    hero.addEventListener("pointerleave", () => {
+      if (raf) cancelAnimationFrame(raf);
+      apply(0, 0);
+    }, { passive: true });
+  }
+</script>
+<style>
+  /* Hero */
+  .hero { position: relative; min-height: min(86svh, 780px); display: flex; align-items: flex-end;
+    overflow: hidden; }
+  /* entrance keyframes use `from` only, so content is visible if animations never run */
+  @keyframes hero-rise {
+    from { opacity: 0; transform: translateY(var(--dist-2)); }
+    to { opacity: 1; transform: none; }
+  }
+  .hero-content { position: relative; z-index: 1; padding-block: var(--space-10) var(--space-8); width: 100%; }
+  .hero h1 { color: #fff; font-size: clamp(38px, 6vw, 64px); max-width: 22ch; margin-bottom: var(--space-4);
+    animation: hero-rise var(--dur-reveal) var(--ease-out) both; }
+  .hero .support, .hero .actions, .hero .hero-meta { animation: hero-rise var(--dur-reveal) var(--ease-out) both; }
+  .hero .support { animation-delay: 100ms; }
+  .hero .actions { animation-delay: 200ms; }
+  .hero .hero-meta { animation-delay: 300ms; }
+  .hero-media { position: absolute; inset: 0; overflow: hidden;
+    animation: hero-settle 2400ms var(--ease-out) both; }
+  @keyframes hero-settle {
+    from { transform: scale(1.035); }
+    to { transform: scale(1); }
+  }
+  @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .hero-media { transition: transform 300ms var(--ease-standard); will-change: transform; }
+  }
+  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    object-position: 70% 20%; }
+  .hero-scrim { position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(28, 24, 25, 0.55) 0%, rgba(28, 24, 25, 0.82) 78%); }
+  .support { color: #e9e5e2; font-size: 18px; max-width: 58ch; margin-bottom: var(--space-6); }
+  .actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+  .hero-meta { margin: var(--space-5) 0 0; color: #cbc4c1; }
+  .btn { display: inline-block; text-decoration: none; font-weight: 600; font-size: 16px;
+    padding: 12px 22px; border-radius: var(--radius); }
+  .btn.primary { background: var(--red-brand); color: #fff; }
+  .btn.primary:hover { background: var(--red-deep); color: #fff; }
+  .btn.ghost { border: 1px solid #cbc4c1; color: #fff; }
+  .btn.ghost:hover { border-color: #fff; color: #fff; }
+
+  /* Positioning */
+  h2 { color: var(--red-deep); text-transform: uppercase; margin-bottom: var(--space-4); }
+  .pos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .pos-grid p { margin: 0; }
+  .contact .intro { color: var(--ink-secondary); margin-bottom: var(--space-5); }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+  .card { background: var(--paper-card); border: var(--line-weight) solid var(--line);
+    padding: var(--space-6); }
+  .card h3 { font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--green-brand);
+    margin: var(--space-4) 0 var(--space-2); }
+  .card h3:first-child { margin-top: 0; }
+  .card p { margin: 0 0 var(--space-2); }
+  .card a:not(.btn) { color: var(--ink); }
+  .card a:not(.btn):hover { color: var(--red-brand); }
+  .cta-card { border-top: 3px solid var(--red-brand); }
+  .cta-card p { max-width: 46ch; }
+  .cta-card .meta { margin-top: var(--space-4); }
+  .cta-card .btn { margin-block: var(--space-3); }
+
+  /* Digital catalogue band */
+  .digital-catalogue-band { background: var(--green-deep); color: #f4f3f1;
+    padding-block: var(--space-6); }
+  .dcb-inner { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--space-6); align-items: center; }
+  .digital-catalogue-band h2 { color: #fff; text-transform: none; }
+  .dcb-copy p { color: #d8ded9; max-width: 52ch; }
+  .dcb-book { border-radius: var(--radius); overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
+  /* embedded reader: fit the band tightly, no forced extra height */
+  .dcb-book .cr-reader-wrap { margin-top: 0; }
+  .dcb-book .cr-stage { background: #fff; }
+  @media (max-width: 800px) { .dcb-inner { grid-template-columns: 1fr; } }
+
+  @media (max-width: 800px) {
+    .pos-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero { min-height: 72svh; }
+    .hero-img { object-position: 65% 15%; }
+  }
+</style>

@@ -1,0 +1,142 @@
+---
+// Search — URL-based (?q=), client-side over /search-index.json (build-time
+// generated from catalog.ts). No server, no external service.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+---
+<BaseLayout title="Search — Oriental Equipments Trading Est." description="Search 190 welding products by name, AWS classification, model code or size.">
+  <SiteHeader />
+  <main id="main" tabindex="-1" class="container section">
+    <Breadcrumbs trail={[{ label: "Home", href: "/" }, { label: "Search" }]} />
+    <h1>Search the Catalogue</h1>
+    <form class="searchbar" method="get" action="/search" role="search">
+      <label class="spec" for="q">Search by product name, AWS no., model or size</label>
+      <div class="row">
+        <input id="q" name="q" type="search" autocomplete="off"
+          placeholder="e.g. E7018, 24KD, gouging rod, gloves…" />
+        <button type="submit">Search</button>
+        <button type="button" id="clear" hidden>Clear</button>
+      </div>
+    </form>
+    <p id="status" class="spec" role="status" aria-live="polite">Type a query to search all catalogue items.</p>
+    <ul id="results" class="results"></ul>
+    <noscript>
+      <p>This search needs JavaScript. You can also browse by category on the
+      <a href="/products/">product catalogue page</a>.</p>
+    </noscript>
+  </main>
+  <SiteFooter />
+</BaseLayout>
+<style>
+  h1 { color: var(--red-deep); text-transform: uppercase; }
+  .searchbar { margin: var(--space-5) 0; max-width: 620px; }
+  .searchbar label { display: block; margin-bottom: var(--space-2); }
+  .row { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+  input { flex: 1 1 160px; min-width: 0; font: inherit; padding: 10px 12px; border: var(--line-weight) solid var(--line);
+    background: var(--paper-card); color: var(--ink); border-radius: var(--radius);
+    transition: border-color var(--dur-fast) var(--ease-standard); }
+  input:hover { border-color: var(--ink-tertiary); }
+  input:focus-visible, button:focus-visible, .results a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  button { font: inherit; font-weight: 600; border: none; border-radius: var(--radius);
+    padding: 10px 20px; cursor: pointer; background: var(--red-brand); color: #fff;
+    transition: background-color var(--dur-fast) var(--ease-standard); }
+  button:hover { background: var(--red-deep); }
+  #clear { background: var(--paper-card); color: var(--ink); border: var(--line-weight) solid var(--line); }
+  .results { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid;
+    grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+  @media (prefers-reduced-motion: no-preference) {
+    #results li { animation: result-in var(--dur-med) var(--ease-out) both; }
+  }
+  @keyframes result-in {
+    from { opacity: 0; transform: translateY(var(--dist-1)); }
+    to { opacity: 1; transform: none; }
+  }
+  .results a { display: block; height: 100%; background: var(--paper-card);
+    border: var(--line-weight) solid var(--line); padding: var(--space-3) var(--space-4);
+    text-decoration: none; color: var(--ink); }
+  .results a:hover { border-color: var(--ink); }
+  .results .rname { display: block; font-family: var(--font-heading); font-weight: 600;
+    font-size: 17px; text-transform: uppercase; line-height: 1.2; }
+  .results .rcat { font-family: var(--font-mono); font-size: 12px; color: var(--green-brand); }
+  .results .rcode { font-family: var(--font-mono); font-size: 12px; color: var(--ink-secondary); }
+  @media (max-width: 900px) { .results { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .results { grid-template-columns: 1fr; } }
+</style>
+<script>
+  const input = document.getElementById('q') as HTMLInputElement;
+  const status = document.getElementById('status')!;
+  const list = document.getElementById('results')!;
+  const clearBtn = document.getElementById('clear') as HTMLButtonElement;
+
+  type Entry = { id: string; name: string; cat: string; catSlug: string; text: string };
+  let index: Entry[] | null = null;
+
+  async function load(): Promise<Entry[]> {
+    if (!index) index = await (await fetch('/search-index.json')).json();
+    return index;
+  }
+
+  function render(entries: Entry[], q: string) {
+    list.innerHTML = '';
+    clearBtn.hidden = !q;
+    if (!q) {
+      status.textContent = `Type a query to search all catalogue items.`;
+      return;
+    }
+    if (entries.length === 0) {
+      status.textContent = `No results for “${q}”. Try an AWS number (e.g. E7018), a model code (e.g. 24KD), a product name, or browse the categories.`;
+      return;
+    }
+    status.textContent = `${entries.length} result${entries.length === 1 ? '' : 's'} for “${q}”.`;
+    for (const e of entries) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = `/products/${e.catSlug}/#${e.id}`;
+      const nm = document.createElement('span'); nm.className = 'rname'; nm.textContent = e.name;
+      const ct = document.createElement('span'); ct.className = 'rcat'; ct.textContent = e.cat;
+      const cd = document.createElement('span'); cd.className = 'rcode';
+      cd.textContent = e.text.split(' ').filter(w => w.includes(q.toLowerCase().trim()) && /^(e|er|en)\d/i.test(w)).slice(0, 3).join(' · ');
+      a.append(nm, ct, cd);
+      li.append(a); list.append(li);
+    }
+  }
+
+  function search(entries: Entry[], q: string): Entry[] {
+    const terms = q.toLowerCase().replace(/\s+/g, ' ').trim().split(' ').filter(Boolean);
+    if (!terms.length) return [];
+    return entries
+      .map((e) => {
+        let score = 0;
+        for (const t of terms) {
+          if (!e.text.includes(t)) return null;
+          score += 2;
+          if (e.name.toLowerCase().startsWith(t) || (e.text.match(/\b(e|er|en)[\d]/i) && e.text.includes(t))) score += 1;
+        }
+        return { e, score };
+      })
+      .filter((x): x is { e: Entry; score: number } => x !== null)
+      .sort((a, b) => b.score - a.score)
+      .map((x) => x.e);
+  }
+
+  async function run() {
+    const q = new URLSearchParams(location.search).get('q') || '';
+    input.value = q;
+    const entries = await load();
+    render(search(entries, q), q.trim());
+  }
+  input.addEventListener('input', () => {
+    const q = input.value;
+    history.replaceState(null, '', q ? `/search?q=${encodeURIComponent(q)}` : '/search');
+    load().then((entries) => render(search(entries, q), q.trim()));
+  });
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    history.replaceState(null, '', '/search');
+    render([], '');
+    input.focus();
+  });
+  run();
+</script>

@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import QuoteForm from "../components/QuoteForm.astro";
+---
+<BaseLayout
+  title="Contact & Quote Enquiries — Oriental Equipments Trading Est."
+  description="Request a quotation for welding electrodes, wires, torches, gas equipment and safety gear — Oriental Equipments Trading Est., Dammam, Saudi Arabia. Phone +966-58-020-8504."
+>
+  <SiteHeader />
+  <main id="main" tabindex="-1" class="container section">
+    <Breadcrumbs trail={[{ label: "Home", href: "/" }, { label: "Contact" }]} />
+    <h1>Contact &amp; Quote Enquiries</h1>
+    <p class="intro">
+      Enquire about welding electrodes, wires, torches, gas equipment, machines,
+      abrasives, chemicals or safety gear. Send the form below, or reach us directly
+      by phone or email. You can also browse the
+      <a href="/products/">product catalogue</a> and use the enquiry link on any item.
+    </p>
+
+    <div class="layout">
+      <div class="info" data-reveal>
+        <h2>Company Details</h2>
+        <p class="name">Oriental Equipments Trading Est.</p>
+        <h3>Address</h3>
+        <p>
+          Abu Obaidah Ibn Al Harith, Al Amamrah,<br />
+          Dammam, Eastern Province,<br />
+          Kingdom of Saudi Arabia
+        </p>
+        <h3>Phone</h3>
+        <p><a href="tel:+966580208504">+966-58-020-8504</a><br />
+           <a href="tel:+966594345166">+966-59-434-5166</a></p>
+        <h3>Email</h3>
+        <p><a href="mailto:orientaltradest@gmail.com">orientaltradest@gmail.com</a></p>
+        <h3>Product catalogue</h3>
+        <p>Browse all <a href="/products/">20 product categories</a>, or{" "}
+        <a href="/search">search the catalogue</a> by name, AWS number or model.</p>
+      </div>
+      <div class="form-col" data-reveal>
+        <h2>Request a Quotation</h2>
+        <QuoteForm />
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>
+<style>
+  h1 { color: var(--red-deep); text-transform: uppercase; }
+  .intro { color: var(--ink-secondary); max-width: 72ch; }
+  .layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--space-8); margin-top: var(--space-6); }
+  h2 { color: var(--red-deep); text-transform: uppercase; font-size: 22px; margin-bottom: var(--space-4); }
+  .name { font-family: var(--font-heading); font-weight: 600; font-size: 20px;
+    text-transform: uppercase; margin-bottom: var(--space-4); }
+  h3 { font-family: var(--font-mono); font-size: 13px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--green-brand); margin: var(--space-4) 0 var(--space-1); }
+  .info p { margin: 0 0 var(--space-2); font-size: 16px; }
+  .info a { color: var(--ink); }
+  .info a:hover { color: var(--red-brand); }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; gap: var(--space-6); } }
+</style>

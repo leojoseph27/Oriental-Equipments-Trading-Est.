@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import CatalogueReader from "../components/CatalogueReader.astro";
+---
+<BaseLayout
+  title="Digital Catalogue — Oriental Equipments Trading Est."
+  description="Browse the full Oriental Equipments Trading Est. product catalogue as an interactive digital book, or download the original PDF."
+>
+  <SiteHeader />
+  <main id="main" tabindex="-1" class="cr-main">
+    <section class="cr-header container" aria-labelledby="cr-heading">
+      <p class="cr-kicker">Company profile &amp; product catalogue</p>
+      <h1 id="cr-heading">Digital Catalogue</h1>
+      <p class="cr-intro">
+        The complete printed catalogue, page for page — turn the pages, jump via
+        thumbnails, zoom in on specifications, or{" "}
+        <a href="/pdfs/oriental-catalogue.pdf" download id="cr-download-link">download the original PDF</a>{" "}
+        (<span id="cr-download-meta">original PDF</span>).
+      </p>
+    </section>
+
+    <CatalogueReader />
+  </main>
+  <SiteFooter />
+  <script src="../scripts/catalogue-reader.ts"></script>
+</BaseLayout>
