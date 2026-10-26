@@ -1,0 +1,55 @@
+---
+// SiteFooter — deep-green band, verified contact details from PDF p.29.
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container grid">
+    <div>
+      <p class="name">Oriental Equipments<br />Trading Est.</p>
+      <p class="tag">Company Profile &amp; Product Catalogue</p>
+    </div>
+    <nav aria-label="Footer">
+      <h3>Site</h3>
+      <a href="/products/">Products</a>
+      <a href="/#brands">Brands We Serve</a>
+      <a href="/#industries">Industries</a>
+      <a href="/#about">About</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <div>
+      <h3>Contact</h3>
+      <p class="addr">
+        Abu Obaidah Ibn Al Harith, Al Amamrah,<br />
+        Dammam, Eastern Province,<br />
+        Kingdom of Saudi Arabia
+      </p>
+      <a href="tel:+966580208504">+966-58-020-8504</a><br />
+      <a href="tel:+966594345166">+966-59-434-5166</a><br />
+      <a href="mailto:orientaltradest@gmail.com">orientaltradest@gmail.com</a>
+    </div>
+  </div>
+  <div class="container legal">
+    <span>© {year} Oriental Equipments Trading Est. All rights reserved.</span>
+  </div>
+</footer>
+<style>
+  .site-footer { background: var(--green-deep); color: #e8efe9; margin-top: var(--space-12); }
+  .grid { display: grid; grid-template-columns: 1.2fr 0.8fr 1.2fr; gap: var(--space-8);
+    padding-block: var(--space-10) var(--space-8); }
+  .name { font-family: var(--font-heading); font-weight: 600; font-size: 24px; line-height: 1.15;
+    text-transform: uppercase; color: #fff; margin: 0 0 var(--space-2); }
+  .tag { font-family: var(--font-mono); font-size: 13px; color: #a7c3ae; margin: 0; }
+  h3 { font-family: var(--font-mono); font-size: 13px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.08em; color: #a7c3ae; margin: 0 0 var(--space-3); }
+  nav a { display: block; color: #e8efe9; text-decoration: none; padding: 4px 0; font-size: 15px; }
+  nav a:hover { color: #fff; text-decoration: underline; }
+  .addr { font-size: 15px; margin: 0 0 var(--space-3); }
+  .site-footer a[href^="tel"], .site-footer a[href^="mailto"] { color: #e8efe9; font-size: 15px;
+    text-decoration: none; line-height: 1.9; }
+  .site-footer a[href^="tel"]:hover, .site-footer a[href^="mailto"]:hover { color: #fff; text-decoration: underline; }
+  .legal { display: flex; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap;
+    border-top: 1px solid rgba(255, 255, 255, 0.18); padding-block: var(--space-4);
+    font-size: 13px; color: #a7c3ae; }
+  .legal .meta { color: #a7c3ae; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; gap: var(--space-6); } }
+</style>

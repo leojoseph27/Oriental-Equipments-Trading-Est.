@@ -1,0 +1,1388 @@
+{
+ "products": [
+  {
+   "file": "source-assets/cards/fp06-00.png",
+   "caption": "MILD STEEL WELDING | ELECTRODE | AWS NO: E6010 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 6,
+   "cat_page": 1
+  },
+  {
+   "file": "source-assets/cards/fp06-01.png",
+   "caption": "MILD STEEL WELDING | ELECTRODE | AWS NO: E6013 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 6,
+   "cat_page": 1
+  },
+  {
+   "file": "source-assets/cards/fp06-02.png",
+   "caption": "MILD STEEL WELDING | ELECTRODE | AWS NO: E7010 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 6,
+   "cat_page": 1
+  },
+  {
+   "file": "source-assets/cards/fp06-03.png",
+   "caption": "MILD STEEL WELDING | ELECTRODE | AWS NO: E7018 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 6,
+   "cat_page": 1
+  },
+  {
+   "file": "source-assets/cards/fp06-04.png",
+   "caption": "MILD STEEL WELDING | ELECTRODE | AWS NO: E7018-1 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 6,
+   "cat_page": 1
+  },
+  {
+   "file": "source-assets/cards/fp06-05.png",
+   "caption": "MILD STEEL WELDING | ELECTRODE | AWS NO: E8018 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 6,
+   "cat_page": 1
+  },
+  {
+   "file": "source-assets/cards/fp06-06.png",
+   "caption": "MILD STEEL WELDING | ELECTRODE | AWS NO: E9018 | Sizes: 2.6mm, 3.2mm, 4mm | 1",
+   "file_page": 6,
+   "cat_page": 1
+  },
+  {
+   "file": "source-assets/cards/fp06-07.png",
+   "caption": "MILD STEEL WELDING | ELECTRODE | AWS NO: E10018 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 6,
+   "cat_page": 1
+  },
+  {
+   "file": "source-assets/cards/fp06-08.png",
+   "caption": "MILD STEEL WELDING | ELECTRODE | AWS NO: E11018 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 6,
+   "cat_page": 1
+  },
+  {
+   "file": "source-assets/cards/fp07-00.png",
+   "caption": "STAINLESS STEEL | WELDING ELECTRODE | AWS NO: E308L-15/16/17 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 7,
+   "cat_page": 2
+  },
+  {
+   "file": "source-assets/cards/fp07-01.png",
+   "caption": "STAINLESS STEEL | WELDING ELECTRODE | AWS NO: E309L-15/16/17 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 7,
+   "cat_page": 2
+  },
+  {
+   "file": "source-assets/cards/fp07-02.png",
+   "caption": "STAINLESS STEEL | WELDING ELECTRODE | AWS NO: E310L-15/16/17 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 7,
+   "cat_page": 2
+  },
+  {
+   "file": "source-assets/cards/fp07-03.png",
+   "caption": "STAINLESS STEEL | WELDING ELECTRODE | AWS NO: E316L-15/16/17 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 7,
+   "cat_page": 2
+  },
+  {
+   "file": "source-assets/cards/fp07-04.png",
+   "caption": "NICKEL WELDING | ELECTRODE | AWS NO: ENi | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 7,
+   "cat_page": 2
+  },
+  {
+   "file": "source-assets/cards/fp07-05.png",
+   "caption": "CAST IRON WELDING | ELECTRODE | AWS NO: ENiFe-Ci | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 7,
+   "cat_page": 2
+  },
+  {
+   "file": "source-assets/cards/fp07-06.png",
+   "caption": "ALUMINIUM WELDING | ELECTRODE | AWS NO: E4043 | Sizes: 2.6mm, 3.2mm, 4mm",
+   "file_page": 7,
+   "cat_page": 2
+  },
+  {
+   "file": "source-assets/cards/fp08-00.png",
+   "caption": "FLUXCORED WIRE | AWS NO: ER70S6",
+   "file_page": 8,
+   "cat_page": 3
+  },
+  {
+   "file": "source-assets/cards/fp08-01.png",
+   "caption": "FLUXCORED WIRE | AWS NO: ER71T",
+   "file_page": 8,
+   "cat_page": 3
+  },
+  {
+   "file": "source-assets/cards/fp08-02.png",
+   "caption": "FLUXCORED WIRE | AWS NO: ER81",
+   "file_page": 8,
+   "cat_page": 3
+  },
+  {
+   "file": "source-assets/cards/fp08-03.png",
+   "caption": "SOLID WIRE | AWS NO: ER308",
+   "file_page": 8,
+   "cat_page": 3
+  },
+  {
+   "file": "source-assets/cards/fp08-04.png",
+   "caption": "SOLID WIRE | AWS NO: ER309",
+   "file_page": 8,
+   "cat_page": 3
+  },
+  {
+   "file": "source-assets/cards/fp08-05.png",
+   "caption": "SOLID WIRE | AWS NO: ER316",
+   "file_page": 8,
+   "cat_page": 3
+  },
+  {
+   "file": "source-assets/cards/fp08-06.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER347",
+   "file_page": 8,
+   "cat_page": 3
+  },
+  {
+   "file": "source-assets/cards/fp08-07.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER4043",
+   "file_page": 8,
+   "cat_page": 3
+  },
+  {
+   "file": "source-assets/cards/fp08-08.png",
+   "caption": "SOLID WIRE | AWS NO: ER5356",
+   "file_page": 8,
+   "cat_page": 3
+  },
+  {
+   "file": "source-assets/cards/fp09-00.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER70S-2 | 5KG PKT.",
+   "file_page": 9,
+   "cat_page": 4
+  },
+  {
+   "file": "source-assets/cards/fp09-01.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER70S-3 | 5KG PKT.",
+   "file_page": 9,
+   "cat_page": 4
+  },
+  {
+   "file": "source-assets/cards/fp09-02.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER70S-6 | 5KG PKT.",
+   "file_page": 9,
+   "cat_page": 4
+  },
+  {
+   "file": "source-assets/cards/fp09-03.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER80S-Ni | 5KG PKT.",
+   "file_page": 9,
+   "cat_page": 4
+  },
+  {
+   "file": "source-assets/cards/fp09-04.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER80S-B2 | 5KG PKT.",
+   "file_page": 9,
+   "cat_page": 4
+  },
+  {
+   "file": "source-assets/cards/fp09-05.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER80S-D2 | 5KG PKT.",
+   "file_page": 9,
+   "cat_page": 4
+  },
+  {
+   "file": "source-assets/cards/fp09-06.png",
+   "caption": "TIG WELDING WIRE | BRASS WELDING ELECTRODE | 10KG PKT.",
+   "file_page": 9,
+   "cat_page": 4
+  },
+  {
+   "file": "source-assets/cards/fp09-07.png",
+   "caption": "TIG WELDING WIRE | COPPER SILVER WELDING | ELECTRODE",
+   "file_page": 9,
+   "cat_page": 4
+  },
+  {
+   "file": "source-assets/cards/fp09-08.png",
+   "caption": "TIG WELDING WIRE | COPPER SILVER FLUX WELDING | ELECTRODE",
+   "file_page": 9,
+   "cat_page": 4
+  },
+  {
+   "file": "source-assets/cards/fp10-01.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER308L | 5KG PKT.",
+   "file_page": 10,
+   "cat_page": 5
+  },
+  {
+   "file": "source-assets/cards/fp10-02.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER309L | 5KG PKT.",
+   "file_page": 10,
+   "cat_page": 5
+  },
+  {
+   "file": "source-assets/cards/fp10-03.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER310L | 5KG PKT.",
+   "file_page": 10,
+   "cat_page": 5
+  },
+  {
+   "file": "source-assets/cards/fp10-04.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER316L | 5KG PKT.",
+   "file_page": 10,
+   "cat_page": 5
+  },
+  {
+   "file": "source-assets/cards/fp10-05.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER347L | 5KG PKT.",
+   "file_page": 10,
+   "cat_page": 5
+  },
+  {
+   "file": "source-assets/cards/fp10-06.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ERNiCr-3 | 5KG PKT.",
+   "file_page": 10,
+   "cat_page": 5
+  },
+  {
+   "file": "source-assets/cards/fp10-07.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ERNiCrMo-3 | 5KG PKT.",
+   "file_page": 10,
+   "cat_page": 5
+  },
+  {
+   "file": "source-assets/cards/fp10-08.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER4043 | 5KG PKT.",
+   "file_page": 10,
+   "cat_page": 5
+  },
+  {
+   "file": "source-assets/cards/fp10-09.png",
+   "caption": "TIG WELDING WIRE | AWS NO: ER5356 | 5KG PKT.",
+   "file_page": 10,
+   "cat_page": 5
+  },
+  {
+   "file": "source-assets/cards/fp11-00.png",
+   "caption": "WELDING ELECTRODE | HOLDER | AMERICAN TYPE | AVAILABLE AMPS: | 300,500,600 AMPS",
+   "file_page": 11,
+   "cat_page": 6
+  },
+  {
+   "file": "source-assets/cards/fp11-01.png",
+   "caption": "WELDING ELECTRODE | HOLDER | JAPAN TYPE | AVAILABLE AMPS: | 300,500,600 AMPS",
+   "file_page": 11,
+   "cat_page": 6
+  },
+  {
+   "file": "source-assets/cards/fp11-02.png",
+   "caption": "WELDING ELECTRODE | HOLDER | INDIA TYPE | AVAILABLE AMPS: | 300,500,600 AMPS",
+   "file_page": 11,
+   "cat_page": 6
+  },
+  {
+   "file": "source-assets/cards/fp11-03.png",
+   "caption": "WELDING ELECTRODE | HOLDER | CHINA TYPE | AVAILABLE AMPS: | 300,500,600 AMPS",
+   "file_page": 11,
+   "cat_page": 6
+  },
+  {
+   "file": "source-assets/cards/fp11-04.png",
+   "caption": "WELDING EARTH | CLAMP | AVAILABLE AMPS: | 300,500,600,800 AMPS",
+   "file_page": 11,
+   "cat_page": 6
+  },
+  {
+   "file": "source-assets/cards/fp11-05.png",
+   "caption": "CABLE CONNECTOR | AVAILABLE SIZES: | 10-25MM, 35-50MM, 50-70MM, | 70-95MM",
+   "file_page": 11,
+   "cat_page": 6
+  },
+  {
+   "file": "source-assets/cards/fp11-06.png",
+   "caption": "WELDING EARTH | CLAMP CROCODILE | TYPE BRASS | AVAILABLE AMPS: | 300,500,600 AMPS",
+   "file_page": 11,
+   "cat_page": 6
+  },
+  {
+   "file": "source-assets/cards/fp11-07.png",
+   "caption": "WELDING EARTH | CLAMP SCREW | TYPE BRASS | AVAILABLE AMPS: | 300,500,600 AMPS",
+   "file_page": 11,
+   "cat_page": 6
+  },
+  {
+   "file": "source-assets/cards/fp11-08.png",
+   "caption": "PANEL SOCKET | AVAILABLE SIZES: | 10-25MM, 35-50MM, 50-70MM, | 70-95MM",
+   "file_page": 11,
+   "cat_page": 6
+  },
+  {
+   "file": "source-assets/cards/fp12-01.png",
+   "caption": "PORTABLE WELDING | ELECTRODE | DRYER | AVAILABLE SIZE:",
+   "file_page": 12,
+   "cat_page": 7
+  },
+  {
+   "file": "source-assets/cards/fp12-02.png",
+   "caption": "WELDING ELECTRODE | BENCH OVEN | AVAILABLE SIZE: | 25KG, 50KG, 100KG, 150KG, | 200KG",
+   "file_page": 12,
+   "cat_page": 7
+  },
+  {
+   "file": "source-assets/cards/fp12-03.png",
+   "caption": "CHIPPING HAMMER | AVAILABLE SIZE: | 300G, 500G",
+   "file_page": 12,
+   "cat_page": 7
+  },
+  {
+   "file": "source-assets/cards/fp12-04.png",
+   "caption": "WELDING CHALK",
+   "file_page": 12,
+   "cat_page": 7
+  },
+  {
+   "file": "source-assets/cards/fp12-05.png",
+   "caption": "WELDING COPPER | LUGS",
+   "file_page": 12,
+   "cat_page": 7
+  },
+  {
+   "file": "source-assets/cards/fp12-06.png",
+   "caption": "WELDING CABLE | MADE IN CHINA | AVAILABLE Sizes: | 35mm, 50mm, 70mm, 95mm",
+   "file_page": 12,
+   "cat_page": 7
+  },
+  {
+   "file": "source-assets/cards/fp12-07.png",
+   "caption": "WELDING CABLE | MADE IN INDIA | AVAILABLE SIZES: | 35MM, 50MM, 70MM, 95MM, | 120MM",
+   "file_page": 12,
+   "cat_page": 7
+  },
+  {
+   "file": "source-assets/cards/fp12-08.png",
+   "caption": "WELDING CABLE | MADE IN TAIWAN | AVAILABLE SIZES: | 35MM, 50MM, 70MM, 95MM, | 120MM",
+   "file_page": 12,
+   "cat_page": 7
+  },
+  {
+   "file": "source-assets/cards/fp13-01.png",
+   "caption": "MIG WELDING TORCH | MODEL : 24KD",
+   "file_page": 13,
+   "cat_page": 8
+  },
+  {
+   "file": "source-assets/cards/fp13-02.png",
+   "caption": "MIG WELDING TORCH | MODEL : 25KD",
+   "file_page": 13,
+   "cat_page": 8
+  },
+  {
+   "file": "source-assets/cards/fp13-03.png",
+   "caption": "MIG WELDING TORCH | MODEL : 36KD",
+   "file_page": 13,
+   "cat_page": 8
+  },
+  {
+   "file": "source-assets/cards/fp13-04.png",
+   "caption": "CONTACT TIP",
+   "file_page": 13,
+   "cat_page": 8
+  },
+  {
+   "file": "source-assets/cards/fp13-05.png",
+   "caption": "GAS NOZZLE",
+   "file_page": 13,
+   "cat_page": 8
+  },
+  {
+   "file": "source-assets/cards/fp13-06.png",
+   "caption": "GAS DIFFUSER",
+   "file_page": 13,
+   "cat_page": 8
+  },
+  {
+   "file": "source-assets/cards/fp13-07.png",
+   "caption": "CONTACT TIP HOLDER",
+   "file_page": 13,
+   "cat_page": 8
+  },
+  {
+   "file": "source-assets/cards/fp13-08.png",
+   "caption": "INSULATOR",
+   "file_page": 13,
+   "cat_page": 8
+  },
+  {
+   "file": "source-assets/cards/fp13-09.png",
+   "caption": "SWAN NECK",
+   "file_page": 13,
+   "cat_page": 8
+  },
+  {
+   "file": "source-assets/cards/fp14-00.png",
+   "caption": "TIG WELDING TORCH | MODEL : 9FV",
+   "file_page": 14,
+   "cat_page": 9
+  },
+  {
+   "file": "source-assets/cards/fp14-01.png",
+   "caption": "TIG WELDING TORCH | MODEL : 17FV",
+   "file_page": 14,
+   "cat_page": 9
+  },
+  {
+   "file": "source-assets/cards/fp14-02.png",
+   "caption": "TIG WELDING TORCH | MODEL : 26FV",
+   "file_page": 14,
+   "cat_page": 9
+  },
+  {
+   "file": "source-assets/cards/fp14-03.png",
+   "caption": "TUNGSTEN | ELECTRODE | RED COLOR | SIZE: 1.6MM, 2.4MM, 3.2MM",
+   "file_page": 14,
+   "cat_page": 9
+  },
+  {
+   "file": "source-assets/cards/fp14-04.png",
+   "caption": "TUNGSTEN | ELECTRODE | GREEN COLOR | SIZE: 1.6MM, 2.4MM, 3.2MM",
+   "file_page": 14,
+   "cat_page": 9
+  },
+  {
+   "file": "source-assets/cards/fp14-05.png",
+   "caption": "TUNGSTEN | ELECTRODE | GREY COLOR | SIZE: 1.6MM, 2.4MM, 3.2MM",
+   "file_page": 14,
+   "cat_page": 9
+  },
+  {
+   "file": "source-assets/cards/fp14-06.png",
+   "caption": "CERAMIC CUP | AVAILABLE NUMBER: | 4,5,6,7,8,9,10,11,12",
+   "file_page": 14,
+   "cat_page": 9
+  },
+  {
+   "file": "source-assets/cards/fp14-07.png",
+   "caption": "COLLET BODY & PIN | AVAILABLE SIZE: | 1.6MM, 2.4MM, 3.2MM",
+   "file_page": 14,
+   "cat_page": 9
+  },
+  {
+   "file": "source-assets/cards/fp14-08.png",
+   "caption": "BACK CAP | AVAILABLE SIZE: | SHORT, MEDIUM, LONG",
+   "file_page": 14,
+   "cat_page": 9
+  },
+  {
+   "file": "source-assets/cards/fp15-00.png",
+   "caption": "BODY VALVE",
+   "file_page": 15,
+   "cat_page": 10
+  },
+  {
+   "file": "source-assets/cards/fp15-01.png",
+   "caption": "BODY",
+   "file_page": 15,
+   "cat_page": 10
+  },
+  {
+   "file": "source-assets/cards/fp15-02.png",
+   "caption": "ARGON HOSE | (BLACK / CLEAR)",
+   "file_page": 15,
+   "cat_page": 10
+  },
+  {
+   "file": "source-assets/cards/fp15-03.png",
+   "caption": "INSULATOR RING",
+   "file_page": 15,
+   "cat_page": 10
+  },
+  {
+   "file": "source-assets/cards/fp15-04.png",
+   "caption": "GAS LENS",
+   "file_page": 15,
+   "cat_page": 10
+  },
+  {
+   "file": "source-assets/cards/fp15-05.png",
+   "caption": "ARGON NUT",
+   "file_page": 15,
+   "cat_page": 10
+  },
+  {
+   "file": "source-assets/cards/fp15-06.png",
+   "caption": "ARGON NIPPLE",
+   "file_page": 15,
+   "cat_page": 10
+  },
+  {
+   "file": "source-assets/cards/fp15-07.png",
+   "caption": "2 EAR CLIP",
+   "file_page": 15,
+   "cat_page": 10
+  },
+  {
+   "file": "source-assets/cards/fp15-08.png",
+   "caption": "ARGON HOSE | ADAPTOR | 10",
+   "file_page": 15,
+   "cat_page": 10
+  },
+  {
+   "file": "source-assets/cards/fp16-01.png",
+   "caption": "MODEL : K4000 | 1000A",
+   "file_page": 16,
+   "cat_page": 11
+  },
+  {
+   "file": "source-assets/cards/fp16-02.png",
+   "caption": "MODEL : K3000 | 800A",
+   "file_page": 16,
+   "cat_page": 11
+  },
+  {
+   "file": "source-assets/cards/fp16-03.png",
+   "caption": "GOUGING ROD | SIZES: 4.5MM",
+   "file_page": 16,
+   "cat_page": 11
+  },
+  {
+   "file": "source-assets/cards/fp16-04.png",
+   "caption": "GOUGING ROD | SIZES: 6MM",
+   "file_page": 16,
+   "cat_page": 11
+  },
+  {
+   "file": "source-assets/cards/fp16-05.png",
+   "caption": "GOUGING ROD | SIZES: 8MM",
+   "file_page": 16,
+   "cat_page": 11
+  },
+  {
+   "file": "source-assets/cards/fp16-06.png",
+   "caption": "GOUGING ROD | SIZES: 9.5MM",
+   "file_page": 16,
+   "cat_page": 11
+  },
+  {
+   "file": "source-assets/cards/fp16-07.png",
+   "caption": "GOUGING ROD | SIZES: 12.5MM",
+   "file_page": 16,
+   "cat_page": 11
+  },
+  {
+   "file": "source-assets/cards/fp17-01.png",
+   "caption": "OXYGEN CYLINDER",
+   "file_page": 17,
+   "cat_page": 12
+  },
+  {
+   "file": "source-assets/cards/fp17-02.png",
+   "caption": "ACETYLENE CYLINDER",
+   "file_page": 17,
+   "cat_page": 12
+  },
+  {
+   "file": "source-assets/cards/fp17-03.png",
+   "caption": "ARGON CYLINDER",
+   "file_page": 17,
+   "cat_page": 12
+  },
+  {
+   "file": "source-assets/cards/fp17-04.png",
+   "caption": "NITROGEN CYLINDER",
+   "file_page": 17,
+   "cat_page": 12
+  },
+  {
+   "file": "source-assets/cards/fp17-05.png",
+   "caption": "CYLINDER",
+   "file_page": 17,
+   "cat_page": 12
+  },
+  {
+   "file": "source-assets/cards/fp17-06.png",
+   "caption": "CYLINDER",
+   "file_page": 17,
+   "cat_page": 12
+  },
+  {
+   "file": "source-assets/cards/fp17-07.png",
+   "caption": "CYLINDER TROLLEY | SINGLE",
+   "file_page": 17,
+   "cat_page": 12
+  },
+  {
+   "file": "source-assets/cards/fp17-08.png",
+   "caption": "CYLINDER TROLLEY | DOUBLE",
+   "file_page": 17,
+   "cat_page": 12
+  },
+  {
+   "file": "source-assets/cards/fp17-09.png",
+   "caption": "GAS CYLINDER | STORAGE RACK",
+   "file_page": 17,
+   "cat_page": 12
+  },
+  {
+   "file": "source-assets/cards/fp18-00.png",
+   "caption": "CUTTING | ATTACHMENT | MODEL : CA2460",
+   "file_page": 18,
+   "cat_page": 13
+  },
+  {
+   "file": "source-assets/cards/fp18-01.png",
+   "caption": "CUTTING TORCH | MODEL : 315FC",
+   "file_page": 18,
+   "cat_page": 13
+  },
+  {
+   "file": "source-assets/cards/fp18-02.png",
+   "caption": "HEATING TORCH | AVAILABLE SIZE: | 30CM , 60CM , 1 METER",
+   "file_page": 18,
+   "cat_page": 13
+  },
+  {
+   "file": "source-assets/cards/fp18-03.png",
+   "caption": "WELDING NOZZLE | AVAILABLE SIZE: | 0W,1W,2W,3W,4W,5W,6W,7W,8W",
+   "file_page": 18,
+   "cat_page": 13
+  },
+  {
+   "file": "source-assets/cards/fp18-04.png",
+   "caption": "HEATING NOZZLE | AVAILABLE SIZE: | 6,8,10,12,15 MFA",
+   "file_page": 18,
+   "cat_page": 13
+  },
+  {
+   "file": "source-assets/cards/fp18-05.png",
+   "caption": "CHECK VALVE",
+   "file_page": 18,
+   "cat_page": 13
+  },
+  {
+   "file": "source-assets/cards/fp18-06.png",
+   "caption": "FLASHBACK | ARRESTOR | REGULATOR MOUNT | 13",
+   "file_page": 18,
+   "cat_page": 13
+  },
+  {
+   "file": "source-assets/cards/fp18-07.png",
+   "caption": "FLASHBACK | ARRESTOR TORCH | MOUNT",
+   "file_page": 18,
+   "cat_page": 13
+  },
+  {
+   "file": "source-assets/cards/fp18-08.png",
+   "caption": "TWIN WELDING HOSE | AVAILABLE LENGTH: | 7.5, 15, 30, 50, 100 METER",
+   "file_page": 18,
+   "cat_page": 13
+  },
+  {
+   "file": "source-assets/cards/fp19-00.png",
+   "caption": "ACETYLENE",
+   "file_page": 19,
+   "cat_page": 14
+  },
+  {
+   "file": "source-assets/cards/fp19-01.png",
+   "caption": "GPN",
+   "file_page": 19,
+   "cat_page": 14
+  },
+  {
+   "file": "source-assets/cards/fp19-02.png",
+   "caption": "102HC",
+   "file_page": 19,
+   "cat_page": 14
+  },
+  {
+   "file": "source-assets/cards/fp19-03.png",
+   "caption": "106HC",
+   "file_page": 19,
+   "cat_page": 14
+  },
+  {
+   "file": "source-assets/cards/fp19-04.png",
+   "caption": "PNME",
+   "file_page": 19,
+   "cat_page": 14
+  },
+  {
+   "file": "source-assets/cards/fp19-05.png",
+   "caption": "ANME",
+   "file_page": 19,
+   "cat_page": 14
+  },
+  {
+   "file": "source-assets/cards/fp19-06.png",
+   "caption": "164",
+   "file_page": 19,
+   "cat_page": 14
+  },
+  {
+   "file": "source-assets/cards/fp20-00.png",
+   "caption": "OXYGEN NUT & | NIPPLE",
+   "file_page": 20,
+   "cat_page": 15
+  },
+  {
+   "file": "source-assets/cards/fp20-01.png",
+   "caption": "ACETYLENE NUT & | NIPPLE",
+   "file_page": 20,
+   "cat_page": 15
+  },
+  {
+   "file": "source-assets/cards/fp20-02.png",
+   "caption": "FERRULES",
+   "file_page": 20,
+   "cat_page": 15
+  },
+  {
+   "file": "source-assets/cards/fp20-03.png",
+   "caption": "BARBED HOSE | SPLICER",
+   "file_page": 20,
+   "cat_page": 15
+  },
+  {
+   "file": "source-assets/cards/fp20-04.png",
+   "caption": "OXYGEN / ACETYLENE | HOSE COUPLER",
+   "file_page": 20,
+   "cat_page": 15
+  },
+  {
+   "file": "source-assets/cards/fp20-05.png",
+   "caption": "ARGON HOSE | ADAPTOR",
+   "file_page": 20,
+   "cat_page": 15
+  },
+  {
+   "file": "source-assets/cards/fp20-06.png",
+   "caption": "ARGON HOSE | COUPLER",
+   "file_page": 20,
+   "cat_page": 15
+  },
+  {
+   "file": "source-assets/cards/fp20-07.png",
+   "caption": "TWO WAY BARBED | HOSE SPLICER",
+   "file_page": 20,
+   "cat_page": 15
+  },
+  {
+   "file": "source-assets/cards/fp21-00.png",
+   "caption": "SPARK LIGHTER | SINGLE FLINT",
+   "file_page": 21,
+   "cat_page": 16
+  },
+  {
+   "file": "source-assets/cards/fp21-01.png",
+   "caption": "SPARK LIGHTER TRIPLE | FLINT",
+   "file_page": 21,
+   "cat_page": 16
+  },
+  {
+   "file": "source-assets/cards/fp21-02.png",
+   "caption": "CLEANER",
+   "file_page": 21,
+   "cat_page": 16
+  },
+  {
+   "file": "source-assets/cards/fp21-03.png",
+   "caption": "REPLACEMENT FLINT | 5PCS PACKET",
+   "file_page": 21,
+   "cat_page": 16
+  },
+  {
+   "file": "source-assets/cards/fp21-04.png",
+   "caption": "MOUTH OXYGEN | ACETYLENE WRENCH",
+   "file_page": 21,
+   "cat_page": 16
+  },
+  {
+   "file": "source-assets/cards/fp21-05.png",
+   "caption": "TRIPLE FLINT STONE | FOR TRIANGLE | WELDING SPARK | LIGHTER",
+   "file_page": 21,
+   "cat_page": 16
+  },
+  {
+   "file": "source-assets/cards/fp21-06.png",
+   "caption": "SPARK LIGHTER GUN",
+   "file_page": 21,
+   "cat_page": 16
+  },
+  {
+   "file": "source-assets/cards/fp21-07.png",
+   "caption": "GAS CYLINDER KEY",
+   "file_page": 21,
+   "cat_page": 16
+  },
+  {
+   "file": "source-assets/cards/fp21-08.png",
+   "caption": "CYLINDER CAP | 16",
+   "file_page": 21,
+   "cat_page": 16
+  },
+  {
+   "file": "source-assets/cards/fp22-01.png",
+   "caption": "WELDING LEATHER | HOOD",
+   "file_page": 22,
+   "cat_page": 17
+  },
+  {
+   "file": "source-assets/cards/fp22-02.png",
+   "caption": "AUTO DARKENING | WELDING HELMET",
+   "file_page": 22,
+   "cat_page": 17
+  },
+  {
+   "file": "source-assets/cards/fp22-03.png",
+   "caption": "WELDING HELMET",
+   "file_page": 22,
+   "cat_page": 17
+  },
+  {
+   "file": "source-assets/cards/fp22-04.png",
+   "caption": "WELDING HELMET | WITH SAFETY HELMET",
+   "file_page": 22,
+   "cat_page": 17
+  },
+  {
+   "file": "source-assets/cards/fp22-05.png",
+   "caption": "WELDING SAFETY | GOOGLES",
+   "file_page": 22,
+   "cat_page": 17
+  },
+  {
+   "file": "source-assets/cards/fp22-06.png",
+   "caption": "WELDING HELMET | GLASS CLEAR",
+   "file_page": 22,
+   "cat_page": 17
+  },
+  {
+   "file": "source-assets/cards/fp22-07.png",
+   "caption": "WELDING HELMET | GLASS DARK | 17",
+   "file_page": 22,
+   "cat_page": 17
+  },
+  {
+   "file": "source-assets/cards/fp22-08.png",
+   "caption": "WELDING HELMET | POLYCARBONATE | GLASS",
+   "file_page": 22,
+   "cat_page": 17
+  },
+  {
+   "file": "source-assets/cards/fp22-09.png",
+   "caption": "HAND SHIELD",
+   "file_page": 22,
+   "cat_page": 17
+  },
+  {
+   "file": "source-assets/cards/fp23-00.png",
+   "caption": "250A EDON",
+   "file_page": 23,
+   "cat_page": 18
+  },
+  {
+   "file": "source-assets/cards/fp23-01.png",
+   "caption": "300A EDON",
+   "file_page": 23,
+   "cat_page": 18
+  },
+  {
+   "file": "source-assets/cards/fp23-02.png",
+   "caption": "400A EDON",
+   "file_page": 23,
+   "cat_page": 18
+  },
+  {
+   "file": "source-assets/cards/fp23-03.png",
+   "caption": "ES201iP PRO ESAB",
+   "file_page": 23,
+   "cat_page": 18
+  },
+  {
+   "file": "source-assets/cards/fp23-04.png",
+   "caption": "ES410 ESAB",
+   "file_page": 23,
+   "cat_page": 18
+  },
+  {
+   "file": "source-assets/cards/fp23-05.png",
+   "caption": "HANDYARC ESAB",
+   "file_page": 23,
+   "cat_page": 18
+  },
+  {
+   "file": "source-assets/cards/fp23-06.png",
+   "caption": "ACDC EDON",
+   "file_page": 23,
+   "cat_page": 18
+  },
+  {
+   "file": "source-assets/cards/fp24-01.png",
+   "caption": "CUTTING DISC",
+   "file_page": 24,
+   "cat_page": 19
+  },
+  {
+   "file": "source-assets/cards/fp24-02.png",
+   "caption": "GRINDING DISC",
+   "file_page": 24,
+   "cat_page": 19
+  },
+  {
+   "file": "source-assets/cards/fp24-03.png",
+   "caption": "FLAP DISC",
+   "file_page": 24,
+   "cat_page": 19
+  },
+  {
+   "file": "source-assets/cards/fp24-04.png",
+   "caption": "SANDPAPER DISC",
+   "file_page": 24,
+   "cat_page": 19
+  },
+  {
+   "file": "source-assets/cards/fp24-05.png",
+   "caption": "SAND CLOTH ROLL",
+   "file_page": 24,
+   "cat_page": 19
+  },
+  {
+   "file": "source-assets/cards/fp24-06.png",
+   "caption": "DIAMOND CUTTING | DISC",
+   "file_page": 24,
+   "cat_page": 19
+  },
+  {
+   "file": "source-assets/cards/fp24-07.png",
+   "caption": "MOUNTING STONE",
+   "file_page": 24,
+   "cat_page": 19
+  },
+  {
+   "file": "source-assets/cards/fp24-08.png",
+   "caption": "SANDING BELT",
+   "file_page": 24,
+   "cat_page": 19
+  },
+  {
+   "file": "source-assets/cards/fp25-01.png",
+   "caption": "ZINC SPRAY",
+   "file_page": 25,
+   "cat_page": 20
+  },
+  {
+   "file": "source-assets/cards/fp25-02.png",
+   "caption": "PICKLING GEL",
+   "file_page": 25,
+   "cat_page": 20
+  },
+  {
+   "file": "source-assets/cards/fp25-03.png",
+   "caption": "PASSIVATOR",
+   "file_page": 25,
+   "cat_page": 20
+  },
+  {
+   "file": "source-assets/cards/fp25-04.png",
+   "caption": "BRITTLE WASH",
+   "file_page": 25,
+   "cat_page": 20
+  },
+  {
+   "file": "source-assets/cards/fp25-05.png",
+   "caption": "ANTISPATTER SPRAY",
+   "file_page": 25,
+   "cat_page": 20
+  },
+  {
+   "file": "source-assets/cards/fp25-06.png",
+   "caption": "ANTISPATTER GEL",
+   "file_page": 25,
+   "cat_page": 20
+  },
+  {
+   "file": "source-assets/cards/fp25-07.png",
+   "caption": "HYPERTHERM | COOLANT",
+   "file_page": 25,
+   "cat_page": 20
+  },
+  {
+   "file": "source-assets/cards/fp25-08.png",
+   "caption": "WELDING SCANNER",
+   "file_page": 25,
+   "cat_page": 20
+  },
+  {
+   "file": "source-assets/cards/fp26-00.png",
+   "caption": "FACE SHIELD VISOR | CLEAR",
+   "file_page": 26,
+   "cat_page": 21
+  },
+  {
+   "file": "source-assets/cards/fp26-01.png",
+   "caption": "FACE SHIELD VISOR | BRACKET",
+   "file_page": 26,
+   "cat_page": 21
+  },
+  {
+   "file": "source-assets/cards/fp26-02.png",
+   "caption": "FACE SHIELD VISOR | HEAD GEAR",
+   "file_page": 26,
+   "cat_page": 21
+  },
+  {
+   "file": "source-assets/cards/fp26-03.png",
+   "caption": "SAFETY GOGGLES | DARK & CLEAR",
+   "file_page": 26,
+   "cat_page": 21
+  },
+  {
+   "file": "source-assets/cards/fp26-04.png",
+   "caption": "SAFETY GLASS WITH | ANTI FOG LENS",
+   "file_page": 26,
+   "cat_page": 21
+  },
+  {
+   "file": "source-assets/cards/fp26-05.png",
+   "caption": "WELDING GOGGLES",
+   "file_page": 26,
+   "cat_page": 21
+  },
+  {
+   "file": "source-assets/cards/fp26-06.png",
+   "caption": "FACE SHIELD VISOR | BLACK",
+   "file_page": 26,
+   "cat_page": 21
+  },
+  {
+   "file": "source-assets/cards/fp26-07.png",
+   "caption": "EAR PLUG",
+   "file_page": 26,
+   "cat_page": 21
+  },
+  {
+   "file": "source-assets/cards/fp26-08.png",
+   "caption": "FLIP GOGGLES",
+   "file_page": 26,
+   "cat_page": 21
+  },
+  {
+   "file": "source-assets/cards/fp27-00.png",
+   "caption": "COTTON GLOVES",
+   "file_page": 27,
+   "cat_page": 22
+  },
+  {
+   "file": "source-assets/cards/fp27-01.png",
+   "caption": "CRINKLED GLOVES",
+   "file_page": 27,
+   "cat_page": 22
+  },
+  {
+   "file": "source-assets/cards/fp27-02.png",
+   "caption": "RUBBER GLOVES",
+   "file_page": 27,
+   "cat_page": 22
+  },
+  {
+   "file": "source-assets/cards/fp27-03.png",
+   "caption": "WELDING GLOVES",
+   "file_page": 27,
+   "cat_page": 22
+  },
+  {
+   "file": "source-assets/cards/fp27-04.png",
+   "caption": "BLUE DOTTED GLOVES",
+   "file_page": 27,
+   "cat_page": 22
+  },
+  {
+   "file": "source-assets/cards/fp27-05.png",
+   "caption": "WHITE DOTTED | GLOVES",
+   "file_page": 27,
+   "cat_page": 22
+  },
+  {
+   "file": "source-assets/cards/fp27-06.png",
+   "caption": "GLOVES SHORT",
+   "file_page": 27,
+   "cat_page": 22
+  },
+  {
+   "file": "source-assets/cards/fp27-07.png",
+   "caption": "GLOVES LONG",
+   "file_page": 27,
+   "cat_page": 22
+  },
+  {
+   "file": "source-assets/cards/fp28-00.png",
+   "caption": "WELDING JACKET | GREY",
+   "file_page": 28,
+   "cat_page": 23
+  },
+  {
+   "file": "source-assets/cards/fp28-01.png",
+   "caption": "WELDING JACKET | YELLOW",
+   "file_page": 28,
+   "cat_page": 23
+  },
+  {
+   "file": "source-assets/cards/fp28-02.png",
+   "caption": "WELDING APRON",
+   "file_page": 28,
+   "cat_page": 23
+  },
+  {
+   "file": "source-assets/cards/fp28-03.png",
+   "caption": "HAND SLEEVE",
+   "file_page": 28,
+   "cat_page": 23
+  },
+  {
+   "file": "source-assets/cards/fp28-04.png",
+   "caption": "LEG SLEEVE",
+   "file_page": 28,
+   "cat_page": 23
+  }
+ ],
+ "brands": [
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-00.png",
+   "file_page": 4,
+   "order": 0
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-01.png",
+   "file_page": 4,
+   "order": 1
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-02.png",
+   "file_page": 4,
+   "order": 2
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-03.png",
+   "file_page": 4,
+   "order": 3
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-04.png",
+   "file_page": 4,
+   "order": 4
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-05.png",
+   "file_page": 4,
+   "order": 5
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-06.png",
+   "file_page": 4,
+   "order": 6
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-07.png",
+   "file_page": 4,
+   "order": 7
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-08.png",
+   "file_page": 4,
+   "order": 8
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-09.png",
+   "file_page": 4,
+   "order": 9
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-10.png",
+   "file_page": 4,
+   "order": 10
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-11.png",
+   "file_page": 4,
+   "order": 11
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-12.png",
+   "file_page": 4,
+   "order": 12
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-13.png",
+   "file_page": 4,
+   "order": 13
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-14.png",
+   "file_page": 4,
+   "order": 14
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-15.png",
+   "file_page": 4,
+   "order": 15
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-16.png",
+   "file_page": 4,
+   "order": 16
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-17.png",
+   "file_page": 4,
+   "order": 17
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-18.png",
+   "file_page": 4,
+   "order": 18
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-19.png",
+   "file_page": 4,
+   "order": 19
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-20.png",
+   "file_page": 4,
+   "order": 20
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-21.png",
+   "file_page": 4,
+   "order": 21
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-22.png",
+   "file_page": 4,
+   "order": 22
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-23.png",
+   "file_page": 4,
+   "order": 23
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-24.png",
+   "file_page": 4,
+   "order": 24
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-25.png",
+   "file_page": 4,
+   "order": 25
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-26.png",
+   "file_page": 4,
+   "order": 26
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-27.png",
+   "file_page": 4,
+   "order": 27
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-28.png",
+   "file_page": 4,
+   "order": 28
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\brands\\04-29.png",
+   "file_page": 4,
+   "order": 29
+  }
+ ],
+ "industries": [
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\industries\\03-00.png",
+   "file_page": 3,
+   "order": 0
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\industries\\03-01.png",
+   "file_page": 3,
+   "order": 1
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\industries\\03-02.png",
+   "file_page": 3,
+   "order": 2
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\industries\\03-03.png",
+   "file_page": 3,
+   "order": 3
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\industries\\03-04.png",
+   "file_page": 3,
+   "order": 4
+  },
+  {
+   "file": "C:\\Users\\leojo\\.zcode\\workspace\\4ed8ae3f-dae4-4d0f-bdac-ae18e660e561\\source-assets\\industries\\03-05.png",
+   "file_page": 3,
+   "order": 5
+  }
+ ],
+ "logo": {
+  "file": "source-assets/logo/logo.png",
+  "file_page": 1,
+  "note": "cover crop; measured ~170px source \u2014 quality flagged for review"
+ },
+ "hero": {
+  "file": "source-assets/hero/hero.png",
+  "file_page": 1,
+  "note": "cover top photo area (approximate crop)"
+ },
+ "unresolved": [
+  {
+   "reason": "no caption found for this embedded image placement",
+   "file_page": 10,
+   "placement_idx": 0,
+   "raw_dump": "source-assets/extracted/fp10-01.png"
+  },
+  {
+   "reason": "no caption found for this embedded image placement",
+   "file_page": 12,
+   "placement_idx": 0,
+   "raw_dump": "source-assets/extracted/fp12-01.png"
+  },
+  {
+   "reason": "no caption found for this embedded image placement",
+   "file_page": 13,
+   "placement_idx": 0,
+   "raw_dump": "source-assets/extracted/fp13-01.png"
+  },
+  {
+   "reason": "no caption found for this embedded image placement",
+   "file_page": 16,
+   "placement_idx": 0,
+   "raw_dump": "source-assets/extracted/fp16-01.png"
+  },
+  {
+   "reason": "no caption found for this embedded image placement",
+   "file_page": 17,
+   "placement_idx": 0,
+   "raw_dump": "source-assets/extracted/fp17-01.png"
+  },
+  {
+   "reason": "no caption found for this embedded image placement",
+   "file_page": 22,
+   "placement_idx": 0,
+   "raw_dump": "source-assets/extracted/fp22-01.png"
+  },
+  {
+   "reason": "no caption found for this embedded image placement",
+   "file_page": 24,
+   "placement_idx": 0,
+   "raw_dump": "source-assets/extracted/fp24-01.png"
+  },
+  {
+   "reason": "no caption found for this embedded image placement",
+   "file_page": 25,
+   "placement_idx": 0,
+   "raw_dump": "source-assets/extracted/fp25-01.png"
+  }
+ ]
+}

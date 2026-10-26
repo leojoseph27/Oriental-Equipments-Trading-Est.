@@ -1,0 +1,36 @@
+---
+// BrandGrid — the 30 logos from PDF file p.4, verified mapping from catalog.ts.
+// Static uniform tiles; aspect ratios preserved; no partnership claims.
+import { brands } from "../data/catalog";
+---
+<section class="section container" id="brands" aria-labelledby="brands-heading" data-reveal>
+  <h2 id="brands-heading">Brands We Serve</h2>
+  <p class="intro">
+    The international welding and cutting brands represented in our catalogue.
+  </p>
+  <ul class="grid" data-reveal-group>
+    {brands.map((b) => (
+      <li class="tile">
+        <img src={b.image} alt={`${b.name} logo`} loading="lazy" width="220" height="146" />
+        <span class="label">{b.name}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+<style>
+  h2 { color: var(--red-deep); text-transform: uppercase; }
+  .intro { color: var(--ink-secondary); margin-bottom: var(--space-6); }
+  .grid { list-style: none; margin: 0; padding: 0; display: grid;
+    grid-template-columns: repeat(5, 1fr); gap: var(--space-4); }
+  .tile { background: var(--paper-card); border: var(--line-weight) solid var(--line);
+    padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2);
+    align-items: center; justify-content: center; min-height: 140px;
+    transition: border-color var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard); }
+  .tile:hover { border-color: var(--ink-tertiary); box-shadow: var(--shadow-1); }
+  .tile img { width: 100%; height: auto; max-height: 96px; object-fit: contain; }
+  .label { font-family: var(--font-mono); font-size: 11px; color: var(--ink-tertiary);
+    text-align: center; }
+  @media (max-width: 1000px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 760px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 500px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+</style>

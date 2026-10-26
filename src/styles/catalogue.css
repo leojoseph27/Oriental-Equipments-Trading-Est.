@@ -1,0 +1,415 @@
+/* Digital catalogue reader — styles follow design.md tokens. */
+
+.cr-main { padding-bottom: var(--space-8, 4rem); }
+
+.cr-header { padding-top: var(--space-6, 3rem); }
+.cr-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--red-brand);
+  margin: 0 0 0.5rem;
+}
+.cr-header h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0 0 0.75rem;
+  color: var(--ink);
+}
+.cr-intro { max-width: 70ch; color: var(--ink-secondary); }
+.cr-intro a { color: var(--green-brand); font-weight: 600; }
+
+.cr-reader-wrap { margin-top: var(--space-5, 2.5rem); }
+
+/* ---------- reader shell ---------- */
+
+.cr-reader {
+  outline: none;
+  position: relative;
+  /* keeps a sensible height while the loading/error overlay is up */
+  min-height: 420px;
+}
+/* loading / error states overlay the reader so the first spread can paint
+   behind the spinner before the reader is revealed */
+.cr-reader > .cr-state {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: var(--paper-card, #fff);
+}
+.cr-reader > .cr-state[hidden] { display: none; }
+.cr-reader:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.cr-stage {
+  --cr-zoom: 1;
+  position: relative;
+  overflow: auto;
+  background:
+    radial-gradient(120% 90% at 50% 0%, #ffffff 0%, var(--paper) 60%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius, 8px);
+  padding: clamp(0.75rem, 3vw, 2.5rem);
+  display: flex;
+  justify-content: center;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cr-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--ink-secondary);
+}
+.cr-spinner {
+  display: inline-block;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 3px solid var(--line);
+  border-top-color: var(--red-brand);
+  border-radius: 50%;
+  animation: cr-spin 0.9s linear infinite;
+}
+.cr-reduced .cr-spinner { animation-duration: 0.01s; animation-iteration-count: 1; opacity: 0.5; }
+@keyframes cr-spin { to { transform: rotate(360deg); } }
+
+/* ---------- book geometry ---------- */
+
+.cr-book-perspective {
+  perspective: 2400px;
+  /* two A4-portrait pages side by side; --cr-zoom scales the whole book */
+  width: calc(min(1040px, 100%) * var(--cr-zoom));
+  aspect-ratio: 1.414 / 1;
+  flex: none;
+}
+
+.cr-leaves {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.leaf {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.75s var(--ease-standard, cubic-bezier(0.4, 0, 0.2, 1));
+  will-change: transform;
+}
+.leaf.flipped { transform: rotateY(-180deg); }
+.cr-reduced .leaf { transition-duration: 0.01s; }
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: #ffffff;
+  border-radius: 0 4px 4px 0;
+  box-shadow:
+    inset 0 0 0 1px var(--line),
+    0 1px 3px rgba(35, 31, 32, 0.12);
+  overflow: hidden;
+}
+.face.back {
+  transform: rotateY(-180deg);
+  border-radius: 4px 0 0 4px;
+}
+
+/* paper depth near the spine */
+.face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(35, 31, 32, 0.14) 0%,
+    rgba(35, 31, 32, 0.05) 3%,
+    transparent 8%
+  );
+}
+.face.back::after {
+  background: linear-gradient(
+    to left,
+    rgba(35, 31, 32, 0.14) 0%,
+    rgba(35, 31, 32, 0.05) 3%,
+    transparent 8%
+  );
+}
+/* drop shadow cast onto the page underneath while turning */
+.leaf.is-top:not(.flipped) .face.back,
+.leaf.is-top.flipped .face.front {
+  box-shadow: -12px 8px 24px rgba(35, 31, 32, 0.28);
+}
+.leaf.is-top:not(.flipped) .face.back { box-shadow: 12px 8px 24px rgba(35, 31, 32, 0.28); }
+
+.cr-page-slot {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  background: #ffffff;
+}
+.cr-page-slot.rendered { opacity: 1; }
+.cr-reduced .cr-page-slot { transition: none; }
+.cr-page-slot canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cr-spine-shadow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 48px;
+  height: 100%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(35, 31, 32, 0.18) 48%,
+    rgba(35, 31, 32, 0.18) 52%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#cr-book:not([hidden]) .cr-spine-shadow { opacity: 1; }
+
+/* ---------- single-page (mobile) ---------- */
+
+.cr-single {
+  display: none;
+  width: calc(min(680px, 100%) * var(--cr-zoom));
+  aspect-ratio: 0.707 / 1;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(35, 31, 32, 0.15);
+  overflow: hidden;
+  position: relative;
+  flex: none;
+}
+.cr-single canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.cr-single.rendered canvas { opacity: 1; }
+.cr-reduced .cr-single canvas { transition: none; }
+
+@media (max-width: 767px) {
+  .cr-book-perspective, .cr-spine-shadow { display: none; }
+  .cr-single { display: block; }
+}
+
+/* ---------- toolbar ---------- */
+
+.cr-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  /* Rapid taps on the reader controls must not trigger the browser's
+     double-tap-to-zoom gesture (mobile Safari/Chrome). */
+  touch-action: manipulation;
+}
+.cr-toolbar-secondary { margin-top: 0.5rem; }
+
+.cr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--paper-card, #fff);
+  border: 1px solid var(--line);
+  border-radius: var(--radius, 8px);
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  /* Suppress the double-tap zoom delay/gesture so repeated taps turn pages
+     immediately; taps, swipes, mouse and keyboard events are unaffected. */
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.cr-btn:hover:not(:disabled) { border-color: var(--red-brand); color: var(--red-brand); }
+.cr-btn:disabled { opacity: 0.45; cursor: default; }
+.cr-btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.cr-btn.small { font-size: 0.85rem; padding: 0.4rem 0.7rem; }
+.cr-btn svg { width: 1.1em; height: 1.1em; }
+
+/* ---------- fullscreen overlay arrows ---------- */
+
+/* hidden unless the reader is in fullscreen (class toggled by the script) */
+.cr-fs-nav { display: none; }
+.cr-reading-fs .cr-fs-nav {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none; /* only the buttons themselves take clicks */
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(0.75rem, 3vw, 2.5rem);
+}
+.cr-fs-arrow {
+  pointer-events: auto;
+  width: clamp(44px, 6vh, 64px);
+  height: clamp(44px, 6vh, 64px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  background: rgba(28, 24, 25, 0.55);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  transition: background 0.15s ease;
+}
+.cr-fs-arrow:hover:not(:disabled) { background: rgba(28, 24, 25, 0.78); }
+.cr-fs-arrow:disabled { opacity: 0.35; cursor: default; }
+.cr-fs-arrow:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.cr-fs-arrow svg { width: 55%; height: 55%; }
+
+/* exit-fullscreen button: top-right corner of the fullscreen reader */
+.cr-fs-exit {
+  pointer-events: auto; /* the overlay container is click-through */
+  position: absolute;
+  top: clamp(0.75rem, 3vh, 1.5rem);
+  right: clamp(0.75rem, 3vw, 2rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(28, 24, 25, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius, 8px);
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  min-height: 44px; /* comfortable touch target */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  transition: background 0.15s ease;
+}
+.cr-fs-exit:hover { background: rgba(28, 24, 25, 0.85); }
+.cr-fs-exit:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.cr-fs-exit svg { width: 1.1em; height: 1.1em; }
+
+.cr-counter {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--ink-secondary);
+  margin: 0;
+  min-width: 12ch;
+  text-align: center;
+}
+
+/* ---------- compact embed (home-page catalogue band) ---------- */
+
+.cr-compact .cr-reader { min-height: 0; }
+/* thin white frame: just enough to separate page edges and spine */
+.cr-compact .cr-stage { padding: 8px; }
+/* dedicated nav row under the book with breathing room from the band edge */
+.cr-compact .cr-toolbar {
+  margin-top: 0.75rem;
+  padding: 0 0.25rem 0.35rem;
+  gap: 1rem;
+}
+/* page indicator sits on the deep-green band: keep it fully white */
+.cr-compact .cr-counter { color: #ffffff; opacity: 1; }
+
+/* ---------- thumbnails ---------- */
+
+.cr-thumb-panel {
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius, 8px);
+  background: var(--paper-card, #fff);
+  padding: 1rem;
+}
+.cr-thumb-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+.cr-thumb-panel-head h2 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  margin: 0;
+  color: var(--ink);
+}
+.cr-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 0.75rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.cr-thumb {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 4px;
+  padding: 0.35rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.cr-thumb img {
+  width: 100%;
+  aspect-ratio: 0.707;
+  object-fit: contain;
+  background: #fff;
+  display: block;
+}
+.cr-thumb span {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-secondary);
+  text-align: center;
+}
+.cr-thumb:hover { border-color: var(--green-brand); }
+.cr-thumb.active {
+  border-color: var(--red-brand);
+  box-shadow: 0 0 0 1px var(--red-brand);
+}
+.cr-thumb.active span { color: var(--red-brand); font-weight: 600; }
+.cr-thumb:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}

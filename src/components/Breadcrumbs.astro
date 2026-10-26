@@ -1,0 +1,25 @@
+---
+// Breadcrumbs — semantic breadcrumb trail.
+interface Props { trail: { label: string; href?: string }[] }
+const { trail } = Astro.props;
+---
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    {trail.map((t, i) => (
+      <li>
+        {t.href && i < trail.length - 1
+          ? <a href={t.href}>{t.label}</a>
+          : <span aria-current="page">{t.label}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>
+<style>
+  .crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2);
+    margin: 0 0 var(--space-5); padding: 0; font-family: var(--font-mono); font-size: 13px; }
+  .crumbs li { display: flex; gap: var(--space-2); }
+  .crumbs li + li::before { content: "/"; color: var(--ink-tertiary); }
+  .crumbs a { color: var(--green-brand); text-decoration: none; }
+  .crumbs a:hover { color: var(--red-brand); text-decoration: underline; }
+  .crumbs span { color: var(--ink-secondary); }
+</style>

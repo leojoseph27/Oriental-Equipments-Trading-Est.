@@ -1,0 +1,37 @@
+---
+// IndustryGrid — the six industries from PDF file p.3 with their exact captions.
+import { industries } from "../data/catalog";
+---
+<section class="section container" id="industries" aria-labelledby="industries-heading" data-reveal>
+  <h2 id="industries-heading">Industries We Serve</h2>
+  <p class="intro">
+    Supplying welding consumables and equipment to critical sectors across
+    Saudi Arabia's Eastern Province and beyond.
+  </p>
+  <ul class="grid" data-reveal-group>
+    {industries.map((ind) => (
+      <li>
+        <img src={ind.image} alt={`${ind.name} — industry photo from the company catalogue`} loading="lazy" width="460" height="460" />
+        <span class="label">{ind.name}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+<style>
+  h2 { color: var(--red-deep); text-transform: uppercase; }
+  .intro { color: var(--ink-secondary); margin-bottom: var(--space-6); }
+  .grid { list-style: none; margin: 0; padding: 0; display: grid;
+    grid-template-columns: repeat(3, 1fr); gap: var(--space-5) var(--space-4); }
+  .grid li { transition: transform var(--dur-fast) var(--ease-standard); }
+  .grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+    border: var(--line-weight) solid var(--line);
+    transition: border-color var(--dur-fast) var(--ease-standard); }
+  @media (prefers-reduced-motion: no-preference) {
+    .grid li:hover { transform: translateY(-2px); }
+    .grid li:hover img { border-color: var(--ink-tertiary); }
+  }
+  .label { display: block; font-family: var(--font-heading); font-weight: 600;
+    font-size: 16px; text-transform: uppercase; text-align: center; padding-top: var(--space-3); }
+  @media (max-width: 760px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .grid { grid-template-columns: 1fr; } }
+</style>

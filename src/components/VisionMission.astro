@@ -1,0 +1,23 @@
+---
+// VisionMission — exact wording from the catalogue (PDF file p.2). Do not paraphrase.
+---
+<section class="vm container" id="about" aria-label="Vision and Mission" data-reveal>
+  <div class="col">
+    <span class="kicker">Our Vision</span>
+    <blockquote><p>“To stand as the leading industrial supply and solution gateway in the Gulf region, setting the absolute industry benchmark for product reliability, technical expertise, and seamless energy sector procurement.”</p></blockquote>
+  </div>
+  <div class="col">
+    <span class="kicker">Our Mission</span>
+    <blockquote><p>“To empower Saudi Arabia’s industrial growth by providing elite, high-efficiency welding consumables. We forge strong supply chains with world-renowned manufacturers, maintain extensive safety stocks, and deliver targeted technical expertise to minimize downtime.”</p></blockquote>
+  </div>
+</section>
+<style>
+  .vm { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .col { background: var(--paper-card); border: var(--line-weight) solid var(--line);
+    border-top: 3px solid var(--green-brand); padding: var(--space-6); }
+  .kicker { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--green-brand); display: block; margin-bottom: var(--space-3); }
+  blockquote { margin: 0; }
+  blockquote p { font-size: 18px; line-height: 1.65; color: var(--ink); margin: 0; max-width: 52ch; }
+  @media (max-width: 800px) { .vm { grid-template-columns: 1fr; } }
+</style>

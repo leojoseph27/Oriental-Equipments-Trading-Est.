@@ -1,0 +1,2195 @@
+{
+ "categories": [
+  {
+   "indexNo": 1,
+   "slug": "welding-electrodes",
+   "name": "WELDING ELECTRODES",
+   "printedPages": "1-2",
+   "pdfPages": "6-7"
+  },
+  {
+   "indexNo": 2,
+   "slug": "mig-welding-wire",
+   "name": "MIG WELDING WIRE",
+   "printedPages": "3",
+   "pdfPages": "8"
+  },
+  {
+   "indexNo": 3,
+   "slug": "tig-welding-wires",
+   "name": "TIG WELDING WIRES",
+   "printedPages": "4-5",
+   "pdfPages": "9-10"
+  },
+  {
+   "indexNo": 4,
+   "slug": "arc-welding-accessories",
+   "name": "ARC WELDING ACCESSORIES",
+   "printedPages": "6-7",
+   "pdfPages": "11-12"
+  },
+  {
+   "indexNo": 5,
+   "slug": "mig-welding-torches-accessories",
+   "name": "MIG WELDING TORCHES & ACCESSORIES",
+   "pageHeading": "MIG TORCHES & CONSUMABLES",
+   "printedPages": "8",
+   "pdfPages": "13"
+  },
+  {
+   "indexNo": 6,
+   "slug": "tig-welding-torches-consumables",
+   "name": "TIG WELDING TORCHES & CONSUMABLES",
+   "printedPages": "9",
+   "pdfPages": "14"
+  },
+  {
+   "indexNo": 7,
+   "slug": "tig-welding-torch-accessories",
+   "name": "TIG WELDING TORCH ACCESSORIES",
+   "printedPages": "10",
+   "pdfPages": "15"
+  },
+  {
+   "indexNo": 8,
+   "slug": "gouging-rod-torches",
+   "name": "GOUGING ROD & TORCHES",
+   "pageHeading": "GOUGING TORCHES & RODS",
+   "printedPages": "11",
+   "pdfPages": "16"
+  },
+  {
+   "indexNo": 9,
+   "slug": "industrial-gas-cylinders-gas-trolley",
+   "name": "INDUSTRIAL GAS CYLINDERS & GAS TROLLEY",
+   "printedPages": "12",
+   "pdfPages": "17"
+  },
+  {
+   "indexNo": 10,
+   "slug": "gas-cutting-heating-equipments-gas-hoses",
+   "name": "GAS CUTTING, HEATING EQUIPMENTS & GAS HOSES",
+   "printedPages": "13",
+   "pdfPages": "18"
+  },
+  {
+   "indexNo": 11,
+   "slug": "cutting-nozzles",
+   "name": "CUTTING NOZZLES",
+   "printedPages": "14",
+   "pdfPages": "19"
+  },
+  {
+   "indexNo": 12,
+   "slug": "welding-regulator-fittings-gas-hose-fittings",
+   "name": "WELDING REGULATOR FITTINGS & GAS HOSE FITTINGS",
+   "printedPages": "15",
+   "pdfPages": "20"
+  },
+  {
+   "indexNo": 13,
+   "slug": "welding-cutting-gas-accessories",
+   "name": "WELDING & CUTTING GAS ACCESSORIES",
+   "printedPages": "16",
+   "pdfPages": "21"
+  },
+  {
+   "indexNo": 14,
+   "slug": "welding-helmet-accessories",
+   "name": "WELDING HELMET & ACCESSORIES",
+   "printedPages": "17",
+   "pdfPages": "22"
+  },
+  {
+   "indexNo": 15,
+   "slug": "welding-machines",
+   "name": "WELDING MACHINES",
+   "printedPages": "18",
+   "pdfPages": "23"
+  },
+  {
+   "indexNo": 16,
+   "slug": "abrasives",
+   "name": "ABRASIVES",
+   "printedPages": "19",
+   "pdfPages": "24"
+  },
+  {
+   "indexNo": 17,
+   "slug": "industrial-chemicals",
+   "name": "INDUSTRIAL CHEMICALS",
+   "printedPages": "20",
+   "pdfPages": "25"
+  },
+  {
+   "indexNo": 18,
+   "slug": "safety",
+   "name": "SAFETY",
+   "printedPages": "21",
+   "pdfPages": "26"
+  },
+  {
+   "indexNo": 19,
+   "slug": "hand-protections",
+   "name": "HAND PROTECTIONS",
+   "printedPages": "22",
+   "pdfPages": "27"
+  },
+  {
+   "indexNo": 20,
+   "slug": "welding-protective-gear",
+   "name": "WELDING PROTECTIVE GEAR",
+   "printedPages": "23",
+   "pdfPages": "28"
+  }
+ ],
+ "products": [
+  {
+   "id": "mild-steel-welding-electrode-e6010",
+   "categoryId": 1,
+   "name": "MILD STEEL WELDING ELECTRODE",
+   "awsNo": "E6010",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/mild-steel-welding-electrode-e6010.webp",
+   "printedPage": "1-2",
+   "pdfPage": "6",
+   "flags": []
+  },
+  {
+   "id": "mild-steel-welding-electrode-e6013",
+   "categoryId": 1,
+   "name": "MILD STEEL WELDING ELECTRODE",
+   "awsNo": "E6013",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/mild-steel-welding-electrode-e6013.webp",
+   "printedPage": "1-2",
+   "pdfPage": "6",
+   "flags": []
+  },
+  {
+   "id": "mild-steel-welding-electrode-e7010",
+   "categoryId": 1,
+   "name": "MILD STEEL WELDING ELECTRODE",
+   "awsNo": "E7010",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/mild-steel-welding-electrode-e7010.webp",
+   "printedPage": "1-2",
+   "pdfPage": "6",
+   "flags": []
+  },
+  {
+   "id": "mild-steel-welding-electrode-e7018",
+   "categoryId": 1,
+   "name": "MILD STEEL WELDING ELECTRODE",
+   "awsNo": "E7018",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/mild-steel-welding-electrode-e7018.webp",
+   "printedPage": "1-2",
+   "pdfPage": "6",
+   "flags": []
+  },
+  {
+   "id": "mild-steel-welding-electrode-e7018-1",
+   "categoryId": 1,
+   "name": "MILD STEEL WELDING ELECTRODE",
+   "awsNo": "E7018-1",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/mild-steel-welding-electrode-e7018-1.webp",
+   "printedPage": "1-2",
+   "pdfPage": "6",
+   "flags": []
+  },
+  {
+   "id": "mild-steel-welding-electrode-e8018",
+   "categoryId": 1,
+   "name": "MILD STEEL WELDING ELECTRODE",
+   "awsNo": "E8018",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/mild-steel-welding-electrode-e8018.webp",
+   "printedPage": "1-2",
+   "pdfPage": "6",
+   "flags": []
+  },
+  {
+   "id": "mild-steel-welding-electrode-e9018",
+   "categoryId": 1,
+   "name": "MILD STEEL WELDING ELECTRODE",
+   "awsNo": "E9018",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/mild-steel-welding-electrode-e9018.webp",
+   "printedPage": "1-2",
+   "pdfPage": "6",
+   "flags": []
+  },
+  {
+   "id": "mild-steel-welding-electrode-e10018",
+   "categoryId": 1,
+   "name": "MILD STEEL WELDING ELECTRODE",
+   "awsNo": "E10018",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/mild-steel-welding-electrode-e10018.webp",
+   "printedPage": "1-2",
+   "pdfPage": "6",
+   "flags": []
+  },
+  {
+   "id": "mild-steel-welding-electrode-e11018",
+   "categoryId": 1,
+   "name": "MILD STEEL WELDING ELECTRODE",
+   "awsNo": "E11018",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/mild-steel-welding-electrode-e11018.webp",
+   "printedPage": "1-2",
+   "pdfPage": "6",
+   "flags": []
+  },
+  {
+   "id": "stainless-steel-welding-electrode-e308l-15-16-17",
+   "categoryId": 1,
+   "name": "STAINLESS STEEL WELDING ELECTRODE",
+   "awsNo": "E308L-15/16/17",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/stainless-steel-welding-electrode-e308l-15-16-17.webp",
+   "printedPage": "1-2",
+   "pdfPage": "7",
+   "flags": []
+  },
+  {
+   "id": "stainless-steel-welding-electrode-e309l-15-16-17",
+   "categoryId": 1,
+   "name": "STAINLESS STEEL WELDING ELECTRODE",
+   "awsNo": "E309L-15/16/17",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/stainless-steel-welding-electrode-e309l-15-16-17.webp",
+   "printedPage": "1-2",
+   "pdfPage": "7",
+   "flags": []
+  },
+  {
+   "id": "stainless-steel-welding-electrode-e310l-15-16-17",
+   "categoryId": 1,
+   "name": "STAINLESS STEEL WELDING ELECTRODE",
+   "awsNo": "E310L-15/16/17",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/stainless-steel-welding-electrode-e310l-15-16-17.webp",
+   "printedPage": "1-2",
+   "pdfPage": "7",
+   "flags": []
+  },
+  {
+   "id": "stainless-steel-welding-electrode-e316l-15-16-17",
+   "categoryId": 1,
+   "name": "STAINLESS STEEL WELDING ELECTRODE",
+   "awsNo": "E316L-15/16/17",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/stainless-steel-welding-electrode-e316l-15-16-17.webp",
+   "printedPage": "1-2",
+   "pdfPage": "7",
+   "flags": []
+  },
+  {
+   "id": "nickel-welding-electrode-eni",
+   "categoryId": 1,
+   "name": "NICKEL WELDING ELECTRODE",
+   "awsNo": "ENi",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/nickel-welding-electrode-eni.webp",
+   "printedPage": "1-2",
+   "pdfPage": "7",
+   "flags": []
+  },
+  {
+   "id": "cast-iron-welding-electrode-enife-ci",
+   "categoryId": 1,
+   "name": "CAST IRON WELDING ELECTRODE",
+   "awsNo": "ENiFe-Ci",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/cast-iron-welding-electrode-enife-ci.webp",
+   "printedPage": "1-2",
+   "pdfPage": "7",
+   "flags": []
+  },
+  {
+   "id": "aluminium-welding-electrode-e4043",
+   "categoryId": 1,
+   "name": "ALUMINIUM WELDING ELECTRODE",
+   "awsNo": "E4043",
+   "sizes": "2.6mm, 3.2mm, 4mm",
+   "image": "/images/products/welding-electrodes/aluminium-welding-electrode-e4043.webp",
+   "printedPage": "1-2",
+   "pdfPage": "7",
+   "flags": []
+  },
+  {
+   "id": "fluxcored-wire-er70s6",
+   "categoryId": 2,
+   "name": "FLUXCORED WIRE",
+   "awsNo": "ER70S6",
+   "image": "/images/products/mig-welding-wire/fluxcored-wire-er70s6.webp",
+   "printedPage": "3",
+   "pdfPage": "8",
+   "flags": []
+  },
+  {
+   "id": "fluxcored-wire-er71t",
+   "categoryId": 2,
+   "name": "FLUXCORED WIRE",
+   "awsNo": "ER71T",
+   "image": "/images/products/mig-welding-wire/fluxcored-wire-er71t.webp",
+   "printedPage": "3",
+   "pdfPage": "8",
+   "flags": []
+  },
+  {
+   "id": "fluxcored-wire-er81",
+   "categoryId": 2,
+   "name": "FLUXCORED WIRE",
+   "awsNo": "ER81",
+   "image": "/images/products/mig-welding-wire/fluxcored-wire-er81.webp",
+   "printedPage": "3",
+   "pdfPage": "8",
+   "flags": []
+  },
+  {
+   "id": "solid-wire-er308",
+   "categoryId": 2,
+   "name": "SOLID WIRE",
+   "awsNo": "ER308",
+   "image": "/images/products/mig-welding-wire/solid-wire-er308.webp",
+   "printedPage": "3",
+   "pdfPage": "8",
+   "flags": []
+  },
+  {
+   "id": "solid-wire-er309",
+   "categoryId": 2,
+   "name": "SOLID WIRE",
+   "awsNo": "ER309",
+   "image": "/images/products/mig-welding-wire/solid-wire-er309.webp",
+   "printedPage": "3",
+   "pdfPage": "8",
+   "flags": []
+  },
+  {
+   "id": "solid-wire-er316",
+   "categoryId": 2,
+   "name": "SOLID WIRE",
+   "awsNo": "ER316",
+   "image": "/images/products/mig-welding-wire/solid-wire-er316.webp",
+   "printedPage": "3",
+   "pdfPage": "8",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er347",
+   "categoryId": 2,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER347",
+   "image": "/images/products/mig-welding-wire/tig-welding-wire-er347.webp",
+   "printedPage": "3",
+   "pdfPage": "8",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er4043",
+   "categoryId": 2,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER4043",
+   "image": "/images/products/mig-welding-wire/tig-welding-wire-er4043.webp",
+   "printedPage": "3",
+   "pdfPage": "8",
+   "flags": []
+  },
+  {
+   "id": "solid-wire-er5356",
+   "categoryId": 2,
+   "name": "SOLID WIRE",
+   "awsNo": "ER5356",
+   "image": "/images/products/mig-welding-wire/solid-wire-er5356.webp",
+   "printedPage": "3",
+   "pdfPage": "8",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er70s-2",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER70S-2",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er70s-2.webp",
+   "printedPage": "4-5",
+   "pdfPage": "9",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er70s-3",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER70S-3",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er70s-3.webp",
+   "printedPage": "4-5",
+   "pdfPage": "9",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er70s-6",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER70S-6",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er70s-6.webp",
+   "printedPage": "4-5",
+   "pdfPage": "9",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er80s-ni",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER80S-Ni",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er80s-ni.webp",
+   "printedPage": "4-5",
+   "pdfPage": "9",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er80s-b2",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER80S-B2",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er80s-b2.webp",
+   "printedPage": "4-5",
+   "pdfPage": "9",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er80s-d2",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER80S-D2",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er80s-d2.webp",
+   "printedPage": "4-5",
+   "pdfPage": "9",
+   "flags": []
+  },
+  {
+   "id": "brass-welding-electrode",
+   "categoryId": 3,
+   "name": "BRASS WELDING ELECTRODE",
+   "packet": "10KG PKT.",
+   "notes": "TIG WELDING WIRE",
+   "image": "/images/products/tig-welding-wires/brass-welding-electrode.webp",
+   "printedPage": "4-5",
+   "pdfPage": "9",
+   "flags": [
+    "caption-type-heading-preserved"
+   ]
+  },
+  {
+   "id": "copper-silver-welding-electrode",
+   "categoryId": 3,
+   "name": "COPPER SILVER WELDING ELECTRODE",
+   "notes": "TIG WELDING WIRE",
+   "image": "/images/products/tig-welding-wires/copper-silver-welding-electrode.webp",
+   "printedPage": "4-5",
+   "pdfPage": "9",
+   "flags": [
+    "caption-type-heading-preserved"
+   ]
+  },
+  {
+   "id": "copper-silver-flux-welding-electrode",
+   "categoryId": 3,
+   "name": "COPPER SILVER FLUX WELDING ELECTRODE",
+   "notes": "TIG WELDING WIRE",
+   "image": "/images/products/tig-welding-wires/copper-silver-flux-welding-electrode.webp",
+   "printedPage": "4-5",
+   "pdfPage": "9",
+   "flags": [
+    "caption-type-heading-preserved"
+   ]
+  },
+  {
+   "id": "tig-welding-wire-er308l",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER308L",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er308l.webp",
+   "printedPage": "4-5",
+   "pdfPage": "10",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er309l",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER309L",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er309l.webp",
+   "printedPage": "4-5",
+   "pdfPage": "10",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er310l",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER310L",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er310l.webp",
+   "printedPage": "4-5",
+   "pdfPage": "10",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er316l",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER316L",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er316l.webp",
+   "printedPage": "4-5",
+   "pdfPage": "10",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er347l",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER347L",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er347l.webp",
+   "printedPage": "4-5",
+   "pdfPage": "10",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-ernicr-3",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ERNiCr-3",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-ernicr-3.webp",
+   "printedPage": "4-5",
+   "pdfPage": "10",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-ernicrmo-3",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ERNiCrMo-3",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-ernicrmo-3.webp",
+   "printedPage": "4-5",
+   "pdfPage": "10",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er4043-2",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER4043",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er4043-2.webp",
+   "printedPage": "4-5",
+   "pdfPage": "10",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-wire-er5356",
+   "categoryId": 3,
+   "name": "TIG WELDING WIRE",
+   "awsNo": "ER5356",
+   "packet": "5KG PKT.",
+   "image": "/images/products/tig-welding-wires/tig-welding-wire-er5356.webp",
+   "printedPage": "4-5",
+   "pdfPage": "10",
+   "flags": []
+  },
+  {
+   "id": "welding-electrode-holder-american-type",
+   "categoryId": 4,
+   "name": "WELDING ELECTRODE HOLDER AMERICAN TYPE",
+   "amps": "300,500,600 AMPS",
+   "image": "/images/products/arc-welding-accessories/welding-electrode-holder-american-type.webp",
+   "printedPage": "6-7",
+   "pdfPage": "11",
+   "flags": []
+  },
+  {
+   "id": "welding-electrode-holder-japan-type",
+   "categoryId": 4,
+   "name": "WELDING ELECTRODE HOLDER JAPAN TYPE",
+   "amps": "300,500,600 AMPS",
+   "image": "/images/products/arc-welding-accessories/welding-electrode-holder-japan-type.webp",
+   "printedPage": "6-7",
+   "pdfPage": "11",
+   "flags": []
+  },
+  {
+   "id": "welding-electrode-holder-india-type",
+   "categoryId": 4,
+   "name": "WELDING ELECTRODE HOLDER INDIA TYPE",
+   "amps": "300,500,600 AMPS",
+   "image": "/images/products/arc-welding-accessories/welding-electrode-holder-india-type.webp",
+   "printedPage": "6-7",
+   "pdfPage": "11",
+   "flags": []
+  },
+  {
+   "id": "welding-electrode-holder-china-type",
+   "categoryId": 4,
+   "name": "WELDING ELECTRODE HOLDER CHINA TYPE",
+   "amps": "300,500,600 AMPS",
+   "image": "/images/products/arc-welding-accessories/welding-electrode-holder-china-type.webp",
+   "printedPage": "6-7",
+   "pdfPage": "11",
+   "flags": []
+  },
+  {
+   "id": "welding-earth-clamp",
+   "categoryId": 4,
+   "name": "WELDING EARTH CLAMP",
+   "amps": "300,500,600,800 AMPS",
+   "image": "/images/products/arc-welding-accessories/welding-earth-clamp.webp",
+   "printedPage": "6-7",
+   "pdfPage": "11",
+   "flags": []
+  },
+  {
+   "id": "cable-connector",
+   "categoryId": 4,
+   "name": "CABLE CONNECTOR",
+   "sizes": "10-25MM, 35-50MM, 50-70MM, 70-95MM",
+   "image": "/images/products/arc-welding-accessories/cable-connector.webp",
+   "printedPage": "6-7",
+   "pdfPage": "11",
+   "flags": []
+  },
+  {
+   "id": "welding-earth-clamp-crocodile-type-brass",
+   "categoryId": 4,
+   "name": "WELDING EARTH CLAMP CROCODILE TYPE BRASS",
+   "amps": "300,500,600 AMPS",
+   "image": "/images/products/arc-welding-accessories/welding-earth-clamp-crocodile-type-brass.webp",
+   "printedPage": "6-7",
+   "pdfPage": "11",
+   "flags": []
+  },
+  {
+   "id": "welding-earth-clamp-screw-type-brass",
+   "categoryId": 4,
+   "name": "WELDING EARTH CLAMP SCREW TYPE BRASS",
+   "amps": "300,500,600 AMPS",
+   "image": "/images/products/arc-welding-accessories/welding-earth-clamp-screw-type-brass.webp",
+   "printedPage": "6-7",
+   "pdfPage": "11",
+   "flags": []
+  },
+  {
+   "id": "panel-socket",
+   "categoryId": 4,
+   "name": "PANEL SOCKET",
+   "sizes": "10-25MM, 35-50MM, 50-70MM, 70-95MM",
+   "image": "/images/products/arc-welding-accessories/panel-socket.webp",
+   "printedPage": "6-7",
+   "pdfPage": "11",
+   "flags": []
+  },
+  {
+   "id": "portable-welding-electrode-dryer",
+   "categoryId": 4,
+   "name": "PORTABLE WELDING ELECTRODE DRYER",
+   "sizes": "5, 10 KG",
+   "image": "/images/products/arc-welding-accessories/portable-welding-electrode-dryer.webp",
+   "printedPage": "6-7",
+   "pdfPage": "12",
+   "flags": [
+    "caption-clipped"
+   ]
+  },
+  {
+   "id": "welding-electrode-bench-oven",
+   "categoryId": 4,
+   "name": "WELDING ELECTRODE BENCH OVEN",
+   "sizes": "25KG, 50KG, 100KG, 150KG, 200KG",
+   "image": "/images/products/arc-welding-accessories/welding-electrode-bench-oven.webp",
+   "printedPage": "6-7",
+   "pdfPage": "12",
+   "flags": []
+  },
+  {
+   "id": "chipping-hammer",
+   "categoryId": 4,
+   "name": "CHIPPING HAMMER",
+   "sizes": "300G, 500G",
+   "image": "/images/products/arc-welding-accessories/chipping-hammer.webp",
+   "printedPage": "6-7",
+   "pdfPage": "12",
+   "flags": []
+  },
+  {
+   "id": "welding-chalk",
+   "categoryId": 4,
+   "name": "WELDING CHALK",
+   "image": "/images/products/arc-welding-accessories/welding-chalk.webp",
+   "printedPage": "6-7",
+   "pdfPage": "12",
+   "flags": []
+  },
+  {
+   "id": "welding-copper-lugs",
+   "categoryId": 4,
+   "name": "WELDING COPPER LUGS",
+   "image": "/images/products/arc-welding-accessories/welding-copper-lugs.webp",
+   "printedPage": "6-7",
+   "pdfPage": "12",
+   "flags": []
+  },
+  {
+   "id": "welding-cable-made-in-china",
+   "categoryId": 4,
+   "name": "WELDING CABLE MADE IN CHINA",
+   "sizes": "35mm, 50mm, 70mm, 95mm",
+   "image": "/images/products/arc-welding-accessories/welding-cable-made-in-china.webp",
+   "printedPage": "6-7",
+   "pdfPage": "12",
+   "flags": []
+  },
+  {
+   "id": "welding-cable-made-in-india",
+   "categoryId": 4,
+   "name": "WELDING CABLE MADE IN INDIA",
+   "sizes": "35MM, 50MM, 70MM, 95MM, 120MM",
+   "image": "/images/products/arc-welding-accessories/welding-cable-made-in-india.webp",
+   "printedPage": "6-7",
+   "pdfPage": "12",
+   "flags": []
+  },
+  {
+   "id": "welding-cable-made-in-taiwan",
+   "categoryId": 4,
+   "name": "WELDING CABLE MADE IN TAIWAN",
+   "sizes": "35MM, 50MM, 70MM, 95MM, 120MM",
+   "image": "/images/products/arc-welding-accessories/welding-cable-made-in-taiwan.webp",
+   "printedPage": "6-7",
+   "pdfPage": "12",
+   "flags": []
+  },
+  {
+   "id": "mig-welding-torch-24kd",
+   "categoryId": 5,
+   "name": "MIG WELDING TORCH",
+   "model": "24KD",
+   "image": "/images/products/mig-welding-torches-accessories/mig-welding-torch-24kd.webp",
+   "printedPage": "8",
+   "pdfPage": "13",
+   "flags": []
+  },
+  {
+   "id": "mig-welding-torch-25kd",
+   "categoryId": 5,
+   "name": "MIG WELDING TORCH",
+   "model": "25KD",
+   "image": "/images/products/mig-welding-torches-accessories/mig-welding-torch-25kd.webp",
+   "printedPage": "8",
+   "pdfPage": "13",
+   "flags": []
+  },
+  {
+   "id": "mig-welding-torch-36kd",
+   "categoryId": 5,
+   "name": "MIG WELDING TORCH",
+   "model": "36KD",
+   "image": "/images/products/mig-welding-torches-accessories/mig-welding-torch-36kd.webp",
+   "printedPage": "8",
+   "pdfPage": "13",
+   "flags": []
+  },
+  {
+   "id": "contact-tip",
+   "categoryId": 5,
+   "name": "CONTACT TIP",
+   "image": "/images/products/mig-welding-torches-accessories/contact-tip.webp",
+   "printedPage": "8",
+   "pdfPage": "13",
+   "flags": []
+  },
+  {
+   "id": "gas-nozzle",
+   "categoryId": 5,
+   "name": "GAS NOZZLE",
+   "image": "/images/products/mig-welding-torches-accessories/gas-nozzle.webp",
+   "printedPage": "8",
+   "pdfPage": "13",
+   "flags": []
+  },
+  {
+   "id": "gas-diffuser",
+   "categoryId": 5,
+   "name": "GAS DIFFUSER",
+   "image": "/images/products/mig-welding-torches-accessories/gas-diffuser.webp",
+   "printedPage": "8",
+   "pdfPage": "13",
+   "flags": []
+  },
+  {
+   "id": "contact-tip-holder",
+   "categoryId": 5,
+   "name": "CONTACT TIP HOLDER",
+   "image": "/images/products/mig-welding-torches-accessories/contact-tip-holder.webp",
+   "printedPage": "8",
+   "pdfPage": "13",
+   "flags": []
+  },
+  {
+   "id": "insulator",
+   "categoryId": 5,
+   "name": "INSULATOR",
+   "image": "/images/products/mig-welding-torches-accessories/insulator.webp",
+   "printedPage": "8",
+   "pdfPage": "13",
+   "flags": []
+  },
+  {
+   "id": "swan-neck",
+   "categoryId": 5,
+   "name": "SWAN NECK",
+   "image": "/images/products/mig-welding-torches-accessories/swan-neck.webp",
+   "printedPage": "8",
+   "pdfPage": "13",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-torch-9fv",
+   "categoryId": 6,
+   "name": "TIG WELDING TORCH",
+   "model": "9FV",
+   "image": "/images/products/tig-welding-torches-consumables/tig-welding-torch-9fv.webp",
+   "printedPage": "9",
+   "pdfPage": "14",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-torch-17fv",
+   "categoryId": 6,
+   "name": "TIG WELDING TORCH",
+   "model": "17FV",
+   "image": "/images/products/tig-welding-torches-consumables/tig-welding-torch-17fv.webp",
+   "printedPage": "9",
+   "pdfPage": "14",
+   "flags": []
+  },
+  {
+   "id": "tig-welding-torch-26fv",
+   "categoryId": 6,
+   "name": "TIG WELDING TORCH",
+   "model": "26FV",
+   "image": "/images/products/tig-welding-torches-consumables/tig-welding-torch-26fv.webp",
+   "printedPage": "9",
+   "pdfPage": "14",
+   "flags": []
+  },
+  {
+   "id": "tungsten-electrode-red-color",
+   "categoryId": 6,
+   "name": "TUNGSTEN ELECTRODE RED COLOR",
+   "sizes": "1.6MM, 2.4MM, 3.2MM",
+   "image": "/images/products/tig-welding-torches-consumables/tungsten-electrode-red-color.webp",
+   "printedPage": "9",
+   "pdfPage": "14",
+   "flags": []
+  },
+  {
+   "id": "tungsten-electrode-green-color",
+   "categoryId": 6,
+   "name": "TUNGSTEN ELECTRODE GREEN COLOR",
+   "sizes": "1.6MM, 2.4MM, 3.2MM",
+   "image": "/images/products/tig-welding-torches-consumables/tungsten-electrode-green-color.webp",
+   "printedPage": "9",
+   "pdfPage": "14",
+   "flags": []
+  },
+  {
+   "id": "tungsten-electrode-grey-color",
+   "categoryId": 6,
+   "name": "TUNGSTEN ELECTRODE GREY COLOR",
+   "sizes": "1.6MM, 2.4MM, 3.2MM",
+   "image": "/images/products/tig-welding-torches-consumables/tungsten-electrode-grey-color.webp",
+   "printedPage": "9",
+   "pdfPage": "14",
+   "flags": []
+  },
+  {
+   "id": "ceramic-cup",
+   "categoryId": 6,
+   "name": "CERAMIC CUP",
+   "sizes": "4,5,6,7,8,9,10,11,12",
+   "image": "/images/products/tig-welding-torches-consumables/ceramic-cup.webp",
+   "printedPage": "9",
+   "pdfPage": "14",
+   "flags": []
+  },
+  {
+   "id": "collet-body-pin",
+   "categoryId": 6,
+   "name": "COLLET BODY & PIN",
+   "sizes": "1.6MM, 2.4MM, 3.2MM",
+   "image": "/images/products/tig-welding-torches-consumables/collet-body-pin.webp",
+   "printedPage": "9",
+   "pdfPage": "14",
+   "flags": []
+  },
+  {
+   "id": "back-cap",
+   "categoryId": 6,
+   "name": "BACK CAP",
+   "sizes": "SHORT, MEDIUM, LONG",
+   "image": "/images/products/tig-welding-torches-consumables/back-cap.webp",
+   "printedPage": "9",
+   "pdfPage": "14",
+   "flags": []
+  },
+  {
+   "id": "body-valve",
+   "categoryId": 7,
+   "name": "BODY VALVE",
+   "image": "/images/products/tig-welding-torch-accessories/body-valve.webp",
+   "printedPage": "10",
+   "pdfPage": "15",
+   "flags": []
+  },
+  {
+   "id": "body",
+   "categoryId": 7,
+   "name": "BODY",
+   "image": "/images/products/tig-welding-torch-accessories/body.webp",
+   "printedPage": "10",
+   "pdfPage": "15",
+   "flags": []
+  },
+  {
+   "id": "argon-hose-black-clear",
+   "categoryId": 7,
+   "name": "ARGON HOSE (BLACK / CLEAR)",
+   "image": "/images/products/tig-welding-torch-accessories/argon-hose-black-clear.webp",
+   "printedPage": "10",
+   "pdfPage": "15",
+   "flags": []
+  },
+  {
+   "id": "insulator-ring",
+   "categoryId": 7,
+   "name": "INSULATOR RING",
+   "image": "/images/products/tig-welding-torch-accessories/insulator-ring.webp",
+   "printedPage": "10",
+   "pdfPage": "15",
+   "flags": []
+  },
+  {
+   "id": "gas-lens",
+   "categoryId": 7,
+   "name": "GAS LENS",
+   "image": "/images/products/tig-welding-torch-accessories/gas-lens.webp",
+   "printedPage": "10",
+   "pdfPage": "15",
+   "flags": []
+  },
+  {
+   "id": "argon-nut",
+   "categoryId": 7,
+   "name": "ARGON NUT",
+   "image": "/images/products/tig-welding-torch-accessories/argon-nut.webp",
+   "printedPage": "10",
+   "pdfPage": "15",
+   "flags": []
+  },
+  {
+   "id": "argon-nipple",
+   "categoryId": 7,
+   "name": "ARGON NIPPLE",
+   "image": "/images/products/tig-welding-torch-accessories/argon-nipple.webp",
+   "printedPage": "10",
+   "pdfPage": "15",
+   "flags": []
+  },
+  {
+   "id": "2-ear-clip",
+   "categoryId": 7,
+   "name": "2 EAR CLIP",
+   "image": "/images/products/tig-welding-torch-accessories/2-ear-clip.webp",
+   "printedPage": "10",
+   "pdfPage": "15",
+   "flags": []
+  },
+  {
+   "id": "argon-hose-adaptor",
+   "categoryId": 7,
+   "name": "ARGON HOSE ADAPTOR",
+   "image": "/images/products/tig-welding-torch-accessories/argon-hose-adaptor.webp",
+   "printedPage": "10",
+   "pdfPage": "15",
+   "flags": []
+  },
+  {
+   "id": "k4000",
+   "categoryId": 8,
+   "name": "K4000",
+   "model": "K4000",
+   "amps": "1000A",
+   "image": "/images/products/gouging-rod-torches/k4000.webp",
+   "printedPage": "11",
+   "pdfPage": "16",
+   "flags": []
+  },
+  {
+   "id": "k3000",
+   "categoryId": 8,
+   "name": "K3000",
+   "model": "K3000",
+   "amps": "800A",
+   "image": "/images/products/gouging-rod-torches/k3000.webp",
+   "printedPage": "11",
+   "pdfPage": "16",
+   "flags": []
+  },
+  {
+   "id": "gouging-rod",
+   "categoryId": 8,
+   "name": "GOUGING ROD",
+   "sizes": "4.5MM",
+   "image": "/images/products/gouging-rod-torches/gouging-rod.webp",
+   "printedPage": "11",
+   "pdfPage": "16",
+   "flags": []
+  },
+  {
+   "id": "gouging-rod-2",
+   "categoryId": 8,
+   "name": "GOUGING ROD",
+   "sizes": "6MM",
+   "image": "/images/products/gouging-rod-torches/gouging-rod-2.webp",
+   "printedPage": "11",
+   "pdfPage": "16",
+   "flags": []
+  },
+  {
+   "id": "gouging-rod-3",
+   "categoryId": 8,
+   "name": "GOUGING ROD",
+   "sizes": "8MM",
+   "image": "/images/products/gouging-rod-torches/gouging-rod-3.webp",
+   "printedPage": "11",
+   "pdfPage": "16",
+   "flags": []
+  },
+  {
+   "id": "gouging-rod-4",
+   "categoryId": 8,
+   "name": "GOUGING ROD",
+   "sizes": "9.5MM",
+   "image": "/images/products/gouging-rod-torches/gouging-rod-4.webp",
+   "printedPage": "11",
+   "pdfPage": "16",
+   "flags": []
+  },
+  {
+   "id": "gouging-rod-5",
+   "categoryId": 8,
+   "name": "GOUGING ROD",
+   "sizes": "12.5MM",
+   "image": "/images/products/gouging-rod-torches/gouging-rod-5.webp",
+   "printedPage": "11",
+   "pdfPage": "16",
+   "flags": []
+  },
+  {
+   "id": "oxygen-cylinder",
+   "categoryId": 9,
+   "name": "OXYGEN CYLINDER",
+   "image": "/images/products/industrial-gas-cylinders-gas-trolley/oxygen-cylinder.webp",
+   "printedPage": "12",
+   "pdfPage": "17",
+   "flags": []
+  },
+  {
+   "id": "acetylene-cylinder",
+   "categoryId": 9,
+   "name": "ACETYLENE CYLINDER",
+   "image": "/images/products/industrial-gas-cylinders-gas-trolley/acetylene-cylinder.webp",
+   "printedPage": "12",
+   "pdfPage": "17",
+   "flags": []
+  },
+  {
+   "id": "argon-cylinder",
+   "categoryId": 9,
+   "name": "ARGON CYLINDER",
+   "image": "/images/products/industrial-gas-cylinders-gas-trolley/argon-cylinder.webp",
+   "printedPage": "12",
+   "pdfPage": "17",
+   "flags": []
+  },
+  {
+   "id": "co2-cylinder",
+   "categoryId": 9,
+   "name": "CO2 CYLINDER",
+   "image": "/images/products/industrial-gas-cylinders-gas-trolley/co2-cylinder.webp",
+   "printedPage": "12",
+   "pdfPage": "17",
+   "flags": [
+    "caption-clipped"
+   ]
+  },
+  {
+   "id": "lpg-cylinder",
+   "categoryId": 9,
+   "name": "LPG CYLINDER",
+   "image": "/images/products/industrial-gas-cylinders-gas-trolley/lpg-cylinder.webp",
+   "printedPage": "12",
+   "pdfPage": "17",
+   "flags": [
+    "caption-clipped"
+   ]
+  },
+  {
+   "id": "cylinder",
+   "categoryId": 9,
+   "name": "CYLINDER",
+   "image": "/images/products/industrial-gas-cylinders-gas-trolley/cylinder.webp",
+   "printedPage": "12",
+   "pdfPage": "17",
+   "flags": []
+  },
+  {
+   "id": "cylinder-trolley-single",
+   "categoryId": 9,
+   "name": "CYLINDER TROLLEY SINGLE",
+   "image": "/images/products/industrial-gas-cylinders-gas-trolley/cylinder-trolley-single.webp",
+   "printedPage": "12",
+   "pdfPage": "17",
+   "flags": []
+  },
+  {
+   "id": "cylinder-trolley-double",
+   "categoryId": 9,
+   "name": "CYLINDER TROLLEY DOUBLE",
+   "image": "/images/products/industrial-gas-cylinders-gas-trolley/cylinder-trolley-double.webp",
+   "printedPage": "12",
+   "pdfPage": "17",
+   "flags": []
+  },
+  {
+   "id": "gas-cylinder-storage-rack",
+   "categoryId": 9,
+   "name": "GAS CYLINDER STORAGE RACK",
+   "image": "/images/products/industrial-gas-cylinders-gas-trolley/gas-cylinder-storage-rack.webp",
+   "printedPage": "12",
+   "pdfPage": "17",
+   "flags": []
+  },
+  {
+   "id": "cutting-attachment-ca2460",
+   "categoryId": 10,
+   "name": "CUTTING ATTACHMENT",
+   "model": "CA2460",
+   "image": "/images/products/gas-cutting-heating-equipments-gas-hoses/cutting-attachment-ca2460.webp",
+   "printedPage": "13",
+   "pdfPage": "18",
+   "flags": []
+  },
+  {
+   "id": "cutting-torch-315fc",
+   "categoryId": 10,
+   "name": "CUTTING TORCH",
+   "model": "315FC",
+   "image": "/images/products/gas-cutting-heating-equipments-gas-hoses/cutting-torch-315fc.webp",
+   "printedPage": "13",
+   "pdfPage": "18",
+   "flags": []
+  },
+  {
+   "id": "heating-torch",
+   "categoryId": 10,
+   "name": "HEATING TORCH",
+   "sizes": "30CM , 60CM , 1 METER",
+   "image": "/images/products/gas-cutting-heating-equipments-gas-hoses/heating-torch.webp",
+   "printedPage": "13",
+   "pdfPage": "18",
+   "flags": []
+  },
+  {
+   "id": "welding-nozzle",
+   "categoryId": 10,
+   "name": "WELDING NOZZLE",
+   "sizes": "0W,1W,2W,3W,4W,5W,6W,7W,8W",
+   "image": "/images/products/gas-cutting-heating-equipments-gas-hoses/welding-nozzle.webp",
+   "printedPage": "13",
+   "pdfPage": "18",
+   "flags": []
+  },
+  {
+   "id": "heating-nozzle",
+   "categoryId": 10,
+   "name": "HEATING NOZZLE",
+   "sizes": "6,8,10,12,15 MFA",
+   "image": "/images/products/gas-cutting-heating-equipments-gas-hoses/heating-nozzle.webp",
+   "printedPage": "13",
+   "pdfPage": "18",
+   "flags": []
+  },
+  {
+   "id": "check-valve",
+   "categoryId": 10,
+   "name": "CHECK VALVE",
+   "image": "/images/products/gas-cutting-heating-equipments-gas-hoses/check-valve.webp",
+   "printedPage": "13",
+   "pdfPage": "18",
+   "flags": []
+  },
+  {
+   "id": "flashback-arrestor-regulator-mount",
+   "categoryId": 10,
+   "name": "FLASHBACK ARRESTOR REGULATOR MOUNT",
+   "image": "/images/products/gas-cutting-heating-equipments-gas-hoses/flashback-arrestor-regulator-mount.webp",
+   "printedPage": "13",
+   "pdfPage": "18",
+   "flags": []
+  },
+  {
+   "id": "flashback-arrestor-torch-mount",
+   "categoryId": 10,
+   "name": "FLASHBACK ARRESTOR TORCH MOUNT",
+   "image": "/images/products/gas-cutting-heating-equipments-gas-hoses/flashback-arrestor-torch-mount.webp",
+   "printedPage": "13",
+   "pdfPage": "18",
+   "flags": []
+  },
+  {
+   "id": "twin-welding-hose",
+   "categoryId": 10,
+   "name": "TWIN WELDING HOSE",
+   "sizes": "7.5, 15, 30, 50, 100 METER",
+   "image": "/images/products/gas-cutting-heating-equipments-gas-hoses/twin-welding-hose.webp",
+   "printedPage": "13",
+   "pdfPage": "18",
+   "flags": []
+  },
+  {
+   "id": "acetylene",
+   "categoryId": 11,
+   "name": "ACETYLENE",
+   "image": "/images/products/cutting-nozzles/acetylene.webp",
+   "printedPage": "14",
+   "pdfPage": "19",
+   "flags": [
+    "code-only-name"
+   ]
+  },
+  {
+   "id": "gpn",
+   "categoryId": 11,
+   "name": "GPN",
+   "image": "/images/products/cutting-nozzles/gpn.webp",
+   "printedPage": "14",
+   "pdfPage": "19",
+   "flags": [
+    "code-only-name"
+   ]
+  },
+  {
+   "id": "102hc",
+   "categoryId": 11,
+   "name": "102HC",
+   "image": "/images/products/cutting-nozzles/102hc.webp",
+   "printedPage": "14",
+   "pdfPage": "19",
+   "flags": [
+    "code-only-name"
+   ]
+  },
+  {
+   "id": "106hc",
+   "categoryId": 11,
+   "name": "106HC",
+   "image": "/images/products/cutting-nozzles/106hc.webp",
+   "printedPage": "14",
+   "pdfPage": "19",
+   "flags": [
+    "code-only-name"
+   ]
+  },
+  {
+   "id": "pnme",
+   "categoryId": 11,
+   "name": "PNME",
+   "image": "/images/products/cutting-nozzles/pnme.webp",
+   "printedPage": "14",
+   "pdfPage": "19",
+   "flags": [
+    "code-only-name"
+   ]
+  },
+  {
+   "id": "anme",
+   "categoryId": 11,
+   "name": "ANME",
+   "image": "/images/products/cutting-nozzles/anme.webp",
+   "printedPage": "14",
+   "pdfPage": "19",
+   "flags": [
+    "code-only-name"
+   ]
+  },
+  {
+   "id": "164",
+   "categoryId": 11,
+   "name": "164",
+   "image": "/images/products/cutting-nozzles/164.webp",
+   "printedPage": "14",
+   "pdfPage": "19",
+   "flags": [
+    "code-only-name"
+   ]
+  },
+  {
+   "id": "oxygen-nut-nipple",
+   "categoryId": 12,
+   "name": "OXYGEN NUT & NIPPLE",
+   "image": "/images/products/welding-regulator-fittings-gas-hose-fittings/oxygen-nut-nipple.webp",
+   "printedPage": "15",
+   "pdfPage": "20",
+   "flags": []
+  },
+  {
+   "id": "acetylene-nut-nipple",
+   "categoryId": 12,
+   "name": "ACETYLENE NUT & NIPPLE",
+   "image": "/images/products/welding-regulator-fittings-gas-hose-fittings/acetylene-nut-nipple.webp",
+   "printedPage": "15",
+   "pdfPage": "20",
+   "flags": []
+  },
+  {
+   "id": "ferrules",
+   "categoryId": 12,
+   "name": "FERRULES",
+   "image": "/images/products/welding-regulator-fittings-gas-hose-fittings/ferrules.webp",
+   "printedPage": "15",
+   "pdfPage": "20",
+   "flags": []
+  },
+  {
+   "id": "barbed-hose-splicer",
+   "categoryId": 12,
+   "name": "BARBED HOSE SPLICER",
+   "image": "/images/products/welding-regulator-fittings-gas-hose-fittings/barbed-hose-splicer.webp",
+   "printedPage": "15",
+   "pdfPage": "20",
+   "flags": []
+  },
+  {
+   "id": "oxygen-acetylene-hose-coupler",
+   "categoryId": 12,
+   "name": "OXYGEN / ACETYLENE HOSE COUPLER",
+   "image": "/images/products/welding-regulator-fittings-gas-hose-fittings/oxygen-acetylene-hose-coupler.webp",
+   "printedPage": "15",
+   "pdfPage": "20",
+   "flags": []
+  },
+  {
+   "id": "argon-hose-adaptor-2",
+   "categoryId": 12,
+   "name": "ARGON HOSE ADAPTOR",
+   "image": "/images/products/welding-regulator-fittings-gas-hose-fittings/argon-hose-adaptor-2.webp",
+   "printedPage": "15",
+   "pdfPage": "20",
+   "flags": []
+  },
+  {
+   "id": "argon-hose-coupler",
+   "categoryId": 12,
+   "name": "ARGON HOSE COUPLER",
+   "image": "/images/products/welding-regulator-fittings-gas-hose-fittings/argon-hose-coupler.webp",
+   "printedPage": "15",
+   "pdfPage": "20",
+   "flags": []
+  },
+  {
+   "id": "two-way-barbed-hose-splicer",
+   "categoryId": 12,
+   "name": "TWO WAY BARBED HOSE SPLICER",
+   "image": "/images/products/welding-regulator-fittings-gas-hose-fittings/two-way-barbed-hose-splicer.webp",
+   "printedPage": "15",
+   "pdfPage": "20",
+   "flags": []
+  },
+  {
+   "id": "spark-lighter-single-flint",
+   "categoryId": 13,
+   "name": "SPARK LIGHTER SINGLE FLINT",
+   "image": "/images/products/welding-cutting-gas-accessories/spark-lighter-single-flint.webp",
+   "printedPage": "16",
+   "pdfPage": "21",
+   "flags": []
+  },
+  {
+   "id": "spark-lighter-triple-flint",
+   "categoryId": 13,
+   "name": "SPARK LIGHTER TRIPLE FLINT",
+   "image": "/images/products/welding-cutting-gas-accessories/spark-lighter-triple-flint.webp",
+   "printedPage": "16",
+   "pdfPage": "21",
+   "flags": []
+  },
+  {
+   "id": "tip-cleaner",
+   "categoryId": 13,
+   "name": "TIP CLEANER",
+   "image": "/images/products/welding-cutting-gas-accessories/tip-cleaner.webp",
+   "printedPage": "16",
+   "pdfPage": "21",
+   "flags": [
+    "caption-clipped"
+   ]
+  },
+  {
+   "id": "replacement-flint-5pcs-packet",
+   "categoryId": 13,
+   "name": "REPLACEMENT FLINT 5PCS PACKET",
+   "image": "/images/products/welding-cutting-gas-accessories/replacement-flint-5pcs-packet.webp",
+   "printedPage": "16",
+   "pdfPage": "21",
+   "flags": []
+  },
+  {
+   "id": "9-mouth-oxygen-acetylene-wrench",
+   "categoryId": 13,
+   "name": "9 MOUTH OXYGEN / ACETYLENE WRENCH",
+   "image": "/images/products/welding-cutting-gas-accessories/9-mouth-oxygen-acetylene-wrench.webp",
+   "printedPage": "16",
+   "pdfPage": "21",
+   "flags": [
+    "caption-clipped"
+   ]
+  },
+  {
+   "id": "triple-flint-stone-for-triangle-welding-spark-lighter",
+   "categoryId": 13,
+   "name": "TRIPLE FLINT STONE FOR TRIANGLE WELDING SPARK LIGHTER",
+   "image": "/images/products/welding-cutting-gas-accessories/triple-flint-stone-for-triangle-welding-spark-lighter.webp",
+   "printedPage": "16",
+   "pdfPage": "21",
+   "flags": []
+  },
+  {
+   "id": "spark-lighter-gun",
+   "categoryId": 13,
+   "name": "SPARK LIGHTER GUN",
+   "image": "/images/products/welding-cutting-gas-accessories/spark-lighter-gun.webp",
+   "printedPage": "16",
+   "pdfPage": "21",
+   "flags": []
+  },
+  {
+   "id": "gas-cylinder-key",
+   "categoryId": 13,
+   "name": "GAS CYLINDER KEY",
+   "image": "/images/products/welding-cutting-gas-accessories/gas-cylinder-key.webp",
+   "printedPage": "16",
+   "pdfPage": "21",
+   "flags": []
+  },
+  {
+   "id": "cylinder-cap",
+   "categoryId": 13,
+   "name": "CYLINDER CAP",
+   "image": "/images/products/welding-cutting-gas-accessories/cylinder-cap.webp",
+   "printedPage": "16",
+   "pdfPage": "21",
+   "flags": []
+  },
+  {
+   "id": "welding-leather-hood",
+   "categoryId": 14,
+   "name": "WELDING LEATHER HOOD",
+   "image": "/images/products/welding-helmet-accessories/welding-leather-hood.webp",
+   "printedPage": "17",
+   "pdfPage": "22",
+   "flags": []
+  },
+  {
+   "id": "auto-darkening-welding-helmet",
+   "categoryId": 14,
+   "name": "AUTO DARKENING WELDING HELMET",
+   "image": "/images/products/welding-helmet-accessories/auto-darkening-welding-helmet.webp",
+   "printedPage": "17",
+   "pdfPage": "22",
+   "flags": []
+  },
+  {
+   "id": "welding-helmet",
+   "categoryId": 14,
+   "name": "WELDING HELMET",
+   "image": "/images/products/welding-helmet-accessories/welding-helmet.webp",
+   "printedPage": "17",
+   "pdfPage": "22",
+   "flags": []
+  },
+  {
+   "id": "welding-helmet-with-safety-helmet",
+   "categoryId": 14,
+   "name": "WELDING HELMET WITH SAFETY HELMET",
+   "image": "/images/products/welding-helmet-accessories/welding-helmet-with-safety-helmet.webp",
+   "printedPage": "17",
+   "pdfPage": "22",
+   "flags": []
+  },
+  {
+   "id": "welding-safety-googles",
+   "categoryId": 14,
+   "name": "WELDING SAFETY GOOGLES",
+   "image": "/images/products/welding-helmet-accessories/welding-safety-googles.webp",
+   "printedPage": "17",
+   "pdfPage": "22",
+   "flags": []
+  },
+  {
+   "id": "welding-helmet-glass-clear",
+   "categoryId": 14,
+   "name": "WELDING HELMET GLASS CLEAR",
+   "image": "/images/products/welding-helmet-accessories/welding-helmet-glass-clear.webp",
+   "printedPage": "17",
+   "pdfPage": "22",
+   "flags": []
+  },
+  {
+   "id": "welding-helmet-glass-dark",
+   "categoryId": 14,
+   "name": "WELDING HELMET GLASS DARK",
+   "image": "/images/products/welding-helmet-accessories/welding-helmet-glass-dark.webp",
+   "printedPage": "17",
+   "pdfPage": "22",
+   "flags": []
+  },
+  {
+   "id": "welding-helmet-polycarbonate-glass",
+   "categoryId": 14,
+   "name": "WELDING HELMET POLYCARBONATE GLASS",
+   "image": "/images/products/welding-helmet-accessories/welding-helmet-polycarbonate-glass.webp",
+   "printedPage": "17",
+   "pdfPage": "22",
+   "flags": []
+  },
+  {
+   "id": "hand-shield",
+   "categoryId": 14,
+   "name": "HAND SHIELD",
+   "image": "/images/products/welding-helmet-accessories/hand-shield.webp",
+   "printedPage": "17",
+   "pdfPage": "22",
+   "flags": []
+  },
+  {
+   "id": "250a-edon",
+   "categoryId": 15,
+   "name": "250A EDON",
+   "image": "/images/products/welding-machines/250a-edon.webp",
+   "printedPage": "18",
+   "pdfPage": "23",
+   "flags": []
+  },
+  {
+   "id": "300a-edon",
+   "categoryId": 15,
+   "name": "300A EDON",
+   "image": "/images/products/welding-machines/300a-edon.webp",
+   "printedPage": "18",
+   "pdfPage": "23",
+   "flags": []
+  },
+  {
+   "id": "400a-edon",
+   "categoryId": 15,
+   "name": "400A EDON",
+   "image": "/images/products/welding-machines/400a-edon.webp",
+   "printedPage": "18",
+   "pdfPage": "23",
+   "flags": []
+  },
+  {
+   "id": "es201ip-pro-esab",
+   "categoryId": 15,
+   "name": "ES201iP PRO ESAB",
+   "image": "/images/products/welding-machines/es201ip-pro-esab.webp",
+   "printedPage": "18",
+   "pdfPage": "23",
+   "flags": []
+  },
+  {
+   "id": "es410-esab",
+   "categoryId": 15,
+   "name": "ES410 ESAB",
+   "image": "/images/products/welding-machines/es410-esab.webp",
+   "printedPage": "18",
+   "pdfPage": "23",
+   "flags": []
+  },
+  {
+   "id": "handyarc-esab",
+   "categoryId": 15,
+   "name": "HANDYARC ESAB",
+   "image": "/images/products/welding-machines/handyarc-esab.webp",
+   "printedPage": "18",
+   "pdfPage": "23",
+   "flags": []
+  },
+  {
+   "id": "200-acdc-edon",
+   "categoryId": 15,
+   "name": "200 ACDC EDON",
+   "image": "/images/products/welding-machines/200-acdc-edon.webp",
+   "printedPage": "18",
+   "pdfPage": "23",
+   "flags": [
+    "caption-clipped"
+   ]
+  },
+  {
+   "id": "cutting-disc",
+   "categoryId": 16,
+   "name": "CUTTING DISC",
+   "image": "/images/products/abrasives/cutting-disc.webp",
+   "printedPage": "19",
+   "pdfPage": "24",
+   "flags": []
+  },
+  {
+   "id": "grinding-disc",
+   "categoryId": 16,
+   "name": "GRINDING DISC",
+   "image": "/images/products/abrasives/grinding-disc.webp",
+   "printedPage": "19",
+   "pdfPage": "24",
+   "flags": []
+  },
+  {
+   "id": "flap-disc",
+   "categoryId": 16,
+   "name": "FLAP DISC",
+   "image": "/images/products/abrasives/flap-disc.webp",
+   "printedPage": "19",
+   "pdfPage": "24",
+   "flags": []
+  },
+  {
+   "id": "sandpaper-disc",
+   "categoryId": 16,
+   "name": "SANDPAPER DISC",
+   "image": "/images/products/abrasives/sandpaper-disc.webp",
+   "printedPage": "19",
+   "pdfPage": "24",
+   "flags": []
+  },
+  {
+   "id": "sand-cloth-roll",
+   "categoryId": 16,
+   "name": "SAND CLOTH ROLL",
+   "image": "/images/products/abrasives/sand-cloth-roll.webp",
+   "printedPage": "19",
+   "pdfPage": "24",
+   "flags": []
+  },
+  {
+   "id": "diamond-cutting-disc",
+   "categoryId": 16,
+   "name": "DIAMOND CUTTING DISC",
+   "image": "/images/products/abrasives/diamond-cutting-disc.webp",
+   "printedPage": "19",
+   "pdfPage": "24",
+   "flags": []
+  },
+  {
+   "id": "mounting-stone",
+   "categoryId": 16,
+   "name": "MOUNTING STONE",
+   "image": "/images/products/abrasives/mounting-stone.webp",
+   "printedPage": "19",
+   "pdfPage": "24",
+   "flags": []
+  },
+  {
+   "id": "sanding-belt",
+   "categoryId": 16,
+   "name": "SANDING BELT",
+   "image": "/images/products/abrasives/sanding-belt.webp",
+   "printedPage": "19",
+   "pdfPage": "24",
+   "flags": []
+  },
+  {
+   "id": "zinc-spray",
+   "categoryId": 17,
+   "name": "ZINC SPRAY",
+   "image": "/images/products/industrial-chemicals/zinc-spray.webp",
+   "printedPage": "20",
+   "pdfPage": "25",
+   "flags": []
+  },
+  {
+   "id": "pickling-gel",
+   "categoryId": 17,
+   "name": "PICKLING GEL",
+   "image": "/images/products/industrial-chemicals/pickling-gel.webp",
+   "printedPage": "20",
+   "pdfPage": "25",
+   "flags": []
+  },
+  {
+   "id": "passivator",
+   "categoryId": 17,
+   "name": "PASSIVATOR",
+   "image": "/images/products/industrial-chemicals/passivator.webp",
+   "printedPage": "20",
+   "pdfPage": "25",
+   "flags": []
+  },
+  {
+   "id": "brittle-wash",
+   "categoryId": 17,
+   "name": "BRITTLE WASH",
+   "image": "/images/products/industrial-chemicals/brittle-wash.webp",
+   "printedPage": "20",
+   "pdfPage": "25",
+   "flags": []
+  },
+  {
+   "id": "antispatter-spray",
+   "categoryId": 17,
+   "name": "ANTISPATTER SPRAY",
+   "image": "/images/products/industrial-chemicals/antispatter-spray.webp",
+   "printedPage": "20",
+   "pdfPage": "25",
+   "flags": []
+  },
+  {
+   "id": "antispatter-gel",
+   "categoryId": 17,
+   "name": "ANTISPATTER GEL",
+   "image": "/images/products/industrial-chemicals/antispatter-gel.webp",
+   "printedPage": "20",
+   "pdfPage": "25",
+   "flags": []
+  },
+  {
+   "id": "hypertherm-coolant",
+   "categoryId": 17,
+   "name": "HYPERTHERM COOLANT",
+   "image": "/images/products/industrial-chemicals/hypertherm-coolant.webp",
+   "printedPage": "20",
+   "pdfPage": "25",
+   "flags": []
+  },
+  {
+   "id": "welding-scanner",
+   "categoryId": 17,
+   "name": "WELDING SCANNER",
+   "image": "/images/products/industrial-chemicals/welding-scanner.webp",
+   "printedPage": "20",
+   "pdfPage": "25",
+   "flags": []
+  },
+  {
+   "id": "face-shield-visor-clear",
+   "categoryId": 18,
+   "name": "FACE SHIELD VISOR CLEAR",
+   "image": "/images/products/safety/face-shield-visor-clear.webp",
+   "printedPage": "21",
+   "pdfPage": "26",
+   "flags": []
+  },
+  {
+   "id": "face-shield-visor-bracket",
+   "categoryId": 18,
+   "name": "FACE SHIELD VISOR BRACKET",
+   "image": "/images/products/safety/face-shield-visor-bracket.webp",
+   "printedPage": "21",
+   "pdfPage": "26",
+   "flags": []
+  },
+  {
+   "id": "face-shield-visor-head-gear",
+   "categoryId": 18,
+   "name": "FACE SHIELD VISOR HEAD GEAR",
+   "image": "/images/products/safety/face-shield-visor-head-gear.webp",
+   "printedPage": "21",
+   "pdfPage": "26",
+   "flags": []
+  },
+  {
+   "id": "safety-goggles-dark-clear",
+   "categoryId": 18,
+   "name": "SAFETY GOGGLES DARK & CLEAR",
+   "image": "/images/products/safety/safety-goggles-dark-clear.webp",
+   "printedPage": "21",
+   "pdfPage": "26",
+   "flags": []
+  },
+  {
+   "id": "safety-glass-with-anti-fog-lens",
+   "categoryId": 18,
+   "name": "SAFETY GLASS WITH ANTI FOG LENS",
+   "image": "/images/products/safety/safety-glass-with-anti-fog-lens.webp",
+   "printedPage": "21",
+   "pdfPage": "26",
+   "flags": []
+  },
+  {
+   "id": "welding-goggles",
+   "categoryId": 18,
+   "name": "WELDING GOGGLES",
+   "image": "/images/products/safety/welding-goggles.webp",
+   "printedPage": "21",
+   "pdfPage": "26",
+   "flags": []
+  },
+  {
+   "id": "face-shield-visor-black",
+   "categoryId": 18,
+   "name": "FACE SHIELD VISOR BLACK",
+   "image": "/images/products/safety/face-shield-visor-black.webp",
+   "printedPage": "21",
+   "pdfPage": "26",
+   "flags": []
+  },
+  {
+   "id": "ear-plug",
+   "categoryId": 18,
+   "name": "EAR PLUG",
+   "image": "/images/products/safety/ear-plug.webp",
+   "printedPage": "21",
+   "pdfPage": "26",
+   "flags": []
+  },
+  {
+   "id": "flip-goggles",
+   "categoryId": 18,
+   "name": "FLIP GOGGLES",
+   "image": "/images/products/safety/flip-goggles.webp",
+   "printedPage": "21",
+   "pdfPage": "26",
+   "flags": []
+  },
+  {
+   "id": "cotton-gloves",
+   "categoryId": 19,
+   "name": "COTTON GLOVES",
+   "image": "/images/products/hand-protections/cotton-gloves.webp",
+   "printedPage": "22",
+   "pdfPage": "27",
+   "flags": []
+  },
+  {
+   "id": "crinkled-gloves",
+   "categoryId": 19,
+   "name": "CRINKLED GLOVES",
+   "image": "/images/products/hand-protections/crinkled-gloves.webp",
+   "printedPage": "22",
+   "pdfPage": "27",
+   "flags": []
+  },
+  {
+   "id": "rubber-gloves",
+   "categoryId": 19,
+   "name": "RUBBER GLOVES",
+   "image": "/images/products/hand-protections/rubber-gloves.webp",
+   "printedPage": "22",
+   "pdfPage": "27",
+   "flags": []
+  },
+  {
+   "id": "welding-gloves",
+   "categoryId": 19,
+   "name": "WELDING GLOVES",
+   "image": "/images/products/hand-protections/welding-gloves.webp",
+   "printedPage": "22",
+   "pdfPage": "27",
+   "flags": []
+  },
+  {
+   "id": "blue-dotted-gloves",
+   "categoryId": 19,
+   "name": "BLUE DOTTED GLOVES",
+   "image": "/images/products/hand-protections/blue-dotted-gloves.webp",
+   "printedPage": "22",
+   "pdfPage": "27",
+   "flags": []
+  },
+  {
+   "id": "white-dotted-gloves",
+   "categoryId": 19,
+   "name": "WHITE DOTTED GLOVES",
+   "image": "/images/products/hand-protections/white-dotted-gloves.webp",
+   "printedPage": "22",
+   "pdfPage": "27",
+   "flags": []
+  },
+  {
+   "id": "tig-gloves-short",
+   "categoryId": 19,
+   "name": "TIG GLOVES SHORT",
+   "image": "/images/products/hand-protections/tig-gloves-short.webp",
+   "printedPage": "22",
+   "pdfPage": "27",
+   "flags": [
+    "caption-clipped"
+   ]
+  },
+  {
+   "id": "tig-gloves-long",
+   "categoryId": 19,
+   "name": "TIG GLOVES LONG",
+   "image": "/images/products/hand-protections/tig-gloves-long.webp",
+   "printedPage": "22",
+   "pdfPage": "27",
+   "flags": [
+    "caption-clipped"
+   ]
+  },
+  {
+   "id": "welding-jacket-grey",
+   "categoryId": 20,
+   "name": "WELDING JACKET GREY",
+   "image": "/images/products/welding-protective-gear/welding-jacket-grey.webp",
+   "printedPage": "23",
+   "pdfPage": "28",
+   "flags": []
+  },
+  {
+   "id": "welding-jacket-yellow",
+   "categoryId": 20,
+   "name": "WELDING JACKET YELLOW",
+   "image": "/images/products/welding-protective-gear/welding-jacket-yellow.webp",
+   "printedPage": "23",
+   "pdfPage": "28",
+   "flags": []
+  },
+  {
+   "id": "welding-apron",
+   "categoryId": 20,
+   "name": "WELDING APRON",
+   "image": "/images/products/welding-protective-gear/welding-apron.webp",
+   "printedPage": "23",
+   "pdfPage": "28",
+   "flags": []
+  },
+  {
+   "id": "hand-sleeve",
+   "categoryId": 20,
+   "name": "HAND SLEEVE",
+   "image": "/images/products/welding-protective-gear/hand-sleeve.webp",
+   "printedPage": "23",
+   "pdfPage": "28",
+   "flags": []
+  },
+  {
+   "id": "leg-sleeve",
+   "categoryId": 20,
+   "name": "LEG SLEEVE",
+   "image": "/images/products/welding-protective-gear/leg-sleeve.webp",
+   "printedPage": "23",
+   "pdfPage": "28",
+   "flags": []
+  }
+ ],
+ "brands": [
+  {
+   "name": "ESAB",
+   "image": "/images/brands/00-esab.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Kiswel",
+   "image": "/images/brands/01-kiswel.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Lincoln Electric",
+   "image": "/images/brands/02-lincoln-electric.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Bohler Welding",
+   "image": "/images/brands/03-bohler-welding.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Kobelco",
+   "image": "/images/brands/04-kobelco.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Ador",
+   "image": "/images/brands/05-ador.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Abicor Binzel",
+   "image": "/images/brands/06-abicor-binzel.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Arcair",
+   "image": "/images/brands/07-arcair.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Callington",
+   "image": "/images/brands/08-callington.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Chosun Welding",
+   "image": "/images/brands/09-chosun-welding.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "D&H Secheron",
+   "image": "/images/brands/10-dandh-secheron.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Elga",
+   "image": "/images/brands/11-elga.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Harris",
+   "image": "/images/brands/12-harris.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Hilco",
+   "image": "/images/brands/13-hilco.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Hypertherm",
+   "image": "/images/brands/14-hypertherm.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Hyundai",
+   "image": "/images/brands/15-hyundai.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Kemppi",
+   "image": "/images/brands/16-kemppi.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Koike",
+   "image": "/images/brands/17-koike.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Maks Weld",
+   "image": "/images/brands/18-maks-weld.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Miller",
+   "image": "/images/brands/19-miller.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Oerlikon",
+   "image": "/images/brands/20-oerlikon.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Special Metals",
+   "image": "/images/brands/21-special-metals.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Tweco",
+   "image": "/images/brands/22-tweco.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Tyrolit",
+   "image": "/images/brands/23-tyrolit.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Unitec",
+   "image": "/images/brands/24-unitec.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Vaultex",
+   "image": "/images/brands/25-vaultex.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Victor",
+   "image": "/images/brands/26-victor.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "W.A. Alloy Co.",
+   "image": "/images/brands/27-wa-alloy-co.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Yawata",
+   "image": "/images/brands/28-yawata.webp",
+   "sourceRef": "PDF file p.4"
+  },
+  {
+   "name": "Zulfi Welding Electrodes",
+   "image": "/images/brands/29-zulfi-welding-electrodes.webp",
+   "sourceRef": "PDF file p.4"
+  }
+ ],
+ "industries": [
+  {
+   "name": "Oil & Gas",
+   "image": "/images/industries/03-00.webp",
+   "sourceRef": "PDF file p.3"
+  },
+  {
+   "name": "Heavy Equipment & Machinery",
+   "image": "/images/industries/03-01.webp",
+   "sourceRef": "PDF file p.3"
+  },
+  {
+   "name": "Construction & Infrastructure",
+   "image": "/images/industries/03-02.webp",
+   "sourceRef": "PDF file p.3"
+  },
+  {
+   "name": "Industrial Maintenance & Repair",
+   "image": "/images/industries/03-03.webp",
+   "sourceRef": "PDF file p.3"
+  },
+  {
+   "name": "Petro Chemical & Chemical",
+   "image": "/images/industries/03-04.webp",
+   "sourceRef": "PDF file p.3"
+  },
+  {
+   "name": "Steel & Metal Fabrication",
+   "image": "/images/industries/03-05.webp",
+   "sourceRef": "PDF file p.3"
+  }
+ ]
+}

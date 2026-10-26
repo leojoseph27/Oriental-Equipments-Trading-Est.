@@ -1,0 +1,97 @@
+---
+// CatalogueReader — the interactive 3D page-turn book.
+// compact: hide the thumbnail/zoom/fullscreen toolbar and PDF-download row so
+// the reader can be embedded (e.g. the home-page catalogue band) with just
+// Previous/Next and the page counter. The full variant matches /catalogue/.
+import "../styles/catalogue.css";
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+---
+<section class:list={["cr-reader-wrap", { "cr-compact": compact }]} aria-label="Catalogue reader">
+  {!compact && (
+    <div class="cr-fs-nav">
+      <button id="cr-fs-exit" class="cr-fs-exit" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6M4 9V6a2 2 0 012-2h3M20 9V6a2 2 0 00-2-2h-3M4 15v3a2 2 0 002 2h3M20 15v3a2 2 0 01-2 2h-3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>Exit Fullscreen</span>
+      </button>
+      <button id="cr-fs-prev" class="cr-fs-arrow" type="button" disabled aria-label="Previous page">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+      </button>
+      <button id="cr-fs-next" class="cr-fs-arrow" type="button" disabled aria-label="Next page">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+      </button>
+    </div>
+  )}
+  <div id="catalogue-reader" class="cr-reader" tabindex="0"
+    aria-label="Digital catalogue book. Use the left and right arrow keys to turn pages.">
+    <div id="cr-loading" class="cr-state" role="status">
+      <span class="cr-spinner" aria-hidden="true"></span>
+      <p>Loading catalogue…</p>
+    </div>
+
+    <div id="cr-error" class="cr-state" hidden role="alert">
+      <h2>The catalogue could not be displayed</h2>
+      <p>The PDF failed to load. You can still download the original file below.</p>
+      <p><a class="btn primary" href="/pdfs/oriental-catalogue.pdf" download>Download the PDF</a></p>
+    </div>
+
+    <div id="cr-book" hidden>
+      <div id="cr-stage" class="cr-stage">
+        <div class="cr-book-perspective" aria-hidden="false">
+          <div id="cr-leaves" class="cr-leaves"></div>
+        </div>
+        <div id="cr-single" class="cr-single" aria-hidden="true">
+          <canvas id="cr-single-canvas"></canvas>
+        </div>
+        <div class="cr-spine-shadow" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cr-toolbar" role="group" aria-label="Reader controls">
+    <button id="cr-prev" class="cr-btn" type="button" disabled aria-label="Previous page">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      <span>Previous</span>
+    </button>
+    <p id="cr-counter" class="cr-counter" aria-live="polite"></p>
+    <button id="cr-next" class="cr-btn" type="button" disabled aria-label="Next page">
+      <span>Next</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+  </div>
+
+  {!compact && (
+    <>
+      <div class="cr-toolbar cr-toolbar-secondary" role="group" aria-label="View options">
+        <button id="cr-thumb-toggle" class="cr-btn small" type="button" aria-expanded="false" aria-controls="cr-thumb-panel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="4" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="13" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="13" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span>Pages</span>
+        </button>
+        <button id="cr-fullscreen" class="cr-btn small" type="button" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          <span>Fullscreen</span>
+        </button>
+        <a class="cr-btn small" href="/pdfs/oriental-catalogue.pdf" download>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          <span>Download PDF</span>
+        </a>
+      </div>
+
+      <div id="cr-thumb-panel" class="cr-thumb-panel" hidden>
+        <div class="cr-thumb-panel-head">
+          <h2>Jump to a page</h2>
+          <button class="cr-btn small" type="button" data-cr-close-thumbs aria-label="Close page thumbnails">Close</button>
+        </div>
+        <div id="cr-thumbs" class="cr-thumbs"></div>
+      </div>
+    </>
+  )}
+</section>
+
+{!compact && (
+  <script is:inline>
+    document.querySelector("[data-cr-close-thumbs]")?.addEventListener("click", function () {
+      document.getElementById("cr-thumb-toggle")?.click();
+    });
+  </script>
+)}

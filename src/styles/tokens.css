@@ -1,0 +1,45 @@
+/* tokens.css — design tokens sampled from the Oriental Equipments Trading Est.
+   catalogue PDF. See design.md for sources and contrast checks. */
+:root {
+  /* brand colour (sampled: logo inner arc, catalogue headings, background swirls) */
+  --red-brand: #b82020;
+  --red-deep: #8e1a12;
+  --green-brand: #157a44;
+  --green-deep: #0b3d1f;
+  --gold-rule: #c9a227;
+
+  /* ink */
+  --ink: #231f20;
+  --ink-secondary: #5b5657;
+  --ink-tertiary: #6d6869; /* darkened from sampled #8a8586 (3.3:1) for WCAG AA on small meta text; 4.9:1 on paper, 5.5:1 on card */
+
+  /* surfaces */
+  --paper: #f4f3f1;
+  --paper-card: #ffffff;
+  --line: #dddad6;
+
+  /* type */
+  --font-heading: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Barlow", "Segoe UI", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "Consolas", monospace;
+
+  /* space (8px scale) */
+  --space-1: 4px;  --space-2: 8px;   --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px;  --space-8: 48px; --space-10: 64px;
+  --space-12: 96px;
+
+  --container: 1200px;
+  --radius: 4px;
+  --line-weight: 1px;
+
+  /* motion (M8.5) — short for interactions, longer for reveals; transform/opacity only */
+  --dur-fast: 140ms;      /* hovers, presses, focus rings */
+  --dur-med: 220ms;       /* menu, panels, status */
+  --dur-reveal: 600ms;    /* scroll reveals, hero entrance */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --dist-1: 8px;          /* small motion distance */
+  --dist-2: 16px;         /* medium motion distance */
+  --shadow-1: 0 1px 3px rgba(35, 31, 32, 0.08);
+  --shadow-2: 0 6px 18px rgba(35, 31, 32, 0.12);
+}

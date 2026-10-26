@@ -1,0 +1,74 @@
+---
+import "../styles/base.css";
+interface Props { title: string; description?: string }
+const { title, description = "Oriental Equipments Trading Est. — industrial welding equipment and consumables supplier, Dammam, Saudi Arabia." } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <!--
+      Scroll-reveal gating (M8.5): the `js` class is the ONLY thing that hides
+      [data-reveal] content initially. It is added here only when
+      IntersectionObserver exists and never on failure, so content is always
+      visible without JavaScript. The observer script below reveals elements;
+      a load-time failsafe reveals anything left behind.
+    -->
+    <script is:inline>
+      try {
+        if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          document.documentElement.classList.add("js");
+        }
+      } catch (e) { /* stay visible */ }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="wa-float" href="https://wa.me/966580208504" target="_blank" rel="noopener noreferrer"
+      aria-label="Chat with us on WhatsApp">
+      <img src="/images/whatsapp.png" alt="" width="84" height="84" loading="lazy" decoding="async" />
+    </a>
+    <slot />
+    <script is:inline>
+      (function () {
+        var targets = document.querySelectorAll("[data-reveal], [data-reveal-group]");
+        if (!targets.length) return;
+
+        function revealAll() {
+          targets.forEach(function (t) { t.classList.add("revealed"); });
+        }
+
+        // reduced motion or no support: reveal everything immediately
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+          revealAll();
+          return;
+        }
+
+        // stagger indices for group children (capped so long lists stay quick)
+        document.querySelectorAll("[data-reveal-group]").forEach(function (group) {
+          var kids = group.children;
+          for (var i = 0; i < kids.length; i++) kids[i].style.setProperty("--reveal-i", String(Math.min(i, 11)));
+        });
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("revealed");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
+
+        targets.forEach(function (t) { observer.observe(t); });
+
+        // failsafe: anything not revealed within 4s of full load becomes visible
+        window.addEventListener("load", function () {
+          setTimeout(revealAll, 4000);
+        }, { once: true });
+      })();
+    </script>
+  </body>
+</html>

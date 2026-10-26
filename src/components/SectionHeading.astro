@@ -1,0 +1,16 @@
+---
+// SectionHeading — the catalogue's device: green marker bar + condensed heading.
+interface Props { title: string; id?: string; meta?: string }
+const { title, id, meta } = Astro.props;
+---
+<div class="sh" id={id}>
+  <span class="bar" aria-hidden="true"></span>
+  <h2>{title}</h2>
+  {meta && <span class="meta">{meta}</span>}
+</div>
+<style>
+  .sh { display: flex; align-items: baseline; gap: var(--space-4); margin-bottom: var(--space-6); }
+  .bar { width: 10px; align-self: stretch; background: var(--green-brand); flex: none; }
+  h2 { margin: 0; color: var(--red-deep); text-transform: uppercase; letter-spacing: 0.01em; }
+  .meta { font-family: var(--font-mono); font-size: 14px; color: var(--ink-tertiary); }
+</style>

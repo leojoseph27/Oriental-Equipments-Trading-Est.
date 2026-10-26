@@ -1,0 +1,25 @@
+{
+  "name": "density-debris",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/generate-search-index.mjs && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test:e2e": "npm run build && playwright test",
+    "test:e2e:ui": "playwright test"
+  },
+  "dependencies": {
+    "astro": "^7.4.2",
+    "pdfjs-dist": "^4.10.38"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1",
+    "sharp": "^0.35.5"
+  }
+}

@@ -1,0 +1,762 @@
+[
+ {
+  "card_png": "source-assets/cards/fp06-00.png",
+  "webp": "/images/products/welding-electrodes/mild-steel-welding-electrode-e6010.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp06-01.png",
+  "webp": "/images/products/welding-electrodes/mild-steel-welding-electrode-e6013.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp06-02.png",
+  "webp": "/images/products/welding-electrodes/mild-steel-welding-electrode-e7010.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp06-03.png",
+  "webp": "/images/products/welding-electrodes/mild-steel-welding-electrode-e7018.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp06-04.png",
+  "webp": "/images/products/welding-electrodes/mild-steel-welding-electrode-e7018-1.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp06-05.png",
+  "webp": "/images/products/welding-electrodes/mild-steel-welding-electrode-e8018.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp06-06.png",
+  "webp": "/images/products/welding-electrodes/mild-steel-welding-electrode-e9018.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp06-07.png",
+  "webp": "/images/products/welding-electrodes/mild-steel-welding-electrode-e10018.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp06-08.png",
+  "webp": "/images/products/welding-electrodes/mild-steel-welding-electrode-e11018.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp07-00.png",
+  "webp": "/images/products/welding-electrodes/stainless-steel-welding-electrode-e308l-15-16-17.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp07-01.png",
+  "webp": "/images/products/welding-electrodes/stainless-steel-welding-electrode-e309l-15-16-17.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp07-02.png",
+  "webp": "/images/products/welding-electrodes/stainless-steel-welding-electrode-e310l-15-16-17.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp07-03.png",
+  "webp": "/images/products/welding-electrodes/stainless-steel-welding-electrode-e316l-15-16-17.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp07-04.png",
+  "webp": "/images/products/welding-electrodes/nickel-welding-electrode-eni.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp07-05.png",
+  "webp": "/images/products/welding-electrodes/cast-iron-welding-electrode-enife-ci.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp07-06.png",
+  "webp": "/images/products/welding-electrodes/aluminium-welding-electrode-e4043.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp08-00.png",
+  "webp": "/images/products/mig-welding-wire/fluxcored-wire-er70s6.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp08-01.png",
+  "webp": "/images/products/mig-welding-wire/fluxcored-wire-er71t.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp08-02.png",
+  "webp": "/images/products/mig-welding-wire/fluxcored-wire-er81.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp08-03.png",
+  "webp": "/images/products/mig-welding-wire/solid-wire-er308.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp08-04.png",
+  "webp": "/images/products/mig-welding-wire/solid-wire-er309.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp08-05.png",
+  "webp": "/images/products/mig-welding-wire/solid-wire-er316.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp08-06.png",
+  "webp": "/images/products/mig-welding-wire/tig-welding-wire-er347.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp08-07.png",
+  "webp": "/images/products/mig-welding-wire/tig-welding-wire-er4043.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp08-08.png",
+  "webp": "/images/products/mig-welding-wire/solid-wire-er5356.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp09-00.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er70s-2.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp09-01.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er70s-3.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp09-02.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er70s-6.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp09-03.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er80s-ni.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp09-04.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er80s-b2.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp09-05.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er80s-d2.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp09-06.png",
+  "webp": "/images/products/tig-welding-wires/brass-welding-electrode.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp09-07.png",
+  "webp": "/images/products/tig-welding-wires/copper-silver-welding-electrode.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp09-08.png",
+  "webp": "/images/products/tig-welding-wires/copper-silver-flux-welding-electrode.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp10-01.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er308l.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp10-02.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er309l.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp10-03.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er310l.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp10-04.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er316l.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp10-05.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er347l.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp10-06.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-ernicr-3.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp10-07.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-ernicrmo-3.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp10-08.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er4043-2.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp10-09.png",
+  "webp": "/images/products/tig-welding-wires/tig-welding-wire-er5356.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp11-00.png",
+  "webp": "/images/products/arc-welding-accessories/welding-electrode-holder-american-type.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp11-01.png",
+  "webp": "/images/products/arc-welding-accessories/welding-electrode-holder-japan-type.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp11-02.png",
+  "webp": "/images/products/arc-welding-accessories/welding-electrode-holder-india-type.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp11-03.png",
+  "webp": "/images/products/arc-welding-accessories/welding-electrode-holder-china-type.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp11-04.png",
+  "webp": "/images/products/arc-welding-accessories/welding-earth-clamp.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp11-05.png",
+  "webp": "/images/products/arc-welding-accessories/cable-connector.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp11-06.png",
+  "webp": "/images/products/arc-welding-accessories/welding-earth-clamp-crocodile-type-brass.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp11-07.png",
+  "webp": "/images/products/arc-welding-accessories/welding-earth-clamp-screw-type-brass.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp11-08.png",
+  "webp": "/images/products/arc-welding-accessories/panel-socket.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp12-01.png",
+  "webp": "/images/products/arc-welding-accessories/portable-welding-electrode-dryer.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp12-02.png",
+  "webp": "/images/products/arc-welding-accessories/welding-electrode-bench-oven.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp12-03.png",
+  "webp": "/images/products/arc-welding-accessories/chipping-hammer.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp12-04.png",
+  "webp": "/images/products/arc-welding-accessories/welding-chalk.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp12-05.png",
+  "webp": "/images/products/arc-welding-accessories/welding-copper-lugs.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp12-06.png",
+  "webp": "/images/products/arc-welding-accessories/welding-cable-made-in-china.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp12-07.png",
+  "webp": "/images/products/arc-welding-accessories/welding-cable-made-in-india.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp12-08.png",
+  "webp": "/images/products/arc-welding-accessories/welding-cable-made-in-taiwan.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp13-01.png",
+  "webp": "/images/products/mig-welding-torches-accessories/mig-welding-torch-24kd.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp13-02.png",
+  "webp": "/images/products/mig-welding-torches-accessories/mig-welding-torch-25kd.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp13-03.png",
+  "webp": "/images/products/mig-welding-torches-accessories/mig-welding-torch-36kd.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp13-04.png",
+  "webp": "/images/products/mig-welding-torches-accessories/contact-tip.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp13-05.png",
+  "webp": "/images/products/mig-welding-torches-accessories/gas-nozzle.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp13-06.png",
+  "webp": "/images/products/mig-welding-torches-accessories/gas-diffuser.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp13-07.png",
+  "webp": "/images/products/mig-welding-torches-accessories/contact-tip-holder.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp13-08.png",
+  "webp": "/images/products/mig-welding-torches-accessories/insulator.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp13-09.png",
+  "webp": "/images/products/mig-welding-torches-accessories/swan-neck.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp14-00.png",
+  "webp": "/images/products/tig-welding-torches-consumables/tig-welding-torch-9fv.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp14-01.png",
+  "webp": "/images/products/tig-welding-torches-consumables/tig-welding-torch-17fv.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp14-02.png",
+  "webp": "/images/products/tig-welding-torches-consumables/tig-welding-torch-26fv.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp14-03.png",
+  "webp": "/images/products/tig-welding-torches-consumables/tungsten-electrode-red-color.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp14-04.png",
+  "webp": "/images/products/tig-welding-torches-consumables/tungsten-electrode-green-color.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp14-05.png",
+  "webp": "/images/products/tig-welding-torches-consumables/tungsten-electrode-grey-color.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp14-06.png",
+  "webp": "/images/products/tig-welding-torches-consumables/ceramic-cup.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp14-07.png",
+  "webp": "/images/products/tig-welding-torches-consumables/collet-body-pin.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp14-08.png",
+  "webp": "/images/products/tig-welding-torches-consumables/back-cap.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp15-00.png",
+  "webp": "/images/products/tig-welding-torch-accessories/body-valve.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp15-01.png",
+  "webp": "/images/products/tig-welding-torch-accessories/body.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp15-02.png",
+  "webp": "/images/products/tig-welding-torch-accessories/argon-hose-black-clear.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp15-03.png",
+  "webp": "/images/products/tig-welding-torch-accessories/insulator-ring.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp15-04.png",
+  "webp": "/images/products/tig-welding-torch-accessories/gas-lens.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp15-05.png",
+  "webp": "/images/products/tig-welding-torch-accessories/argon-nut.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp15-06.png",
+  "webp": "/images/products/tig-welding-torch-accessories/argon-nipple.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp15-07.png",
+  "webp": "/images/products/tig-welding-torch-accessories/2-ear-clip.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp15-08.png",
+  "webp": "/images/products/tig-welding-torch-accessories/argon-hose-adaptor.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp16-01.png",
+  "webp": "/images/products/gouging-rod-torches/k4000.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp16-02.png",
+  "webp": "/images/products/gouging-rod-torches/k3000.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp16-03.png",
+  "webp": "/images/products/gouging-rod-torches/gouging-rod.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp16-04.png",
+  "webp": "/images/products/gouging-rod-torches/gouging-rod-2.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp16-05.png",
+  "webp": "/images/products/gouging-rod-torches/gouging-rod-3.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp16-06.png",
+  "webp": "/images/products/gouging-rod-torches/gouging-rod-4.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp16-07.png",
+  "webp": "/images/products/gouging-rod-torches/gouging-rod-5.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp17-01.png",
+  "webp": "/images/products/industrial-gas-cylinders-gas-trolley/oxygen-cylinder.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp17-02.png",
+  "webp": "/images/products/industrial-gas-cylinders-gas-trolley/acetylene-cylinder.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp17-03.png",
+  "webp": "/images/products/industrial-gas-cylinders-gas-trolley/argon-cylinder.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp17-04.png",
+  "webp": "/images/products/industrial-gas-cylinders-gas-trolley/nitrogen-cylinder.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp17-05.png",
+  "webp": "/images/products/industrial-gas-cylinders-gas-trolley/co2-cylinder.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp17-06.png",
+  "webp": "/images/products/industrial-gas-cylinders-gas-trolley/lpg-cylinder.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp17-07.png",
+  "webp": "/images/products/industrial-gas-cylinders-gas-trolley/cylinder-trolley-single.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp17-08.png",
+  "webp": "/images/products/industrial-gas-cylinders-gas-trolley/cylinder-trolley-double.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp17-09.png",
+  "webp": "/images/products/industrial-gas-cylinders-gas-trolley/gas-cylinder-storage-rack.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp18-00.png",
+  "webp": "/images/products/gas-cutting-heating-equipments-gas-hoses/cutting-attachment-ca2460.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp18-01.png",
+  "webp": "/images/products/gas-cutting-heating-equipments-gas-hoses/cutting-torch-315fc.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp18-02.png",
+  "webp": "/images/products/gas-cutting-heating-equipments-gas-hoses/heating-torch.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp18-03.png",
+  "webp": "/images/products/gas-cutting-heating-equipments-gas-hoses/welding-nozzle.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp18-04.png",
+  "webp": "/images/products/gas-cutting-heating-equipments-gas-hoses/heating-nozzle.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp18-05.png",
+  "webp": "/images/products/gas-cutting-heating-equipments-gas-hoses/check-valve.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp18-06.png",
+  "webp": "/images/products/gas-cutting-heating-equipments-gas-hoses/flashback-arrestor-regulator-mount.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp18-07.png",
+  "webp": "/images/products/gas-cutting-heating-equipments-gas-hoses/flashback-arrestor-torch-mount.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp18-08.png",
+  "webp": "/images/products/gas-cutting-heating-equipments-gas-hoses/twin-welding-hose.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp19-00.png",
+  "webp": "/images/products/cutting-nozzles/acetylene.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp19-01.png",
+  "webp": "/images/products/cutting-nozzles/gpn.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp19-02.png",
+  "webp": "/images/products/cutting-nozzles/102hc.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp19-03.png",
+  "webp": "/images/products/cutting-nozzles/106hc.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp19-04.png",
+  "webp": "/images/products/cutting-nozzles/pnme.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp19-05.png",
+  "webp": "/images/products/cutting-nozzles/anme.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp19-06.png",
+  "webp": "/images/products/cutting-nozzles/164.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp20-00.png",
+  "webp": "/images/products/welding-regulator-fittings-gas-hose-fittings/oxygen-nut-nipple.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp20-01.png",
+  "webp": "/images/products/welding-regulator-fittings-gas-hose-fittings/acetylene-nut-nipple.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp20-02.png",
+  "webp": "/images/products/welding-regulator-fittings-gas-hose-fittings/ferrules.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp20-03.png",
+  "webp": "/images/products/welding-regulator-fittings-gas-hose-fittings/barbed-hose-splicer.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp20-04.png",
+  "webp": "/images/products/welding-regulator-fittings-gas-hose-fittings/oxygen-acetylene-hose-coupler.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp20-05.png",
+  "webp": "/images/products/welding-regulator-fittings-gas-hose-fittings/argon-hose-adaptor-2.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp20-06.png",
+  "webp": "/images/products/welding-regulator-fittings-gas-hose-fittings/argon-hose-coupler.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp20-07.png",
+  "webp": "/images/products/welding-regulator-fittings-gas-hose-fittings/two-way-barbed-hose-splicer.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp21-00.png",
+  "webp": "/images/products/welding-cutting-gas-accessories/spark-lighter-single-flint.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp21-01.png",
+  "webp": "/images/products/welding-cutting-gas-accessories/spark-lighter-triple-flint.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp21-02.png",
+  "webp": "/images/products/welding-cutting-gas-accessories/tip-cleaner.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp21-03.png",
+  "webp": "/images/products/welding-cutting-gas-accessories/replacement-flint-5pcs-packet.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp21-04.png",
+  "webp": "/images/products/welding-cutting-gas-accessories/9-mouth-oxygen-acetylene-wrench.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp21-05.png",
+  "webp": "/images/products/welding-cutting-gas-accessories/triple-flint-stone-for-triangle-welding-spark-lighter.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp21-06.png",
+  "webp": "/images/products/welding-cutting-gas-accessories/spark-lighter-gun.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp21-07.png",
+  "webp": "/images/products/welding-cutting-gas-accessories/gas-cylinder-key.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp21-08.png",
+  "webp": "/images/products/welding-cutting-gas-accessories/cylinder-cap.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp22-01.png",
+  "webp": "/images/products/welding-helmet-accessories/welding-leather-hood.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp22-02.png",
+  "webp": "/images/products/welding-helmet-accessories/auto-darkening-welding-helmet.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp22-03.png",
+  "webp": "/images/products/welding-helmet-accessories/welding-helmet.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp22-04.png",
+  "webp": "/images/products/welding-helmet-accessories/welding-helmet-with-safety-helmet.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp22-05.png",
+  "webp": "/images/products/welding-helmet-accessories/welding-safety-googles.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp22-06.png",
+  "webp": "/images/products/welding-helmet-accessories/welding-helmet-glass-clear.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp22-07.png",
+  "webp": "/images/products/welding-helmet-accessories/welding-helmet-glass-dark.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp22-08.png",
+  "webp": "/images/products/welding-helmet-accessories/welding-helmet-polycarbonate-glass.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp22-09.png",
+  "webp": "/images/products/welding-helmet-accessories/hand-shield.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp23-00.png",
+  "webp": "/images/products/welding-machines/250a-edon.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp23-01.png",
+  "webp": "/images/products/welding-machines/300a-edon.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp23-02.png",
+  "webp": "/images/products/welding-machines/400a-edon.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp23-03.png",
+  "webp": "/images/products/welding-machines/es201ip-pro-esab.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp23-04.png",
+  "webp": "/images/products/welding-machines/es410-esab.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp23-05.png",
+  "webp": "/images/products/welding-machines/handyarc-esab.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp23-06.png",
+  "webp": "/images/products/welding-machines/200-acdc-edon.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp24-01.png",
+  "webp": "/images/products/abrasives/cutting-disc.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp24-02.png",
+  "webp": "/images/products/abrasives/grinding-disc.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp24-03.png",
+  "webp": "/images/products/abrasives/flap-disc.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp24-04.png",
+  "webp": "/images/products/abrasives/sandpaper-disc.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp24-05.png",
+  "webp": "/images/products/abrasives/sand-cloth-roll.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp24-06.png",
+  "webp": "/images/products/abrasives/diamond-cutting-disc.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp24-07.png",
+  "webp": "/images/products/abrasives/mounting-stone.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp24-08.png",
+  "webp": "/images/products/abrasives/sanding-belt.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp25-01.png",
+  "webp": "/images/products/industrial-chemicals/zinc-spray.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp25-02.png",
+  "webp": "/images/products/industrial-chemicals/pickling-gel.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp25-03.png",
+  "webp": "/images/products/industrial-chemicals/passivator.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp25-04.png",
+  "webp": "/images/products/industrial-chemicals/brittle-wash.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp25-05.png",
+  "webp": "/images/products/industrial-chemicals/antispatter-spray.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp25-06.png",
+  "webp": "/images/products/industrial-chemicals/antispatter-gel.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp25-07.png",
+  "webp": "/images/products/industrial-chemicals/hypertherm-coolant.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp25-08.png",
+  "webp": "/images/products/industrial-chemicals/welding-scanner.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp26-00.png",
+  "webp": "/images/products/safety/face-shield-visor-clear.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp26-01.png",
+  "webp": "/images/products/safety/face-shield-visor-bracket.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp26-02.png",
+  "webp": "/images/products/safety/face-shield-visor-head-gear.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp26-03.png",
+  "webp": "/images/products/safety/safety-goggles-dark-clear.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp26-04.png",
+  "webp": "/images/products/safety/safety-glass-with-anti-fog-lens.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp26-05.png",
+  "webp": "/images/products/safety/welding-goggles.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp26-06.png",
+  "webp": "/images/products/safety/face-shield-visor-black.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp26-07.png",
+  "webp": "/images/products/safety/ear-plug.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp26-08.png",
+  "webp": "/images/products/safety/flip-goggles.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp27-00.png",
+  "webp": "/images/products/hand-protections/cotton-gloves.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp27-01.png",
+  "webp": "/images/products/hand-protections/crinkled-gloves.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp27-02.png",
+  "webp": "/images/products/hand-protections/rubber-gloves.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp27-03.png",
+  "webp": "/images/products/hand-protections/welding-gloves.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp27-04.png",
+  "webp": "/images/products/hand-protections/blue-dotted-gloves.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp27-05.png",
+  "webp": "/images/products/hand-protections/white-dotted-gloves.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp27-06.png",
+  "webp": "/images/products/hand-protections/tig-gloves-short.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp27-07.png",
+  "webp": "/images/products/hand-protections/tig-gloves-long.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp28-00.png",
+  "webp": "/images/products/welding-protective-gear/welding-jacket-grey.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp28-01.png",
+  "webp": "/images/products/welding-protective-gear/welding-jacket-yellow.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp28-02.png",
+  "webp": "/images/products/welding-protective-gear/welding-apron.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp28-03.png",
+  "webp": "/images/products/welding-protective-gear/hand-sleeve.webp"
+ },
+ {
+  "card_png": "source-assets/cards/fp28-04.png",
+  "webp": "/images/products/welding-protective-gear/leg-sleeve.webp"
+ }
+]
