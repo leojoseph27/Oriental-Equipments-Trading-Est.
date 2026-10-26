@@ -22,7 +22,7 @@ const { compact = false } = Astro.props;
       </button>
     </div>
   )}
-  <div id="catalogue-reader" class="cr-reader" tabindex="0"
+  <div id="catalogue-reader" class="cr-reader" role="group" tabindex="0"
     aria-label="Digital catalogue book. Use the left and right arrow keys to turn pages.">
     <div id="cr-loading" class="cr-state" role="status">
       <span class="cr-spinner" aria-hidden="true"></span>
@@ -31,8 +31,9 @@ const { compact = false } = Astro.props;
 
     <div id="cr-error" class="cr-state" hidden role="alert">
       <h2>The catalogue could not be displayed</h2>
-      <p>The PDF failed to load. You can still download the original file below.</p>
-      <p><a class="btn primary" href="/pdfs/oriental-catalogue.pdf" download>Download the PDF</a></p>
+      <p>The catalogue pages failed to load. Check your connection and try again.</p>
+      <p><button id="cr-retry" class="btn primary" type="button">Retry</button></p>
+      <p><a class="btn ghost" href="/pdfs/oriental-catalogue.pdf" download>Download the PDF</a></p>
     </div>
 
     <div id="cr-book" hidden>

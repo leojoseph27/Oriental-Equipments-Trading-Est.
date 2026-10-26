@@ -219,8 +219,8 @@ test.describe("digital catalogue reader", () => {
     expect((await readerStats(page)).cached).toBeLessThanOrEqual(14);
   });
 
-  test("PDF loading failure shows the fallback state", async ({ page }) => {
-    await page.route("**/pdfs/oriental-catalogue.pdf", (route) => route.fulfill({
+  test("page loading failure shows the fallback state with retry", async ({ page }) => {
+    await page.route("**/catalogue-pages/manifest.json", (route) => route.fulfill({
       status: 500,
       body: "server error",
     }));
@@ -228,6 +228,8 @@ test.describe("digital catalogue reader", () => {
     await expect(page.locator("#cr-error")).toBeVisible({ timeout: 20_000 });
     await expect(page.locator("#cr-book")).toBeHidden();
     await expect(page.locator('#cr-error a[download]')).toBeVisible();
+    // the retry control exists so the reader can never be stuck dead
+    await expect(page.locator("#cr-retry")).toBeVisible();
   });
 
   for (const [w, h] of [[320, 800], [390, 844], [768, 1024], [1024, 768], [1440, 900]] as const) {

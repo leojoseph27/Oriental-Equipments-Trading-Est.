@@ -1,34 +1,25 @@
 /*
  * Digital catalogue reader — 3D page-turn book.
  *
- * Renders the original 29-page PDF page-for-page with PDF.js and animates
- * double-sided "leaves" rotating around the spine (rotateY on a perspective
- * parent). No page-flip library: leaf j holds page 2j+1 (front) and 2j+2
- * (back), so flipping leaf f moves exactly one physical sheet, in the correct
- * direction for Next and Previous.
+ * Pages come from pre-rendered WebP images (scripts/render-catalog-pages.mjs
+ * runs at build time from the original PDF), so the browser fetches only the
+ * spreads being viewed instead of the whole 24 MB source PDF. The original
+ * PDF is still available for download from the toolbar.
  *
- * Pages are rasterised through a small priority scheduler so that page turns
- * never wait on rendering: the turn animation starts immediately, and the
- * faces of the turning leaf are painted as they arrive. While the reader is
- * idle the next spread (turn-ahead) and the previous spread (turn-back) are
- * pre-rendered at lower priority, with at most two pages rendering at once so
- * the main thread stays responsive. Rendered canvases are cached (LRU) and
- * reused, so revisiting a spread never re-renders.
+ * Leaf j holds page 2j+1 (front) and 2j+2 (back), so flipping leaf f moves
+ * exactly one physical sheet, in the correct direction for Next and Previous.
+ * Images are loaded lazily for the current window (flipped-1..+1) plus the
+ * likely next spread, through a small priority scheduler.
  */
-import * as pdfjsLib from "pdfjs-dist";
-import workerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
-import type { PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
+const MANIFEST_SRC = "/catalogue-pages/manifest.json";
+const PAGES_DIR = "/catalogue-pages";
 
-const PDF_SRC = "/pdfs/oriental-catalogue.pdf";
-
-// Optional controls are absent in the compact (home-page) embed; the reader
-// works with Previous/Next alone there.
 const els = {
   root: document.getElementById("catalogue-reader") as HTMLElement,
   loading: document.getElementById("cr-loading") as HTMLElement,
   error: document.getElementById("cr-error") as HTMLElement,
+  retry: document.getElementById("cr-retry") as HTMLButtonElement | null,
   book: document.getElementById("cr-book") as HTMLElement,
   leaves: document.getElementById("cr-leaves") as HTMLElement,
   single: document.getElementById("cr-single") as HTMLElement,
@@ -48,18 +39,114 @@ const els = {
 
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
-let doc: PDFDocumentProxy | null = null;
 let numPages = 0;
 let numLeaves = 0;
 let flipped = 0; // leaves currently turned to the left side
 let animating = false;
 let queued: 1 | -1 | null = null; // one pending flip while one is in flight
 let singleMode = false;
-
-type CacheEntry = { canvas: HTMLCanvasElement; scale: number };
-const pageCache = new Map<number, CacheEntry>(); // 1-based page -> rendered canvas
-const CACHE_MAX = 14;
 let stageWidth = 0;
+let booted = false;
+
+/* ---------- page image cache (LRU) ---------- */
+
+type Entry = { canvas: HTMLCanvasElement };
+const pageCache = new Map<number, Entry>();
+const CACHE_MAX = 14;
+
+function evictCache() {
+  if (pageCache.size <= CACHE_MAX) return;
+  for (const key of pageCache.keys()) {
+    if (pageCache.size <= CACHE_MAX) break;
+    pageCache.delete(key);
+  }
+}
+
+function pageUrl(p: number) {
+  return `${PAGES_DIR}/page-${String(p).padStart(2, "0")}.webp`;
+}
+
+function loadImage(p: number): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.decoding = "async";
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error(`failed to load ${pageUrl(p)}`));
+    img.src = pageUrl(p);
+  });
+}
+
+async function renderTask(pageNo: number): Promise<Entry> {
+  const img = await loadImage(pageNo);
+  const canvas = document.createElement("canvas");
+  canvas.width = img.naturalWidth;
+  canvas.height = img.naturalHeight;
+  canvas.getContext("2d")!.drawImage(img, 0, 0);
+  const entry = { canvas };
+  pageCache.set(pageNo, entry);
+  evictCache();
+  return entry;
+}
+
+/* ---------- priority render scheduler ----------
+ * priority 1 = visible window (current spread +/- 1 leaf)
+ * priority 2 = prefetch: the spread ahead (next likely action)
+ * priority 3 = prefetch: the spread behind (backward navigation)
+ */
+const MAX_ACTIVE_RENDERS = 2;
+type Job = { priority: number; promise: Promise<Entry | null>; resolve: (e: Entry | null) => void };
+const pending = new Map<number, Job>();
+const inflight = new Map<number, Promise<Entry | null>>();
+let activeRenders = 0;
+
+function pump() {
+  while (activeRenders < MAX_ACTIVE_RENDERS && pending.size > 0) {
+    // while a flip animation runs, only window work; prefetch waits for settle
+    let bestNo = -1;
+    let bestPri = Infinity;
+    for (const [no, job] of pending) {
+      if (animating && job.priority > 1) continue;
+      if (job.priority < bestPri) { bestPri = job.priority; bestNo = no; }
+    }
+    if (bestNo < 0) return;
+    const job = pending.get(bestNo)!;
+    pending.delete(bestNo);
+    inflight.set(bestNo, job.promise);
+    activeRenders++;
+    renderTask(bestNo).then(job.resolve, () => job.resolve(null)).finally(() => {
+      activeRenders--;
+      inflight.delete(bestNo);
+      pump();
+    });
+  }
+}
+
+function schedule(pageNo: number, priority: number): Promise<Entry | null> {
+  const cached = pageCache.get(pageNo);
+  if (cached) {
+    pageCache.delete(pageNo);
+    pageCache.set(pageNo, cached); // refresh LRU order
+    return Promise.resolve(cached);
+  }
+  const queuedJob = pending.get(pageNo);
+  if (queuedJob) { queuedJob.priority = Math.min(queuedJob.priority, priority); return queuedJob.promise; }
+  const running = inflight.get(pageNo);
+  if (running) return running;
+  const job: Job = { priority, promise: null!, resolve: null! };
+  job.promise = new Promise<Entry | null>((resolve) => { job.resolve = resolve; });
+  pending.set(pageNo, job);
+  pump();
+  return job.promise;
+}
+
+function pruneQueue(wanted: Set<number>) {
+  for (const [no, job] of pending) {
+    if (job.priority >= 2 && !wanted.has(no)) {
+      pending.delete(no);
+      job.resolve(null);
+    }
+  }
+}
 
 function updateCounter() {
   if (!numPages) return;
@@ -76,126 +163,11 @@ function updateCounter() {
   els.counter.textContent = `Page ${text} of ${numPages}`;
 }
 
-/* ---------- priority render scheduler ----------
- * priority 0 = face of the leaf currently turning (must arrive mid-animation)
- * priority 1 = visible window (current spread +/- 1 leaf)
- * priority 2 = prefetch: the spread ahead (next likely action)
- * priority 3 = prefetch: the spread behind (backward navigation)
- */
-const MAX_ACTIVE_RENDERS = 2;
-type Job = {
-  scale: number;
-  priority: number;
-  promise: Promise<CacheEntry | null>;
-  resolve: (entry: CacheEntry | null) => void;
-};
-const pending = new Map<number, Job>(); // pageNo -> queued job
-const inflightPromises = new Map<number, Promise<CacheEntry | null>>();
-let activeRenders = 0;
-
-function evictCache() {
-  if (pageCache.size <= CACHE_MAX) return;
-  // evict least-recently-used (Map preserves insertion order)
-  for (const key of pageCache.keys()) {
-    if (pageCache.size <= CACHE_MAX) break;
-    pageCache.delete(key);
-  }
-}
-
-async function renderTask(pageNo: number, targetScale: number): Promise<CacheEntry> {
-  const page: PDFPageProxy = await doc!.getPage(pageNo);
-  const base = page.getViewport({ scale: 1 });
-  // targetScale is a desired pixel width; guard against 0 (stage not laid
-  // out yet) so we never render a 0x0 canvas
-  const scale = targetScale > 0
-    ? Math.min(Math.max(targetScale / base.width, 1.5), 3)
-    : 2;
-  const viewport = page.getViewport({ scale });
-  const canvas = document.createElement("canvas");
-  canvas.width = Math.round(viewport.width);
-  canvas.height = Math.round(viewport.height);
-  const ctx = canvas.getContext("2d")!;
-  ctx.fillStyle = "#ffffff";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  await page.render({ canvasContext: ctx, viewport }).promise;
-  const entry = { canvas, scale };
-  pageCache.set(pageNo, entry);
-  evictCache();
-  return entry;
-}
-
-function pump() {
-  while (activeRenders < MAX_ACTIVE_RENDERS && pending.size > 0) {
-    // while a flip animation runs, only render work that the animation
-    // itself needs (priority <= 1); the rest waits for the settle
-    let bestNo = -1;
-    let bestPri = Infinity;
-    for (const [no, job] of pending) {
-      if (animating && job.priority > 1) continue;
-      if (job.priority < bestPri) {
-        bestPri = job.priority;
-        bestNo = no;
-      }
-    }
-    if (bestNo < 0) return;
-    const job = pending.get(bestNo)!;
-    pending.delete(bestNo);
-    inflightPromises.set(bestNo, job.promise);
-    activeRenders++;
-    renderTask(bestNo, job.scale)
-      .then(
-        (entry) => job.resolve(entry),
-        () => job.resolve(null), // best-effort: leave the slot blank
-      )
-      .finally(() => {
-        activeRenders--;
-        inflightPromises.delete(bestNo);
-        pump();
-      });
-  }
-}
-
-/** Queue a page render at a priority; resolves with the cached entry (or
- * null if the job was pruned or rendering failed). Never blocks the caller
- * unless awaited. Cached pages resolve immediately without re-rendering. */
-function schedule(pageNo: number, targetScale: number, priority: number): Promise<CacheEntry | null> {
-  const cached = pageCache.get(pageNo);
-  if (cached && cached.canvas.width >= targetScale * 0.8) {
-    // refresh LRU order
-    pageCache.delete(pageNo);
-    pageCache.set(pageNo, cached);
-    return Promise.resolve(cached);
-  }
-  const queuedJob = pending.get(pageNo);
-  if (queuedJob) {
-    // upgrade priority and resolution if the request became more urgent
-    queuedJob.priority = Math.min(queuedJob.priority, priority);
-    queuedJob.scale = Math.max(queuedJob.scale, targetScale);
-    return queuedJob.promise;
-  }
-  const inflight = inflightPromises.get(pageNo);
-  if (inflight) return inflight;
-  const job: Job = { scale: targetScale, priority, promise: null!, resolve: null! };
-  job.promise = new Promise<CacheEntry | null>((resolve) => { job.resolve = resolve; });
-  pending.set(pageNo, job);
-  pump();
-  return job.promise;
-}
-
-/** Drop queued low-priority jobs that are no longer wanted (obsolete after
- * navigation). In-flight renders cannot be cancelled and finish normally. */
-function pruneQueue(wanted: Set<number>) {
-  for (const [no, job] of pending) {
-    if (job.priority >= 2 && !wanted.has(no)) {
-      pending.delete(no);
-      job.resolve(null);
-    }
-  }
-}
-
-function pageScale(): number {
-  const pageWidthPx = singleMode ? stageWidth : stageWidth / 2;
-  return pageWidthPx * (window.devicePixelRatio || 1);
+function updateFsArrows() {
+  if (!els.fsPrev || !els.fsNext) return;
+  const maxFlipped = singleMode ? numPages - 1 : numLeaves - 1;
+  els.fsPrev.disabled = flipped <= 0;
+  els.fsNext.disabled = flipped >= maxFlipped;
 }
 
 function leafEl(j: number): HTMLElement {
@@ -208,13 +180,11 @@ function paintFace(face: HTMLElement, pageNo: number, priority = 1) {
     slot.replaceChildren(); // blank back of the final leaf
     return;
   }
-  schedule(pageNo, pageScale(), priority).then((entry) => {
+  schedule(pageNo, priority).then((entry) => {
     if (!entry) return;
     // face may have moved out of the wanted window while rendering
     if (!face.isConnected || face.dataset.page !== String(pageNo)) return;
-    if (slot.firstChild !== entry.canvas) {
-      slot.replaceChildren(entry.canvas);
-    }
+    if (slot.firstChild !== entry.canvas) slot.replaceChildren(entry.canvas);
     slot.classList.add("rendered");
   });
 }
@@ -224,30 +194,14 @@ function needsPaint(face: HTMLElement, pageNo: number): boolean {
   const slot = face.querySelector<HTMLElement>(".cr-page-slot")!;
   if (!slot.classList.contains("rendered")) return true;
   const canvas = slot.querySelector("canvas");
-  // a 0x0 canvas means the page was rendered before the stage had a size
   return !canvas || canvas.width === 0;
 }
 
-/** Leaves kept ready: the visible window (flipped-1..+1), plus one leaf of
- * prefetch on each side (ahead at higher priority than behind). */
-function wantedLeaves(): Array<{ leaf: number; priority: number }> {
-  const out: Array<{ leaf: number; priority: number }> = [];
-  const push = (j: number, priority: number) => {
-    if (j >= 0 && j <= numLeaves - 1) out.push({ leaf: j, priority });
-  };
-  for (let j = flipped - 1; j <= flipped + 1; j++) push(j, 1);
-  if (singleMode) {
-    push(flipped + 2, 2);
-    push(flipped - 2, 3);
-  } else {
-    push(flipped + 2, 2);
-    push(flipped - 2, 3);
-  }
-  return out;
-}
-
 function syncLeaves(force = false) {
-  const want = new Set<number>(wantedLeaves().map((w) => w.leaf));
+  const want = new Set<number>();
+  for (let j = flipped - 2; j <= flipped + 2; j++) {
+    if (j >= 0 && j <= numLeaves - 1) want.add(j);
+  }
   const wantedPages = new Set<number>();
 
   for (let j = 0; j < numLeaves; j++) {
@@ -265,47 +219,45 @@ function syncLeaves(force = false) {
     const back = leaf.querySelector<HTMLElement>(".face.back")!;
     const frontNo = 2 * j + 1;
     const backNo = 2 * j + 2;
+    // visible window at priority 1; the +1 leaf doubles as turn-ahead prefetch
+    const priority = j <= flipped + 1 ? 1 : 2;
     if (force || needsPaint(front, frontNo)) {
       front.dataset.page = String(frontNo);
       front.querySelector(".cr-page-slot")!.classList.remove("rendered");
-      paintFace(front, frontNo, 1);
+      paintFace(front, frontNo, priority);
     }
     if (force || needsPaint(back, backNo)) {
       back.dataset.page = String(backNo);
       back.querySelector(".cr-page-slot")!.classList.remove("rendered");
-      paintFace(back, backNo, 1);
+      paintFace(back, backNo, priority);
     }
     wantedPages.add(frontNo);
     wantedPages.add(backNo);
   }
 
-  // idle prefetch beyond the visible window (never blocks the current spread)
-  for (const { leaf: j, priority } of wantedLeaves()) {
-    if (priority < 2) continue;
-    for (const p of [2 * j + 1, 2 * j + 2]) {
-      if (p >= 1 && p <= numPages) {
-        wantedPages.add(p);
-        if (force || !pageCache.has(p)) schedule(p, pageScale(), priority);
-      }
+  // prefetch one leaf behind at lowest priority (backward navigation)
+  const behind = flipped - 2;
+  if (behind >= 0 && behind <= numLeaves - 1) {
+    for (const p of [2 * behind + 1, 2 * behind + 2]) {
+      if (p >= 1 && p <= numPages) { wantedPages.add(p); schedule(p, 3); }
     }
   }
 
   pruneQueue(wantedPages);
-  pump(); // resume any low-priority work that was deferred during a flip
+  pump(); // resume deferred low-priority work after a flip settles
   updateCounter();
+  updateFsArrows();
   markActiveThumbs();
   els.prev.disabled = animating || flipped <= 0;
   els.next.disabled = animating || flipped >= (singleMode ? numPages - 1 : numLeaves - 1);
-  updateFsArrows();
 }
 
 function leafForPage(p: number): number {
-  // leaf whose front is an odd page p, or whose back is an even page p
   return p % 2 === 1 ? (p - 1) / 2 : p / 2;
 }
 
 function flip(direction: 1 | -1) {
-  if (!doc) return;
+  if (!numPages) return;
   if (animating) { queued = direction; return; }
   const target = flipped + direction;
   const maxFlipped = singleMode ? numPages - 1 : numLeaves - 1;
@@ -313,9 +265,7 @@ function flip(direction: 1 | -1) {
   const j = direction === 1 ? flipped : flipped - 1;
   if (j < 0 || j >= numLeaves) return;
 
-  singleMode = matchMedia("(max-width: 767px)").matches;
   if (singleMode) {
-    // single-page mode: one step == one page, no 3D flip
     flipped = Math.min(target, numPages - 1);
     syncLeaves();
     renderSingle();
@@ -327,23 +277,20 @@ function flip(direction: 1 | -1) {
   const leaf = leafEl(j);
 
   if (reducedMotion.matches || document.documentElement.classList.contains("cr-reduced")) {
-    // reduced motion: settle instantly, pages paint in as they arrive
     settle();
     return;
   }
 
-  // The animation starts immediately. The turning leaf's faces are usually
-  // already pre-rendered (the idle prefetch keeps flipped-1..+1 ready); if
-  // not, they are scheduled at top priority and paint in mid-turn.
+  // animation starts immediately; the turning faces are pre-rendered by the
+  // idle prefetch and paint in mid-turn if they were ever evicted
   syncLeaves();
   leaf.style.zIndex = String(numLeaves + 2);
   leaf.addEventListener("transitionend", () => finishFlip(leaf), { once: true });
-  // safety net in case transitionend never fires
-  setTimeout(() => finishFlip(leaf), 1200);
+  setTimeout(() => finishFlip(leaf), 1200); // safety net if transitionend is missed
 }
 
 function settle() {
-  animating = false; // clear before syncLeaves so buttons re-enable
+  animating = false;
   syncLeaves();
   renderSingle();
   runQueued();
@@ -367,9 +314,9 @@ function finishFlip(leaf: HTMLElement) {
 }
 
 function renderSingle() {
-  if (!singleMode || !doc) return;
+  if (!singleMode || !numPages) return;
   const p = Math.min(flipped + 1, numPages);
-  schedule(p, pageScale(), 1).then((entry) => {
+  schedule(p, 1).then((entry) => {
     if (!singleMode || !entry) return;
     const ctx = els.singleCanvas.getContext("2d")!;
     els.singleCanvas.width = entry.canvas.width;
@@ -383,7 +330,6 @@ function jumpToPage(p: number) {
   if (p < 1 || p > numPages || animating) return;
   const targetLeaf = leafForPage(p);
   if (targetLeaf === flipped && !singleMode) return;
-  singleMode = matchMedia("(max-width: 767px)").matches;
   if (singleMode) {
     flipped = p - 1;
     syncLeaves();
@@ -402,10 +348,9 @@ function jumpToPage(p: number) {
 /* ---------- thumbnails ---------- */
 
 let thumbsBuilt = false;
-const thumbCache = new Map<number, string>();
 
 function buildThumbs() {
-  if (thumbsBuilt || !doc || !els.thumbs) return;
+  if (thumbsBuilt || !numPages || !els.thumbs) return;
   thumbsBuilt = true;
   for (let p = 1; p <= numPages; p++) {
     const btn = document.createElement("button");
@@ -417,46 +362,16 @@ function buildThumbs() {
     img.alt = "";
     img.loading = "lazy";
     img.decoding = "async";
+    img.src = `${PAGES_DIR}/thumb-${String(p).padStart(2, "0")}.webp`;
     btn.appendChild(img);
     const label = document.createElement("span");
     label.textContent = String(p);
     btn.appendChild(label);
     btn.addEventListener("click", () => {
       jumpToPage(p);
-      if (els.thumbPanel.classList.contains("open")) closeThumbs();
+      if (els.thumbPanel?.classList.contains("open")) closeThumbs();
     });
     els.thumbs.appendChild(btn);
-  }
-  renderThumbs();
-}
-
-function renderThumbs() {
-  if (!doc || !els.thumbs) return;
-  for (let p = 1; p <= numPages; p++) {
-    const btn = els.thumbs.querySelector<HTMLElement>(`[data-page="${p}"]`)!;
-    const img = btn.querySelector("img")!;
-    if (thumbCache.has(p)) {
-      img.src = thumbCache.get(p)!;
-      continue;
-    }
-    // render lazily: only thumbs near the viewport of the panel
-    const r = btn.getBoundingClientRect();
-    if (r.top < innerHeight + 200 && r.bottom > -200) {
-      doc.getPage(p).then((page) => {
-        const base = page.getViewport({ scale: 1 });
-        const scale = 150 / base.width;
-        const viewport = page.getViewport({ scale });
-        const c = document.createElement("canvas");
-        c.width = Math.round(viewport.width);
-        c.height = Math.round(viewport.height);
-        return page.render({ canvasContext: c.getContext("2d")!, viewport }).promise
-          .then(() => {
-            const url = c.toDataURL("image/jpeg", 0.7);
-            thumbCache.set(p, url);
-            btn.querySelector("img")!.src = url;
-          });
-      }).catch(() => { /* thumb renders are best-effort */ });
-    }
   }
 }
 
@@ -478,7 +393,6 @@ function openThumbs() {
   els.thumbPanel.classList.add("open");
   els.thumbPanel.removeAttribute("hidden");
   els.thumbToggle.setAttribute("aria-expanded", "true");
-  renderThumbs();
 }
 function closeThumbs() {
   if (!els.thumbPanel || !els.thumbToggle) return;
@@ -490,13 +404,6 @@ function closeThumbs() {
 
 /* ---------- fullscreen ---------- */
 
-function updateFsArrows() {
-  if (!els.fsPrev || !els.fsNext) return;
-  const maxFlipped = singleMode ? numPages - 1 : numLeaves - 1;
-  els.fsPrev.disabled = flipped <= 0;
-  els.fsNext.disabled = flipped >= maxFlipped;
-}
-
 els.fsPrev?.addEventListener("click", () => flip(-1));
 els.fsNext?.addEventListener("click", () => flip(1));
 els.fsExit?.addEventListener("click", () => document.exitFullscreen());
@@ -504,13 +411,11 @@ els.fullscreen?.addEventListener("click", () => {
   if (document.fullscreenElement) {
     document.exitFullscreen();
   } else {
-    const wrap = els.root.closest(".cr-reader-wrap") ?? els.root;
-    wrap.requestFullscreen();
+    (els.root.closest(".cr-reader-wrap") ?? els.root).requestFullscreen();
   }
 });
 document.addEventListener("fullscreenchange", () => {
   const on = !!document.fullscreenElement;
-  // overlay arrows live inside the fullscreened wrap
   (els.root.closest(".cr-reader-wrap") ?? els.root)?.classList.toggle("cr-reading-fs", on);
   if (els.fullscreen) {
     els.fullscreen.setAttribute("aria-pressed", String(on));
@@ -539,44 +444,28 @@ els.root.addEventListener("keydown", (e) => {
 
 els.prev.addEventListener("click", () => flip(-1));
 els.next.addEventListener("click", () => flip(1));
+els.retry?.addEventListener("click", () => boot());
 els.thumbToggle?.addEventListener("click", () => {
   els.thumbPanel!.classList.contains("open") ? closeThumbs() : openThumbs();
-});
-els.fullscreen?.addEventListener("click", () => {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  } else {
-    const wrap = els.root.closest(".cr-reader-wrap") ?? els.root;
-    wrap.requestFullscreen();
-  }
-});
-document.addEventListener("fullscreenchange", () => {
-  if (!els.fullscreen) return;
-  const on = !!document.fullscreenElement;
-  els.fullscreen.setAttribute("aria-pressed", String(on));
-  els.fullscreen.querySelector("span")!.textContent = on ? "Exit fullscreen" : "Fullscreen";
 });
 
 const ro = new ResizeObserver(() => {
   const w = Math.round(els.stage.getBoundingClientRect().width);
   if (w && Math.abs(w - stageWidth) > 40) {
     stageWidth = w;
-    if (doc) { syncLeaves(true); renderSingle(); }
+    if (numPages) { syncLeaves(); renderSingle(); }
   }
 });
 ro.observe(els.stage);
 
 matchMedia("(max-width: 767px)").addEventListener("change", () => {
   singleMode = matchMedia("(max-width: 767px)").matches;
-  syncLeaves(true);
-  renderSingle();
+  if (numPages) { syncLeaves(true); renderSingle(); }
 });
 
 reducedMotion.addEventListener?.("change", () => {
   document.documentElement.classList.toggle("cr-reduced", reducedMotion.matches);
 });
-
-/* ---------- boot ---------- */
 
 function showError() {
   els.loading.hidden = true;
@@ -584,17 +473,25 @@ function showError() {
   els.error.hidden = false;
 }
 
-(async function init() {
-  document.documentElement.classList.toggle("cr-reduced", reducedMotion.matches);
+async function boot(): Promise<void> {
+  if (booted) return;
+  booted = true;
+  els.error.hidden = true;
+  els.loading.hidden = false;
   try {
-    stageWidth = Math.round(els.stage.getBoundingClientRect().width);
-    const task = pdfjsLib.getDocument({ url: PDF_SRC });
-    doc = await task.promise;
-    numPages = doc.numPages;
+    // never leave the reader stuck on "Loading": hard deadline for init
+    const manifest = await Promise.race([
+      fetch(MANIFEST_SRC).then((r) => {
+        if (!r.ok) throw new Error(`manifest ${r.status}`);
+        return r.json();
+      }),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("manifest timeout")), 15000)),
+    ]) as { pages: number };
+    numPages = manifest.pages;
     numLeaves = Math.ceil(numPages / 2);
     const meta = document.getElementById("cr-download-meta");
     if (meta) meta.textContent = `${numPages} pages · original PDF`;
-    // build leaves
+
     const frag = document.createDocumentFragment();
     for (let j = 0; j < numLeaves; j++) {
       const leaf = document.createElement("div");
@@ -606,29 +503,29 @@ function showError() {
       frag.appendChild(leaf);
     }
     els.leaves.replaceChildren(frag);
-    // unhide the book and paint the first spread before the loading state
-    // is dismissed, so the reader is never shown with a blank spread
+
     singleMode = matchMedia("(max-width: 767px)").matches;
     els.book.hidden = false;
     stageWidth = Math.round(els.stage.getBoundingClientRect().width);
     syncLeaves();
+    // first spread renders before the loading state is dismissed
     const firstSpread = singleMode ? [1] : [1, 2];
-    await Promise.all(firstSpread.map((p) => schedule(p, pageScale(), 1)));
+    await Promise.race([
+      Promise.all(firstSpread.map((p) => schedule(p, 1))),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("render timeout")), 20000)),
+    ]);
     els.loading.hidden = true;
     renderSingle();
   } catch (err) {
-    (window as unknown as Record<string, unknown>).__crInitError = String((err as Error)?.stack ?? err);
-    console.error("Catalogue PDF failed to load:", err);
+    console.error("Catalogue failed to load:", err);
+    booted = false; // allow the retry button to try again
     showError();
   }
-})();
+}
+
+boot();
 
 // small introspection handle for automated tests
 (window as unknown as Record<string, unknown>).__catalogueReader = {
-  stats: () => ({
-    cached: pageCache.size,
-    pending: pending.size,
-    active: activeRenders,
-    flipped,
-  }),
+  stats: () => ({ cached: pageCache.size, pending: pending.size, active: activeRenders, flipped }),
 };
