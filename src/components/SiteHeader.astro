@@ -22,6 +22,7 @@ const isActive = (href: string) =>
       {nav.map((n) => <a href={n.href} aria-current={isActive(n.href) ? "page" : undefined}>{n.label}</a>)}
     </nav>
     <a class="cta" href="/contact/">Request a Quote</a>
+    <img class="vision-badge" src="/images/logo/vision-2030.png" alt="Saudi Vision 2030" width="66" height="44" />
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
   </div>
   <nav id="mobile-nav" class="mobile-nav" aria-label="Main" hidden>
@@ -53,11 +54,12 @@ const isActive = (href: string) =>
     transition: background-color var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
   }
   .cta:hover { background: var(--red-deep); color: #fff; }
+  .vision-badge { height: 44px; width: auto; object-fit: contain; flex: none; }
   .menu-btn { display: none; background: none; border: var(--line-weight) solid var(--line);
     border-radius: var(--radius); padding: 10px 14px; font: inherit; font-weight: 600; color: var(--ink); cursor: pointer; }
   .mobile-nav { display: none; }
   @media (max-width: 900px) {
-    .desktop-nav, .bar > .cta { display: none; }
+    .desktop-nav, .bar > .cta, .bar > .vision-badge { display: none; }
     .menu-btn { display: block; }
     .mobile-nav[hidden] { display: none; }
     .mobile-nav { display: flex; flex-direction: column; border-top: var(--line-weight) solid var(--line);

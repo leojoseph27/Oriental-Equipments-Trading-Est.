@@ -1,20 +1,20 @@
 ---
-// SiteLoader — first-visit / reload intro playing the company logo animation
-// video on a pure-white full-screen overlay. The safe lifecycle from the
-// previous CSS version is preserved: the inline script waits for the media
-// to be ready, plays the video, fades the overlay out over the video's own
-// final moment and removes it on `ended` — so the site appears within the
-// video's last second with no gap. A hard failsafe guarantees the overlay
-// can never stay stuck. Hidden entirely without JavaScript; sessionStorage
-// plays it once per session, while an explicit reload (Ctrl+Shift+R) always
-// replays it while PLAY_ON_RELOAD is true. Reduced-motion users get a short
-// plain fade instead of the video. Phones (≤767px) get the dedicated mobile
-// video (contain, full width, centred); desktop keeps the existing video.
-const VIDEO_DESKTOP = '/videos/oriental-intro.mp4';
-const VIDEO_MOBILE = '/videos/oriental-intro-mobile.mp4';
+// SiteLoader — first-visit / reload intro. Desktop (and tablets >767px)
+// play the company logo intro video full-bleed; phones (≤767px) get the
+// cinematic logo zoom animation instead (no video). Both sit on a #fcfcfc
+// full-screen overlay and reveal the site exactly as the intro finishes.
+// One safe lifecycle for both modes: an inline script marks the intro
+// active once the media is ready, dismissal is anchored to the intro's own
+// end (video `ended` / CSS `animationend`) with hard failsafe timers, so
+// the page can never remain blocked. Hidden entirely without JavaScript;
+// sessionStorage plays it once per session, while an explicit reload
+// (Ctrl+Shift+R) always replays it while PLAY_ON_RELOAD is true.
+// Reduced-motion users get a short plain fade in either mode.
+const LOGO = '/images/logo/oriental-logo.png';
 ---
 <div id="site-loader" class="site-loader" role="presentation" aria-hidden="true">
   <video class="loader-video" muted playsinline autoplay preload="auto"></video>
+  <img class="loader-logo" src={LOGO} alt="" width="260" height="239" decoding="async" fetchpriority="high" />
 </div>
 <style>
   /* Hidden unless <html> has .intro-active from the inline script below,
@@ -33,38 +33,46 @@ const VIDEO_MOBILE = '/videos/oriental-intro-mobile.mp4';
     display: flex;
     pointer-events: auto;
   }
+  /* Desktop/tablet: full-bleed intro video. */
   .loader-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
-  /* Phones: the landscape mobile video at full viewport width, intrinsic
-     height, centred, with #fcfcfc filling the space above and below.
-     contain (never cover) so nothing is cropped or distorted. A feathered
-     alpha mask fades the video's top and bottom edges into the #fcfcfc
-     background so its rectangular frame isn't visible; the centre (logo)
-     stays fully opaque and sharp. Desktop never gets this mask. */
+  .loader-logo { display: none; }
+
+  /* Phones (≤767px): cinematic logo zoom instead of the video. The logo
+     fades in small, then one continuous zoom carries it past the viewport
+     edges; the overlay fades away within the final second. */
   @media (max-width: 767px) {
-    .loader-video {
-      width: 100%;
+    .loader-video { display: none; }
+    .loader-logo {
+      display: block;
+      width: min(38vmin, 300px);
       height: auto;
       object-fit: contain;
-      -webkit-mask-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0) 0%,
-        #000 18%,
-        #000 82%,
-        rgba(0, 0, 0, 0) 100%
-      );
-      mask-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0) 0%,
-        #000 18%,
-        #000 82%,
-        rgba(0, 0, 0, 0) 100%
-      );
+      opacity: 0;
+      transform: scale(0.3);
+      will-change: transform, opacity;
     }
+    :global(html.intro-active:not(.intro-reduced)) .loader-logo {
+      animation: loader-intro 5s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+    }
+    :global(html.intro-active:not(.intro-reduced)) .site-loader {
+      animation: loader-out 0.6s ease 4.4s forwards;
+    }
+  }
+  @keyframes loader-intro {
+    0%   { opacity: 0; transform: scale(0.3); }
+    10%  { opacity: 1; transform: scale(0.3); }
+    84%  { opacity: 1; transform: scale(3.8); }
+    92%  { opacity: 1; transform: scale(4.8); }
+    100% { opacity: 0; transform: scale(5.6); }
+  }
+  @keyframes loader-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
   }
   /* Begin fading the overlay while the video is finishing its last beat, so
      the site is fully revealed exactly as the video ends — no gap. */
@@ -72,9 +80,13 @@ const VIDEO_MOBILE = '/videos/oriental-intro-mobile.mp4';
     opacity: 0;
     transition: opacity 0.45s ease-out;
   }
-  /* Reduced motion: no video, brief plain white fade. */
+  /* Reduced motion: no video, no zoom — brief plain fade. */
   :global(html.intro-active.intro-reduced) .site-loader {
     animation: loader-fade 1.3s ease forwards;
+  }
+  :global(html.intro-active.intro-reduced) .loader-logo,
+  :global(html.intro-active.intro-reduced) .loader-video {
+    display: none;
   }
   @keyframes loader-fade {
     0% { opacity: 1; }
@@ -107,14 +119,15 @@ const VIDEO_MOBILE = '/videos/oriental-intro-mobile.mp4';
     var started = false;
     var dismissed = false;
 
-    // Choose exactly one video for this load (phones get the mobile clip);
-    // decided once up front so a mid-load resize never swaps or restarts it.
+    // Exactly one mode per load, decided up front so a mid-load resize
+    // never swaps the intro or restarts playback. Phones get the logo
+    // animation; everything larger plays the desktop video.
     var MOBILE_QUERY = '(max-width: 767px)';
     var isMobileViewport = false;
     try { isMobileViewport = matchMedia(MOBILE_QUERY).matches; } catch (e) {}
     var video = loader.querySelector('video');
-    if (video) {
-      video.src = isMobileViewport ? '/videos/oriental-intro-mobile.mp4' : '/videos/oriental-intro.mp4';
+    if (!isMobileViewport && video) {
+      video.src = '/videos/oriental-intro.mp4';
     }
 
     function dismiss() {
@@ -136,34 +149,45 @@ const VIDEO_MOBILE = '/videos/oriental-intro-mobile.mp4';
         return;
       }
 
-      var video = loader.querySelector('video');
-      if (!video || !video.src) { dismiss(); return; }
-
-      // Reveal the site within the video's final second: start fading the
-      // overlay slightly before the last frame, remove it exactly on end.
-      video.addEventListener('timeupdate', function onTime() {
-        var d = video.duration;
-        if (d && video.currentTime >= d - 0.6) {
-          video.removeEventListener('timeupdate', onTime);
-          root.classList.add('intro-ending');
-        }
-      });
-      video.addEventListener('ended', dismiss);
-      // A broken/stalled asset must never block the page.
-      video.addEventListener('error', dismiss);
-      video.play().catch(function () { /* autoplay blocked → failsafe below */ });
+      if (isMobileViewport) {
+        // Logo mode: CSS plays the 5s zoom; the overlay fade completes at
+        // 5.0s, so dismiss right after. The intro's own animationend is the
+        // precise signal; the timer is the backup.
+        loader.addEventListener('animationend', function (e) {
+          if (e.animationName === 'loader-out') dismiss();
+        });
+        setTimeout(dismiss, 5600);
+      } else {
+        // Video mode: reveal the site within the video's final second,
+        // remove the overlay exactly on end. A broken/stalled asset must
+        // never block the page.
+        if (!video || !video.src) { dismiss(); return; }
+        video.addEventListener('timeupdate', function onTime() {
+          var d = video.duration;
+          if (d && video.currentTime >= d - 0.6) {
+            video.removeEventListener('timeupdate', onTime);
+            root.classList.add('intro-ending');
+          }
+        });
+        video.addEventListener('ended', dismiss);
+        video.addEventListener('error', dismiss);
+        video.play().catch(function () { /* autoplay blocked → failsafe below */ });
+      }
     }
 
-    // Start only once the video can actually play; a cap keeps a failed
-    // asset from delaying the intro indefinitely.
-    var video = loader.querySelector('video');
-    var beginOnce = function () { begin(); };
-    if (video && video.readyState < 3) {
-      video.addEventListener('canplay', beginOnce, { once: true });
-      video.addEventListener('error', beginOnce, { once: true });
-      setTimeout(beginOnce, 4000);
+    // Video mode: start only once the video can actually play; a cap keeps
+    // a failed asset from delaying the intro indefinitely.
+    if (!isMobileViewport) {
+      var beginOnce = function () { begin(); };
+      if (video && video.readyState < 3) {
+        video.addEventListener('canplay', beginOnce, { once: true });
+        video.addEventListener('error', beginOnce, { once: true });
+        setTimeout(beginOnce, 4000);
+      } else {
+        beginOnce();
+      }
     } else {
-      beginOnce();
+      begin();
     }
 
     // Hard failsafe: whatever happens, the overlay cannot outlive this.
