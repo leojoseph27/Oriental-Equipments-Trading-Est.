@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
-import { brands, categories, industries, products, representativeProducts } from "./helpers";
-
+import { brands, categories, industries, products, representativeProducts, disableIntro } from "./helpers";
+test.beforeEach(async ({ page }) => {
+  await disableIntro(page);
+});
 test.describe("catalogue & data integrity", () => {
   test("canonical counts: 190 products, 20 categories, 30 brands, 6 industries", () => {
     expect(products).toHaveLength(190);

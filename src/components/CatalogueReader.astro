@@ -47,19 +47,41 @@ const { compact = false } = Astro.props;
         <div class="cr-spine-shadow" aria-hidden="true"></div>
       </div>
     </div>
+
+    {compact ? (
+      <div class="cr-toolbar" role="group" aria-label="Reader controls">
+        <button id="cr-prev" class="cr-btn" type="button" disabled aria-label="Previous page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <span>Previous</span>
+        </button>
+        <p id="cr-counter" class="cr-counter" aria-live="polite"></p>
+        <button id="cr-next" class="cr-btn" type="button" disabled aria-label="Next page">
+          <span>Next</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+      </div>
+    ) : (
+      <>
+        <!-- Circular arrows flanking the book, vertically centred on the
+             displayed pages; same buttons the reader script has always
+             driven, reusing the fullscreen arrow styling. -->
+        <div class="cr-side-nav">
+          <button id="cr-prev" class="cr-fs-arrow cr-side-arrow" type="button" disabled aria-label="Previous catalogue page">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+          </button>
+          <button id="cr-next" class="cr-fs-arrow cr-side-arrow" type="button" disabled aria-label="Next catalogue page">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+          </button>
+        </div>
+      </>
+    )}
   </div>
 
-  <div class="cr-toolbar" role="group" aria-label="Reader controls">
-    <button id="cr-prev" class="cr-btn" type="button" disabled aria-label="Previous page">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-      <span>Previous</span>
-    </button>
-    <p id="cr-counter" class="cr-counter" aria-live="polite"></p>
-    <button id="cr-next" class="cr-btn" type="button" disabled aria-label="Next page">
-      <span>Next</span>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-    </button>
-  </div>
+  {!compact && (
+    <div class="cr-toolbar" role="group" aria-label="Reader controls">
+      <p id="cr-counter" class="cr-counter" aria-live="polite"></p>
+    </div>
+  )}
 
   {!compact && (
     <>

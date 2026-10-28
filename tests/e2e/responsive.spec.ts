@@ -1,6 +1,9 @@
 import { expect, test } from "@playwright/test";
-import { VIEWPORTS, expectNoOverflow } from "./helpers";
+import { VIEWPORTS, expectNoOverflow, disableIntro } from "./helpers";
 
+test.beforeEach(async ({ page }) => {
+  await disableIntro(page);
+});
 const PAGES = ["/", "/products/", "/products/welding-electrodes/", "/search?q=gloves", "/contact/"];
 
 test.describe("responsive smoke", () => {

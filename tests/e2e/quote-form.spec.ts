@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
-import { categories, products } from "./helpers";
-
+import { categories, products, disableIntro } from "./helpers";
+test.beforeEach(async ({ page }) => {
+  await disableIntro(page);
+});
 // No real enquiry is ever sent: mailto navigation is asserted via the generated
 // URL captured before the browser hands off to the (absent) mail client.
 test.describe("quote form", () => {

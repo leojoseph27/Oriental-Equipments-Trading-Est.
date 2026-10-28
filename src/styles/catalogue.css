@@ -239,6 +239,19 @@
 }
 .cr-toolbar-secondary { margin-top: 0.5rem; }
 
+/* Desktop: pin Previous to the far left and Next to the far right of the
+   catalogue, with the counter centered between them. Mobile keeps the
+   centered flex layout above. */
+@media (min-width: 768px) {
+  .cr-toolbar:not(.cr-toolbar-secondary) {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    justify-items: center;
+  }
+  .cr-toolbar:not(.cr-toolbar-secondary) > .cr-btn:first-child { justify-self: start; }
+  .cr-toolbar:not(.cr-toolbar-secondary) > .cr-btn:last-child { justify-self: end; }
+}
+
 .cr-btn {
   display: inline-flex;
   align-items: center;
@@ -302,6 +315,38 @@
 .cr-fs-arrow:disabled { opacity: 0.35; cursor: default; }
 .cr-fs-arrow:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .cr-fs-arrow svg { width: 55%; height: 55%; }
+
+/* ---------- side arrows (normal mode) ---------- */
+
+/* Circular arrows floating beside the book, vertically centred on the
+   displayed pages, reusing the fullscreen arrow look. In fullscreen the
+   dedicated .cr-fs-nav arrows take over, so these are hidden. */
+.cr-side-nav {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(0.4rem, 1.2vw, 1.25rem);
+  pointer-events: none; /* only the buttons take clicks */
+}
+.cr-side-arrow {
+  pointer-events: auto;
+  width: clamp(44px, 5vw, 56px);
+  height: clamp(44px, 5vw, 56px);
+  /* solid enough to stay legible over a white page edge on narrow screens */
+  background: rgba(28, 24, 25, 0.68);
+  flex: none;
+  /* rapid taps must not trigger the browser double-tap-to-zoom gesture */
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.cr-reading-fs .cr-side-nav { display: none; }
 
 /* exit-fullscreen button: top-right corner of the fullscreen reader */
 .cr-fs-exit {

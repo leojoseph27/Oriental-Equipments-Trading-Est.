@@ -1,6 +1,9 @@
 import { expect, test } from "@playwright/test";
-import { categories, products, expectNoOverflow } from "./helpers";
+import { categories, products, expectNoOverflow, disableIntro } from "./helpers";
 
+test.beforeEach(async ({ page }) => {
+  await disableIntro(page);
+});
 const canon = (p: string) => p; // routes are served with trailing slashes
 
 test.describe("routes & navigation", () => {

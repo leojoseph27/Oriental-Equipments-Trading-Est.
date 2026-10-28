@@ -1,5 +1,8 @@
 import { expect, test } from "@playwright/test";
-
+import { disableIntro } from "./helpers";
+test.beforeEach(async ({ page }) => {
+  await disableIntro(page);
+});
 // M8.5 motion regression: reveals never leave content hidden, reduced motion
 // shows everything immediately, and the core interactions still work.
 

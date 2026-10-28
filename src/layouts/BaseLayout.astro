@@ -1,5 +1,6 @@
 ---
 import "../styles/base.css";
+import SiteLoader from "../components/SiteLoader.astro";
 interface Props { title: string; description?: string }
 const { title, description = "Oriental Equipments Trading Est. — industrial welding equipment and consumables supplier, Dammam, Saudi Arabia." } = Astro.props;
 ---
@@ -10,6 +11,7 @@ const { title, description = "Oriental Equipments Trading Est. — industrial we
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link rel="preload" as="image" href="/images/logo/oriental-logo.png" fetchpriority="high" />
     <!--
       Scroll-reveal gating (M8.5): the `js` class is the ONLY thing that hides
       [data-reveal] content initially. It is added here only when
@@ -27,6 +29,7 @@ const { title, description = "Oriental Equipments Trading Est. — industrial we
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <SiteLoader />
     <a class="wa-float" href="https://wa.me/966580208504" target="_blank" rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp">
       <img src="/images/whatsapp.webp" alt="" width="56" height="56" loading="lazy" decoding="async" />

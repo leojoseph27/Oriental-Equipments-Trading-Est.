@@ -1,7 +1,9 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { products } from "./helpers";
-
+import { products, disableIntro } from "./helpers";
+test.beforeEach(async ({ page }) => {
+  await disableIntro(page);
+});
 test.describe("keyboard & accessibility", () => {
   test("skip link appears on focus and moves focus to main", async ({ page }) => {
     await page.goto("/");

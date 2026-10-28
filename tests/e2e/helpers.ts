@@ -34,6 +34,17 @@ export async function collectConsoleErrors(page: Page): Promise<string[]> {
   return errors;
 }
 
+/**
+ * Marks the first-visit cinematic intro as already shown for this test
+ * session. Use in tests that are not about the intro itself, so the
+ * ~2.7s overlay never intercepts early interactions.
+ */
+export async function disableIntro(page: Page) {
+  await page.addInitScript(() => {
+    try { sessionStorage.setItem("oriental-intro-shown", "1"); } catch { /* ignore */ }
+  });
+}
+
 /** Every product whose category page is worth spot-checking (first of each category). */
 export function representativeProducts() {
   return categories.map((c) => {

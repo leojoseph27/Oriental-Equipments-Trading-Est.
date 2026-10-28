@@ -1,0 +1,120 @@
+---
+// CategoryIcon — single central mapping of catalogue category slug → icon.
+// Icons are inline SVGs on the Lucide 24×24 grid (stroke 2, round caps/joins):
+// most are Lucide v1.63.0 (ISC), a few are custom where Lucide has no accurate
+// equivalent (marked "custom"). Rendered decorative: aria-hidden, coloured by
+// the tile context (green brand accent via .cat-icon color).
+interface IconDef { name: string; source: "lucide" | "custom"; body: string; }
+
+export const categoryIcons: Record<string, IconDef> = {
+  "welding-electrodes": {
+    name: "electrode", source: "custom",
+    body: `<path d="m3 21 8-8"/><path d="m11 13 3-3"/><path d="M16 3l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"/>`,
+  },
+  "mig-welding-wire": {
+    name: "disc-3", source: "lucide",
+    body: `<circle cx="12" cy="12" r="10"/><path d="M6 12c0-1.7.7-3.2 1.8-4.2"/><circle cx="12" cy="12" r="2"/><path d="M18 12c0 1.7-.7 3.2-1.8 4.2"/>`,
+  },
+  "tig-welding-wires": {
+    name: "rods", source: "custom",
+    body: `<path d="M4 20 13 11"/><path d="M9 21 20 10"/><circle cx="13.5" cy="10.5" r="0.5"/><circle cx="20.5" cy="9.5" r="0.5"/>`,
+  },
+  "arc-welding-accessories": {
+    name: "zap", source: "lucide",
+    body: `<path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/>`,
+  },
+  "mig-welding-torches-accessories": {
+    name: "mig-torch", source: "custom",
+    body: `<path d="M3 21h4l2-2"/><path d="M8 17c0-3 2-5 5-5"/><path d="m13 12 3-3"/><path d="m18 7 2-2"/><circle cx="21" cy="3.5" r="0.5"/>`,
+  },
+  "tig-welding-torches-consumables": {
+    name: "pen-tool", source: "lucide",
+    body: `<path d="m18 13-.654-4.736a4 4 0 00-2.756-3.266l-9.163-2.9a2 2 0 00-2.017.493l-.82.819a2 2 0 00-.492 2.017l2.9 9.163a4 4 0 003.266 2.756L13 18"/><path d="M18.648 12.352a1.205 1.205 0 011.704 0l1.296 1.296a1.205 1.205 0 010 1.704l-6.296 6.296a1.205 1.205 0 01-1.704 0l-1.296-1.296a1.205 1.205 0 010-1.704z"/><path d="m3 3 6.586 6.586"/><circle cx="11" cy="11" r="2"/>`,
+  },
+  "tig-welding-torch-accessories": {
+    name: "cone", source: "lucide",
+    body: `<path d="m20.9 18.55-8-15.98a1 1 0 0 0-1.8 0l-8 15.98"/><ellipse cx="12" cy="19" rx="9" ry="3"/>`,
+  },
+  "gouging-rod-torches": {
+    name: "flame", source: "lucide",
+    body: `<path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"/>`,
+  },
+  "industrial-gas-cylinders-gas-trolley": {
+    name: "cylinder", source: "lucide",
+    body: `<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/>`,
+  },
+  "gas-cutting-heating-equipments-gas-hoses": {
+    name: "flame-kindling", source: "lucide",
+    body: `<path d="M12 2c1 3 2.5 3.5 3.5 4.5A5 5 0 0 1 17 10a5 5 0 1 1-10 0c0-.3 0-.6.1-.9a2 2 0 1 0 3.3-2C8 4.5 11 2 12 2Z"/><path d="m5 22 14-4"/><path d="m5 18 14 4"/>`,
+  },
+  "cutting-nozzles": {
+    name: "nozzle", source: "custom",
+    body: `<path d="M8 2h8"/><path d="M9 2l1 6h4l1-6"/><path d="M10 8v7l2 7 2-7V8"/>`,
+  },
+  "welding-regulator-fittings-gas-hose-fittings": {
+    name: "gauge", source: "lucide",
+    body: `<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>`,
+  },
+  "welding-cutting-gas-accessories": {
+    name: "cable", source: "lucide",
+    body: `<path d="M17 19a1 1 0 0 1-1-1v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a1 1 0 0 1-1 1z"/><path d="M17 21v-2"/><path d="M19 14V6.5a1 1 0 0 0-7 0v11a1 1 0 0 1-7 0V10"/><path d="M21 21v-2"/><path d="M3 5V3"/><path d="M4 10a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a2 2 0 0 1-2 2z"/><path d="M7 5V3"/>`,
+  },
+  "welding-helmet-accessories": {
+    name: "hard-hat", source: "lucide",
+    body: `<path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M14 6a6 6 0 0 1 6 6v3"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><rect x="2" y="15" width="20" height="4" rx="1"/>`,
+  },
+  "welding-machines": {
+    name: "plug-zap", source: "lucide",
+    body: `<path d="M6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z"/><path d="m2 22 3-3"/><path d="M7.5 13.5 10 11"/><path d="M10.5 16.5 13 14"/><path d="m18 3-4 4h6l-4 4"/>`,
+  },
+  "abrasives": {
+    name: "disc", source: "lucide",
+    body: `<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/>`,
+  },
+  "industrial-chemicals": {
+    name: "flask-conical", source: "lucide",
+    body: `<path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/>`,
+  },
+  safety: {
+    name: "shield-check", source: "lucide",
+    body: `<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>`,
+  },
+  "hand-protections": {
+    name: "hand", source: "lucide",
+    body: `<path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>`,
+  },
+  "welding-protective-gear": {
+    name: "shirt", source: "lucide",
+    body: `<path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>`,
+  },
+};
+
+// Uniqueness guard: every icon name must be distinct — a duplicate would make
+// two categories share a visual identity.
+const names = Object.values(categoryIcons).map((i) => i.name);
+const dupes = names.filter((n, i) => names.indexOf(n) !== i);
+if (dupes.length > 0) {
+  throw new Error(`CategoryIcon: duplicate icon names: ${[...new Set(dupes)].join(", ")}`);
+}
+
+const { slug } = Astro.props;
+const icon = categoryIcons[slug];
+if (!icon) throw new Error(`CategoryIcon: no icon mapped for slug "${slug}"`);
+---
+<svg
+  class="cat-icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+  set:html={icon.body}
+/>
+<style>
+  .cat-icon { width: 30px; height: 30px; color: var(--green-brand); flex: none; }
+  @media (max-width: 760px) { .cat-icon { width: 26px; height: 26px; } }
+</style>

@@ -4,6 +4,7 @@
 // in the source, so tiles are typographic by design (see asset-extraction-report).
 // Links to the generated category pages.
 import { categories, products } from "../data/catalog";
+import CategoryIcon from "./CategoryIcon.astro";
 const count = (n: number) => products.filter((p) => p.categoryId === n).length;
 ---
 <section class="section container" id="catalogue" aria-labelledby="catalogue-heading" data-reveal>
@@ -17,7 +18,7 @@ const count = (n: number) => products.filter((p) => p.categoryId === n).length;
     {categories.map((c) => (
       <li>
         <a class="tile" href={`/products/${c.slug}/`} aria-label={`${c.name} — ${count(c.indexNo)} items`}>
-          <span class="no" aria-hidden="true">{String(c.indexNo).padStart(2, "0")}</span>
+          <CategoryIcon slug={c.slug} />
           <span class="name">{c.name}</span>
           <span class="meta">{count(c.indexNo)} items</span>
         </a>
@@ -39,8 +40,7 @@ const count = (n: number) => products.filter((p) => p.categoryId === n).length;
     .tile:hover { border-color: var(--ink); box-shadow: var(--shadow-1); transform: translateY(-2px); }
   }
   .tile:hover .name { color: var(--red-deep); }
-  .no { font-family: var(--font-heading); font-weight: 600; font-size: 26px;
-    color: var(--green-brand); line-height: 1; }
+  .tile > :global(.cat-icon) { margin-bottom: var(--space-1); }
   .name { font-family: var(--font-heading); font-weight: 600; font-size: 19px;
     line-height: 1.15; text-transform: uppercase; }
   .meta { font-family: var(--font-mono); font-size: 12px; color: var(--ink-tertiary);

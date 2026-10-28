@@ -1,7 +1,9 @@
 import { expect, test } from "@playwright/test";
-import { collectConsoleErrors } from "./helpers";
+import { collectConsoleErrors, disableIntro } from "./helpers";
 import { products } from "./helpers";
-
+test.beforeEach(async ({ page }) => {
+  await disableIntro(page);
+});
 async function searchFor(page: import("@playwright/test").Page, q: string) {
   await page.goto(q ? `/search?q=${encodeURIComponent(q)}` : "/search");
   await page.waitForTimeout(400); // allow index fetch + render

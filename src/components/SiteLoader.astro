@@ -1,0 +1,175 @@
+---
+// SiteLoader — first-visit / reload intro playing the company logo animation
+// video on a pure-white full-screen overlay. The safe lifecycle from the
+// previous CSS version is preserved: the inline script waits for the media
+// to be ready, plays the video, fades the overlay out over the video's own
+// final moment and removes it on `ended` — so the site appears within the
+// video's last second with no gap. A hard failsafe guarantees the overlay
+// can never stay stuck. Hidden entirely without JavaScript; sessionStorage
+// plays it once per session, while an explicit reload (Ctrl+Shift+R) always
+// replays it while PLAY_ON_RELOAD is true. Reduced-motion users get a short
+// plain fade instead of the video. Phones (≤767px) get the dedicated mobile
+// video (contain, full width, centred); desktop keeps the existing video.
+const VIDEO_DESKTOP = '/videos/oriental-intro.mp4';
+const VIDEO_MOBILE = '/videos/oriental-intro-mobile.mp4';
+---
+<div id="site-loader" class="site-loader" role="presentation" aria-hidden="true">
+  <video class="loader-video" muted playsinline autoplay preload="auto"></video>
+</div>
+<style>
+  /* Hidden unless <html> has .intro-active from the inline script below,
+     so the page is fully accessible without JavaScript. */
+  .site-loader {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: #fcfcfc;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  :global(html.intro-active) .site-loader {
+    display: flex;
+    pointer-events: auto;
+  }
+  .loader-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Phones: the landscape mobile video at full viewport width, intrinsic
+     height, centred, with #fcfcfc filling the space above and below.
+     contain (never cover) so nothing is cropped or distorted. A feathered
+     alpha mask fades the video's top and bottom edges into the #fcfcfc
+     background so its rectangular frame isn't visible; the centre (logo)
+     stays fully opaque and sharp. Desktop never gets this mask. */
+  @media (max-width: 767px) {
+    .loader-video {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        #000 18%,
+        #000 82%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        #000 18%,
+        #000 82%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    }
+  }
+  /* Begin fading the overlay while the video is finishing its last beat, so
+     the site is fully revealed exactly as the video ends — no gap. */
+  :global(html.intro-ending) .site-loader {
+    opacity: 0;
+    transition: opacity 0.45s ease-out;
+  }
+  /* Reduced motion: no video, brief plain white fade. */
+  :global(html.intro-active.intro-reduced) .site-loader {
+    animation: loader-fade 1.3s ease forwards;
+  }
+  @keyframes loader-fade {
+    0% { opacity: 1; }
+    55% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+</style>
+<script is:inline>
+  (function () {
+    var loader = document.getElementById('site-loader');
+    if (!loader) return;
+
+    // Set to false before production if the intro should play only on the
+    // first page view of a browser session. While true (default), an explicit
+    // page reload — including Ctrl+Shift+R — always replays the intro;
+    // ordinary link navigation between pages still plays it once per session.
+    var PLAY_ON_RELOAD = true;
+
+    var firstVisit = true;
+    var isReload = false;
+    try {
+      firstVisit = !sessionStorage.getItem('oriental-intro-shown');
+      sessionStorage.setItem('oriental-intro-shown', '1');
+      var nav = performance.getEntriesByType('navigation')[0];
+      isReload = !!nav && nav.type === 'reload';
+    } catch (e) { /* storage unavailable: show on this load only */ }
+    if (!firstVisit && !(PLAY_ON_RELOAD && isReload)) return;
+
+    var root = document.documentElement;
+    var started = false;
+    var dismissed = false;
+
+    // Choose exactly one video for this load (phones get the mobile clip);
+    // decided once up front so a mid-load resize never swaps or restarts it.
+    var MOBILE_QUERY = '(max-width: 767px)';
+    var isMobileViewport = false;
+    try { isMobileViewport = matchMedia(MOBILE_QUERY).matches; } catch (e) {}
+    var video = loader.querySelector('video');
+    if (video) {
+      video.src = isMobileViewport ? '/videos/oriental-intro-mobile.mp4' : '/videos/oriental-intro.mp4';
+    }
+
+    function dismiss() {
+      if (dismissed) return;
+      dismissed = true;
+      root.classList.remove('intro-active', 'intro-ending', 'intro-reduced');
+      loader.remove();
+    }
+
+    function begin() {
+      if (started) return;
+      started = true;
+      var reduced = false;
+      try { reduced = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+      root.classList.add('intro-active');
+      if (reduced) {
+        root.classList.add('intro-reduced');
+        loader.addEventListener('animationend', dismiss);
+        return;
+      }
+
+      var video = loader.querySelector('video');
+      if (!video || !video.src) { dismiss(); return; }
+
+      // Reveal the site within the video's final second: start fading the
+      // overlay slightly before the last frame, remove it exactly on end.
+      video.addEventListener('timeupdate', function onTime() {
+        var d = video.duration;
+        if (d && video.currentTime >= d - 0.6) {
+          video.removeEventListener('timeupdate', onTime);
+          root.classList.add('intro-ending');
+        }
+      });
+      video.addEventListener('ended', dismiss);
+      // A broken/stalled asset must never block the page.
+      video.addEventListener('error', dismiss);
+      video.play().catch(function () { /* autoplay blocked → failsafe below */ });
+    }
+
+    // Start only once the video can actually play; a cap keeps a failed
+    // asset from delaying the intro indefinitely.
+    var video = loader.querySelector('video');
+    var beginOnce = function () { begin(); };
+    if (video && video.readyState < 3) {
+      video.addEventListener('canplay', beginOnce, { once: true });
+      video.addEventListener('error', beginOnce, { once: true });
+      setTimeout(beginOnce, 4000);
+    } else {
+      beginOnce();
+    }
+
+    // Hard failsafe: whatever happens, the overlay cannot outlive this.
+    setTimeout(dismiss, 25000);
+    window.addEventListener('load', function () {
+      setTimeout(dismiss, 25000);
+    }, { once: true });
+  })();
+</script>

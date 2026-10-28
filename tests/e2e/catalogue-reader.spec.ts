@@ -1,6 +1,9 @@
 import { expect, test, type Page } from "@playwright/test";
-import { expectNoOverflow, collectConsoleErrors } from "./helpers";
+import { expectNoOverflow, collectConsoleErrors, disableIntro } from "./helpers";
 
+test.beforeEach(async ({ page }) => {
+  await disableIntro(page);
+});
 const TOTAL_PAGES = 29;
 
 /**
@@ -153,6 +156,82 @@ test.describe("digital catalogue reader", () => {
     await ready(page);
     await expect(page.locator("#cr-zoom-in")).toHaveCount(0);
     await expect(page.locator("#cr-zoom-out")).toHaveCount(0);
+  });
+
+  test("navigation arrows flank the book instead of the bottom toolbar", async ({ page }) => {
+    await ready(page);
+    const prev = page.locator("#cr-prev");
+    const next = page.locator("#cr-next");
+    const reader = page.locator("#catalogue-reader");
+
+    // Same circular style as the fullscreen arrows, with clear accessible names.
+    await expect(prev).toHaveAccessibleName("Previous catalogue page");
+    await expect(next).toHaveAccessibleName("Next catalogue page");
+    await expect(prev).toHaveClass(/cr-side-arrow/);
+    await expect(prev).toHaveCSS("border-radius", /%/);
+    await expect(next).toHaveCSS("border-radius", /%/);
+    // Comfortable touch target
+    expect((await prev.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+
+    // Arrows sit beside the book: outside the page area, vertically centred
+    // on the reader, and never overlapping the stage centre.
+    const readerBox = (await reader.boundingBox())!;
+    for (const box of [await prev.boundingBox(), await next.boundingBox()]) {
+      expect(box).not.toBeNull();
+      const arrowCenterY = box!.y + box!.height / 2;
+      expect(arrowCenterY).toBeGreaterThan(readerBox.y + readerBox.height * 0.3);
+      expect(arrowCenterY).toBeLessThan(readerBox.y + readerBox.height * 0.7);
+    }
+    const prevBox = (await prev.boundingBox())!;
+    const nextBox = (await next.boundingBox())!;
+    // left arrow hugs the left edge, right arrow the right edge, symmetric
+    const leftInset = prevBox.x - readerBox.x;
+    const rightInset = readerBox.x + readerBox.width - (nextBox.x + nextBox.width);
+    expect(leftInset).toBeGreaterThanOrEqual(0);
+    expect(rightInset).toBeGreaterThanOrEqual(0);
+    expect(Math.abs(leftInset - rightInset)).toBeLessThanOrEqual(2);
+    // arrows must not reach the middle of the book
+    expect(prevBox.x + prevBox.width).toBeLessThan(readerBox.x + readerBox.width / 2 - 50);
+    expect(nextBox.x).toBeGreaterThan(readerBox.x + readerBox.width / 2 + 50);
+
+    // The bottom toolbar no longer holds Previous/Next buttons — only the
+    // counter remains there.
+    const toolbar = page.locator(".cr-toolbar").first();
+    await expect(toolbar.locator("button")).toHaveCount(0);
+    await expect(toolbar).toContainText(`Page 1 of ${TOTAL_PAGES}`);
+    await expect(page.getByRole("button", { name: /^Previous$/ })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: /^Next$/ })).toHaveCount(0);
+
+    // The side arrows still navigate with the reader's existing logic.
+    await next.click();
+    await expect(page.locator("#cr-counter")).toHaveText(`Page 2–3 of ${TOTAL_PAGES}`, { timeout: 10_000 });
+    await prev.click();
+    await expect(page.locator("#cr-counter")).toHaveText(`Page 1 of ${TOTAL_PAGES}`, { timeout: 10_000 });
+    await expect(prev).toBeDisabled();
+  });
+
+  test("fullscreen swaps side arrows for the fullscreen arrows and back", async ({ page }) => {
+    await ready(page);
+    const fsButton = page.locator("#cr-fullscreen");
+    await fsButton.click();
+    const isFullscreen = await page.evaluate(() => !!document.fullscreenElement);
+    if (isFullscreen) {
+      // side arrows hidden, fullscreen arrows visible and working
+      await expect(page.locator(".cr-side-nav")).toBeHidden();
+      await expect(page.locator("#cr-fs-prev")).toBeVisible();
+      await page.locator("#cr-fs-next").click();
+      await expect(page.locator("#cr-counter")).toHaveText(`Page 2–3 of ${TOTAL_PAGES}`, { timeout: 10_000 });
+      await page.locator("#cr-fs-prev").click();
+      await expect(page.locator("#cr-counter")).toHaveText(`Page 1 of ${TOTAL_PAGES}`, { timeout: 10_000 });
+      await fsButton.click();
+      await expect(page.locator(".cr-side-nav")).toBeVisible({ timeout: 10_000 });
+      await expect(page.locator("#cr-prev")).toBeVisible();
+      // navigation still works after leaving fullscreen
+      await page.locator("#cr-next").click();
+      await expect(page.locator("#cr-counter")).toHaveText(`Page 2–3 of ${TOTAL_PAGES}`, { timeout: 10_000 });
+    }
+    // headless environments may deny fullscreen — the reader must not error
+    await expect(page.locator("#cr-counter")).toContainText(`of ${TOTAL_PAGES}`);
   });
 
   test("reduced motion turns pages immediately (no long transition)", async ({ page }) => {
