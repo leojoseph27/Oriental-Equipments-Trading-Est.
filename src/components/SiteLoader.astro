@@ -1,19 +1,16 @@
 ---
-// SiteLoader — first-visit / reload intro. Desktop (and tablets >767px)
-// play the company logo intro video full-bleed; phones (≤767px) get the
-// cinematic logo zoom animation instead (no video). Both sit on a #fcfcfc
-// full-screen overlay and reveal the site exactly as the intro finishes.
-// One safe lifecycle for both modes: an inline script marks the intro
-// active once the media is ready, dismissal is anchored to the intro's own
-// end (video `ended` / CSS `animationend`) with hard failsafe timers, so
-// the page can never remain blocked. Hidden entirely without JavaScript;
-// sessionStorage plays it once per session, while an explicit reload
-// (Ctrl+Shift+R) always replays it while PLAY_ON_RELOAD is true.
-// Reduced-motion users get a short plain fade in either mode.
+// SiteLoader — first-visit / reload intro using the company logo image on a
+// #fcfcfc full-screen overlay. One CSS zoom animation for both breakpoints:
+// desktop ends at ~50% of the viewport width, mobile (≤767px) keeps its
+// existing dramatic zoom. The overlay fades away within the animation's
+// final beat and is removed on its own `animationend`, so the site appears
+// with no gap. A single failsafe timer guarantees the page can never stay
+// blocked. Hidden entirely without JavaScript; sessionStorage plays it once
+// per session while an explicit reload (Ctrl+Shift+R) always replays it
+// (PLAY_ON_RELOAD); reduced-motion users get a short plain fade.
 const LOGO = '/images/logo/oriental-logo.png';
 ---
 <div id="site-loader" class="site-loader" role="presentation" aria-hidden="true">
-  <video class="loader-video" muted playsinline autoplay preload="auto"></video>
   <img class="loader-logo" src={LOGO} alt="" width="260" height="239" decoding="async" fetchpriority="high" />
 </div>
 <style>
@@ -33,60 +30,54 @@ const LOGO = '/images/logo/oriental-logo.png';
     display: flex;
     pointer-events: auto;
   }
-  /* Desktop/tablet: full-bleed intro video. */
-  .loader-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  .loader-logo {
+    /* Desktop: starts at ~18% of the viewport width and zooms to ~50%. */
+    width: 18vw;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    will-change: transform, opacity;
   }
-  .loader-logo { display: none; }
-
-  /* Phones (≤767px): cinematic logo zoom instead of the video. The logo
-     fades in small, then one continuous zoom carries it past the viewport
-     edges; the overlay fades away within the final second. */
+  :global(html.intro-active:not(.intro-reduced)) .loader-logo {
+    animation: loader-intro 4s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+  }
+  :global(html.intro-active:not(.intro-reduced)) .site-loader {
+    animation: loader-out 0.5s ease 3.5s forwards;
+  }
+  @keyframes loader-intro {
+    0%   { opacity: 0; transform: scale(1); }
+    12%  { opacity: 1; transform: scale(1); }
+    80%  { opacity: 1; transform: scale(2.8); }
+    100% { opacity: 1; transform: scale(2.8); }
+  }
+  @keyframes loader-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+  /* Phones (≤767px): the existing dramatic zoom — starts small and keeps
+     growing past the viewport edges over 5 seconds. */
   @media (max-width: 767px) {
-    .loader-video { display: none; }
     .loader-logo {
-      display: block;
       width: min(38vmin, 300px);
-      height: auto;
-      object-fit: contain;
-      opacity: 0;
       transform: scale(0.3);
-      will-change: transform, opacity;
     }
     :global(html.intro-active:not(.intro-reduced)) .loader-logo {
-      animation: loader-intro 5s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+      animation: loader-intro-mobile 5s cubic-bezier(0.6, 0, 0.3, 1) forwards;
     }
     :global(html.intro-active:not(.intro-reduced)) .site-loader {
       animation: loader-out 0.6s ease 4.4s forwards;
     }
   }
-  @keyframes loader-intro {
+  @keyframes loader-intro-mobile {
     0%   { opacity: 0; transform: scale(0.3); }
     10%  { opacity: 1; transform: scale(0.3); }
     84%  { opacity: 1; transform: scale(3.8); }
     92%  { opacity: 1; transform: scale(4.8); }
     100% { opacity: 0; transform: scale(5.6); }
   }
-  @keyframes loader-out {
-    from { opacity: 1; }
-    to   { opacity: 0; }
-  }
-  /* Begin fading the overlay while the video is finishing its last beat, so
-     the site is fully revealed exactly as the video ends — no gap. */
-  :global(html.intro-ending) .site-loader {
-    opacity: 0;
-    transition: opacity 0.45s ease-out;
-  }
-  /* Reduced motion: no video, no zoom — brief plain fade. */
+  /* Reduced motion: no zoom at all — brief plain fade. */
   :global(html.intro-active.intro-reduced) .site-loader {
     animation: loader-fade 1.3s ease forwards;
-  }
-  :global(html.intro-active.intro-reduced) .loader-logo,
-  :global(html.intro-active.intro-reduced) .loader-video {
-    display: none;
   }
   @keyframes loader-fade {
     0% { opacity: 1; }
@@ -116,84 +107,25 @@ const LOGO = '/images/logo/oriental-logo.png';
     if (!firstVisit && !(PLAY_ON_RELOAD && isReload)) return;
 
     var root = document.documentElement;
-    var started = false;
     var dismissed = false;
-
-    // Exactly one mode per load, decided up front so a mid-load resize
-    // never swaps the intro or restarts playback. Phones get the logo
-    // animation; everything larger plays the desktop video.
-    var MOBILE_QUERY = '(max-width: 767px)';
-    var isMobileViewport = false;
-    try { isMobileViewport = matchMedia(MOBILE_QUERY).matches; } catch (e) {}
-    var video = loader.querySelector('video');
-    if (!isMobileViewport && video) {
-      video.src = '/videos/oriental-intro.mp4';
-    }
 
     function dismiss() {
       if (dismissed) return;
       dismissed = true;
-      root.classList.remove('intro-active', 'intro-ending', 'intro-reduced');
+      root.classList.remove('intro-active', 'intro-reduced');
       loader.remove();
     }
 
-    function begin() {
-      if (started) return;
-      started = true;
-      var reduced = false;
-      try { reduced = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
-      root.classList.add('intro-active');
-      if (reduced) {
-        root.classList.add('intro-reduced');
-        loader.addEventListener('animationend', dismiss);
-        return;
-      }
+    // The overlay's own fade animation is the primary dismissal signal for
+    // every mode; the timers below are backups only.
+    loader.addEventListener('animationend', function (e) {
+      if (e.animationName === 'loader-out' || e.animationName === 'loader-fade') dismiss();
+    });
+    setTimeout(dismiss, 8000);
 
-      if (isMobileViewport) {
-        // Logo mode: CSS plays the 5s zoom; the overlay fade completes at
-        // 5.0s, so dismiss right after. The intro's own animationend is the
-        // precise signal; the timer is the backup.
-        loader.addEventListener('animationend', function (e) {
-          if (e.animationName === 'loader-out') dismiss();
-        });
-        setTimeout(dismiss, 5600);
-      } else {
-        // Video mode: reveal the site within the video's final second,
-        // remove the overlay exactly on end. A broken/stalled asset must
-        // never block the page.
-        if (!video || !video.src) { dismiss(); return; }
-        video.addEventListener('timeupdate', function onTime() {
-          var d = video.duration;
-          if (d && video.currentTime >= d - 0.6) {
-            video.removeEventListener('timeupdate', onTime);
-            root.classList.add('intro-ending');
-          }
-        });
-        video.addEventListener('ended', dismiss);
-        video.addEventListener('error', dismiss);
-        video.play().catch(function () { /* autoplay blocked → failsafe below */ });
-      }
-    }
-
-    // Video mode: start only once the video can actually play; a cap keeps
-    // a failed asset from delaying the intro indefinitely.
-    if (!isMobileViewport) {
-      var beginOnce = function () { begin(); };
-      if (video && video.readyState < 3) {
-        video.addEventListener('canplay', beginOnce, { once: true });
-        video.addEventListener('error', beginOnce, { once: true });
-        setTimeout(beginOnce, 4000);
-      } else {
-        beginOnce();
-      }
-    } else {
-      begin();
-    }
-
-    // Hard failsafe: whatever happens, the overlay cannot outlive this.
-    setTimeout(dismiss, 25000);
-    window.addEventListener('load', function () {
-      setTimeout(dismiss, 25000);
-    }, { once: true });
+    root.classList.add('intro-active');
+    try {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) root.classList.add('intro-reduced');
+    } catch (e) { /* treat as full motion */ }
   })();
 </script>
