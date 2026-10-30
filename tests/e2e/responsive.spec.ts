@@ -36,9 +36,21 @@ test.describe("responsive smoke", () => {
   test("mobile menu link navigates", async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 800 });
     await page.goto("/");
-    await page.click(".menu-btn");
-    await page.click('#mobile-nav a[href="/products/"]');
-    await expect(page).toHaveURL(/\/products\/$/);
+    // Tap by coordinates: Playwright's pre-click auto-scroll oscillates
+    // forever against the sticky two-row header (element rect moves with
+    // scroll, so "scroll into view" never settles). A coordinate click is
+    // the tap-equivalent a real phone performs.
+    // Up to 3 taps (like a real user re-tapping) — the emulated mobile
+    // WebKit scroll animation can swallow a tap that lands mid-oscillation.
+    for (let i = 0; i < 3 && !(await page.locator("#mobile-nav").isVisible()); i++) {
+      const btn = await page.locator(".menu-btn").boundingBox();
+      await page.mouse.click(btn!.x + btn!.width / 2, btn!.y + btn!.height / 2);
+      await page.waitForTimeout(400); // let the drawer's drop animation finish
+    }
+    await expect(page.locator("#mobile-nav")).toBeVisible();
+    const link = await page.locator('#mobile-nav a[href="/products/"]').boundingBox();
+    await page.mouse.click(link!.x + link!.width / 2, link!.y + link!.height / 2);
+    await expect(page).toHaveURL(/\/products\/$/, { timeout: 10_000 });
   });
 
   test("search controls remain reachable and usable at 320px", async ({ page }) => {

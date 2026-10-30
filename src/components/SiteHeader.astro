@@ -1,6 +1,12 @@
 ---
 // SiteHeader — sticky header, logo, anchor nav, accessible mobile drawer.
 // In-page anchors are homepage-scoped (/#brands) so they work from every route.
+//
+// Mobile (≤900px) uses two stacked rows: Row 1 = logo + single-line company
+// name, Row 2 = Vision 2030 badge (left) + Menu button (right). Row 2 hides
+// on scroll down and returns on scroll up (see the script below). On desktop
+// `.bar-row2` is `display: contents`, so its children behave exactly as
+// direct flex items of `.bar` — the desktop layout is untouched.
 const nav = [
   { label: 'Home', href: '/' },
   { label: 'Products', href: '/products/' },
@@ -16,14 +22,16 @@ const isActive = (href: string) =>
   <div class="container bar">
     <a class="brand" href="/" aria-label="Oriental Equipments Trading Est. — home">
       <img src="/images/logo/oriental-logo.png" alt="Oriental Equipments Trading Est. logo" width="44" height="44" />
-      <span class="brand-name">Oriental Equipments<br />Trading Est.</span>
+      <span class="brand-name">Oriental Equipments<br /> Trading Est.</span>
     </a>
     <nav class="desktop-nav" aria-label="Main">
       {nav.map((n) => <a href={n.href} aria-current={isActive(n.href) ? "page" : undefined}>{n.label}</a>)}
     </nav>
     <a class="cta" href="/contact/">Request a Quote</a>
-    <img class="vision-badge" src="/images/logo/vision-2030.png" alt="Saudi Vision 2030" width="66" height="44" />
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    <div class="bar-row2">
+      <img class="vision-badge" src="/images/logo/vision-2030.png" alt="Saudi Vision 2030" width="66" height="44" />
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </div>
   </div>
   <nav id="mobile-nav" class="mobile-nav" aria-label="Main" hidden>
     {nav.map((n) => <a href={n.href} aria-current={isActive(n.href) ? "page" : undefined}>{n.label}</a>)}
@@ -37,6 +45,7 @@ const isActive = (href: string) =>
     border-bottom: var(--line-weight) solid var(--line);
   }
   .bar { display: flex; align-items: center; gap: var(--space-5); min-height: 64px; }
+  .bar-row2 { display: contents; }
   .brand { display: flex; align-items: center; gap: var(--space-3); margin-right: auto;
     text-decoration: none; color: var(--ink); }
   .brand img { width: 44px; height: 44px; object-fit: contain; }
@@ -61,11 +70,36 @@ const isActive = (href: string) =>
   @media (max-width: 900px) {
     .desktop-nav, .bar > .cta { display: none; }
     .menu-btn { display: block; }
-    /* Compact Vision 2030 badge stays visible in the mobile bar, kept small
-       so the brand and Menu button never crowd it. */
-    .bar > .vision-badge { display: block; height: 28px; margin-left: auto; }
-    .brand { margin-right: 0; }
-    .bar { gap: var(--space-4); }
+    /* Two-row header: Row 1 = brand, Row 2 = badge + Menu. */
+    .bar { flex-wrap: wrap; row-gap: 0; padding-top: 0; min-height: 0; }
+    .brand {
+      flex: 1 1 100%; margin: 0; gap: 12px;
+      min-height: 64px; /* Row 1 height */
+    }
+    .brand img { width: 40px; height: 40px; }
+    /* ~14px on typical phones, easing down to ~11px at 320px so the full
+       name always fits on one line. */
+    .brand-name { font-size: clamp(11px, 3.6vw, 16px); letter-spacing: 0.02em;
+      white-space: nowrap; }
+    .brand-name br { display: none; }
+    .bar-row2 {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; height: 68px; /* Row 2 height */ overflow: hidden;
+      transition: height var(--dur-med) var(--ease-standard),
+        opacity var(--dur-med) var(--ease-standard);
+    }
+    .bar > .vision-badge { display: block; height: 34px; margin: 0; }
+    .bar > .menu-btn { margin: 0; }
+    /* Scrolled down: Row 2 collapses smoothly (vertical slide, no empty gap
+       left behind); Row 1 stays fixed at the top. */
+    .site-header.row2-hidden .bar-row2 { height: 0; opacity: 0; }
+    .bar-row2 > * {
+      transition: transform var(--dur-med) var(--ease-standard);
+    }
+    .site-header.row2-hidden .bar-row2 > * { transform: translateY(-120%); }
+    @media (prefers-reduced-motion: reduce) {
+      .bar-row2 { transition: none; }
+    }
     .mobile-nav[hidden] { display: none; }
     .mobile-nav { display: flex; flex-direction: column; border-top: var(--line-weight) solid var(--line);
       padding: var(--space-4) 24px var(--space-5); background: var(--paper-card);
@@ -83,12 +117,21 @@ const isActive = (href: string) =>
 <script>
   const btn = document.querySelector('.menu-btn');
   const panel = document.getElementById('mobile-nav');
+  const header = document.querySelector('.site-header');
 
   function setMenu(open: boolean) {
     if (!panel || !btn) return;
     panel.toggleAttribute('hidden', !open);
     btn.setAttribute('aria-expanded', String(open));
     btn.textContent = open ? 'Close' : 'Menu';
+    // The Menu button lives in Row 2 — never let a hidden Row 2 trap an open
+    // drawer or hide the Close control mid-interaction.
+    menuOpen = open;
+    if (open) {
+      lastY = window.scrollY; // don't credit the pre-menu scroll position
+      acc = 0;
+      header?.classList.remove('row2-hidden');
+    }
   }
 
   btn?.addEventListener('click', () => {
@@ -106,4 +149,71 @@ const isActive = (href: string) =>
   panel?.addEventListener('click', (e) => {
     if ((e.target as HTMLElement).tagName === 'A') setMenu(false);
   });
+
+  // Mobile only: hide Row 2 on scroll down, reveal on scroll up.
+  //
+  // Cumulative direction detector — never a per-event direction check. Scroll
+  // movement is accumulated (signed) against the position of the last state
+  // change, and the row only toggles once enough NET movement has built up
+  // (25px down to hide, 20px up to reveal). Rubber-banding, scroll anchoring
+  // from lazy-loaded content and other sub-threshold fluctuations are folded
+  // into the same accumulator and can never flip the row on their own.
+  const mq = window.matchMedia('(max-width: 900px)');
+  const HIDE_AFTER_DOWN = 25;
+  const SHOW_AFTER_UP = 20;
+  const TOP_ZONE = 48;
+  let lastY = window.scrollY;
+  let acc = 0; // signed px accumulated since the last state change
+  let menuOpen = false;
+
+  function showRow2() {
+    acc = 0;
+    header?.classList.remove('row2-hidden');
+  }
+
+  function onScroll() {
+    if (!header || !mq.matches) return;
+    const y = window.scrollY;
+    const delta = y - lastY;
+    lastY = y;
+
+    // Top of the page always shows both rows, whatever got us here.
+    if (y <= TOP_ZONE) {
+      showRow2();
+      return;
+    }
+
+    if (delta > 0) {
+      // Downward: reset any upward credit, accumulate down.
+      if (acc < 0) acc = 0;
+      acc += delta;
+      if (!menuOpen && acc >= HIDE_AFTER_DOWN && !header.classList.contains('row2-hidden')) {
+        acc = 0;
+        header.classList.add('row2-hidden');
+      }
+    } else if (delta < 0) {
+      // Upward: reset any downward credit, accumulate up.
+      if (acc > 0) acc = 0;
+      acc += delta;
+      if (acc <= -SHOW_AFTER_UP) showRow2();
+    }
+  }
+
+  function bindScroll() {
+    document.removeEventListener('scroll', onScroll);
+    if (mq.matches) {
+      lastY = window.scrollY;
+      acc = 0;
+      document.addEventListener('scroll', onScroll, { passive: true });
+    } else {
+      header?.classList.remove('row2-hidden');
+    }
+  }
+  bindScroll();
+  mq.addEventListener('change', bindScroll);
+  window.addEventListener(
+    'pagehide',
+    () => document.removeEventListener('scroll', onScroll),
+    { once: true },
+  );
 </script>

@@ -37,11 +37,19 @@ export async function collectConsoleErrors(page: Page): Promise<string[]> {
 /**
  * Marks the first-visit cinematic intro as already shown for this test
  * session. Use in tests that are not about the intro itself, so the
- * ~2.7s overlay never intercepts early interactions.
+ * overlay never intercepts early interactions.
+ *
+ * The loader keys its stamp per build day ("oriental-intro-shown:<date>"),
+ * so instead of guessing the key we make sessionStorage answer with a
+ * fresh timestamp for any version of it.
  */
 export async function disableIntro(page: Page) {
   await page.addInitScript(() => {
-    try { sessionStorage.setItem("oriental-intro-shown", "1"); } catch { /* ignore */ }
+    try {
+      const original = sessionStorage.getItem.bind(sessionStorage);
+      sessionStorage.getItem = (key: string) =>
+        key.startsWith("oriental-intro-shown") ? String(Date.now()) : original(key);
+    } catch { /* ignore */ }
   });
 }
 
