@@ -20,6 +20,11 @@ export default defineConfig({
   },
   projects: [
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    // WebKit is the iOS Safari engine; the iPhone projects reproduce
+    // 390×844 / 430×932 Safari contexts for the loader/iOS specs.
+    { name: "webkit", use: { ...devices["Desktop Safari"] } },
+    { name: "iphone-13", use: { ...devices["iPhone 13"] } },
+    { name: "iphone-14-pro-max", use: { ...devices["iPhone 14 Pro Max"] } },
   ],
   webServer: {
     command: "npx astro preview --port 4172 --host 127.0.0.1",

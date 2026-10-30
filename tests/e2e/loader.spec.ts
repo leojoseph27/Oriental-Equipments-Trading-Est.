@@ -36,7 +36,7 @@ test.describe("navbar logo", () => {
 
 test.describe("site loader", () => {
   test("shows on first visit, then removes itself", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
     const loader = page.locator("#site-loader");
     await expect(loader).toBeVisible();
     // Off-white overlay (#fcfcfc), never dark.
@@ -125,5 +125,48 @@ test.describe("site loader", () => {
       await page.goto("/products/");
       await expectNoOverflow(page);
     }
+  });
+});
+
+test.describe("site loader — iOS session fixes", () => {
+  test("legacy sessionStorage flag from an older deployment cannot suppress the intro", async ({
+    page,
+  }) => {
+    // Old versions stored the bare key without a timestamp.
+    await page.addInitScript(() => {
+      sessionStorage.setItem("oriental-intro-shown", "1");
+    });
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("html")).toHaveClass(/intro-active/);
+    await expect(page.locator("#site-loader")).toBeVisible();
+  });
+
+  test("a stamp older than the 12h TTL replays the intro (iOS tab restore)", async ({ page }) => {
+    await page.goto("/");
+    await page.waitForFunction(() =>
+      Object.keys(sessionStorage).some((k) => k.startsWith("oriental-intro-shown:")),
+    );
+    // Rewind the stamp 13 hours, then navigate like an iOS tab restore would.
+    await page.evaluate(() => {
+      for (const k of Object.keys(sessionStorage)) {
+        if (k.startsWith("oriental-intro-shown:")) {
+          sessionStorage.setItem(k, String(Date.now() - 13 * 60 * 60 * 1000));
+        }
+      }
+    });
+    await page.goto("/contact/");
+    await expect(page.locator("html")).toHaveClass(/intro-active/);
+  });
+
+  test("bfcache restore (pageshow persisted) dismisses a mid-intro loader", async ({ page }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    // Intro is playing — Safari hides the page into the back/forward cache
+    // and restores it with a persisted pageshow.
+    await expect(page.locator("html")).toHaveClass(/intro-active/);
+    await page.evaluate(() => {
+      window.dispatchEvent(new PageTransitionEvent("pageshow", { persisted: true }));
+    });
+    await expect(page.locator("html")).not.toHaveClass(/intro-active/);
+    await expect(page.locator("#site-loader")).toHaveCount(0);
   });
 });

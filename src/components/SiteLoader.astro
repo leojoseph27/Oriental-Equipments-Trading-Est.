@@ -9,6 +9,15 @@
 // per session while an explicit reload (Ctrl+Shift+R) always replays it
 // (PLAY_ON_RELOAD); reduced-motion users get a short plain fade.
 const LOGO = '/images/logo/oriental-logo.png';
+// Build-day stamp: each deployment gets a fresh sessionStorage key, so a flag
+// written by an older loader version (or an older deployment) can never
+// suppress the new intro. iOS Safari keeps tab sessionStorage alive for days,
+// which previously made the intro appear to be "missing" on iPhone.
+const BUILD_DAY = new Date().toISOString().slice(0, 10);
+// A stored visit older than this counts as a new session and replays the
+// intro, because iOS restores tabs (with sessionStorage) days later.
+const SESSION_TTL_MS = 12 * 60 * 60 * 1000;
+const INTRO_KEY = `oriental-intro-shown:${BUILD_DAY}`;
 ---
 <div id="site-loader" class="site-loader" role="presentation" aria-hidden="true">
   <img class="loader-logo" src={LOGO} alt="" width="260" height="239" decoding="async" fetchpriority="high" />
@@ -85,7 +94,7 @@ const LOGO = '/images/logo/oriental-logo.png';
     100% { opacity: 0; }
   }
 </style>
-<script is:inline>
+<script is:inline define:vars={{ INTRO_KEY, SESSION_TTL_MS }}>
   (function () {
     var loader = document.getElementById('site-loader');
     if (!loader) return;
@@ -99,8 +108,11 @@ const LOGO = '/images/logo/oriental-logo.png';
     var firstVisit = true;
     var isReload = false;
     try {
-      firstVisit = !sessionStorage.getItem('oriental-intro-shown');
-      sessionStorage.setItem('oriental-intro-shown', '1');
+      var previous = parseInt(sessionStorage.getItem(INTRO_KEY), 10);
+      // Play when there is no stamp for this deployment, when the stamp is
+      // from a tab iOS restored after many hours, or on an explicit reload.
+      firstVisit = !previous || Date.now() - previous > SESSION_TTL_MS;
+      sessionStorage.setItem(INTRO_KEY, String(Date.now()));
       var nav = performance.getEntriesByType('navigation')[0];
       isReload = !!nav && nav.type === 'reload';
     } catch (e) { /* storage unavailable: show on this load only */ }
@@ -115,6 +127,12 @@ const LOGO = '/images/logo/oriental-logo.png';
       root.classList.remove('intro-active', 'intro-reduced');
       loader.remove();
     }
+
+    // iOS back/forward cache: a restored page must never reappear with the
+    // overlay still covering it (or resume a half-finished animation).
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) dismiss();
+    });
 
     // The overlay's own fade animation is the primary dismissal signal for
     // every mode; the timers below are backups only.
