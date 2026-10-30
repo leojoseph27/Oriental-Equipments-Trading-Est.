@@ -59,8 +59,13 @@ const isActive = (href: string) =>
     border-radius: var(--radius); padding: 10px 14px; font: inherit; font-weight: 600; color: var(--ink); cursor: pointer; }
   .mobile-nav { display: none; }
   @media (max-width: 900px) {
-    .desktop-nav, .bar > .cta, .bar > .vision-badge { display: none; }
+    .desktop-nav, .bar > .cta { display: none; }
     .menu-btn { display: block; }
+    /* Compact Vision 2030 badge stays visible in the mobile bar, kept small
+       so the brand and Menu button never crowd it. */
+    .bar > .vision-badge { display: block; height: 28px; margin-left: auto; }
+    .brand { margin-right: 0; }
+    .bar { gap: var(--space-4); }
     .mobile-nav[hidden] { display: none; }
     .mobile-nav { display: flex; flex-direction: column; border-top: var(--line-weight) solid var(--line);
       padding: var(--space-4) 24px var(--space-5); background: var(--paper-card);
