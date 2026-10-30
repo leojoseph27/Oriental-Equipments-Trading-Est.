@@ -21,6 +21,7 @@
     "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.64.1",
     "mupdf": "^1.28.1",
+    "png-to-ico": "^3.0.2",
     "sharp": "^0.35.5"
   }
 }

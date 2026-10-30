@@ -21,6 +21,10 @@ async function scrollAndSettle(page: import("@playwright/test").Page, top: numbe
     if (before === after) break;
   }
   await page.waitForTimeout(200); // let the debounced header decision apply
+  if (process.env.DBG) {
+    const st = await page.evaluate(() => scrollY + "|" + document.querySelector(".site-header")?.className);
+    console.log("SETTLE", top, page.url(), st);
+  }
 }
 
 test.describe("mobile two-row header", () => {
@@ -80,4 +84,81 @@ test.describe("mobile two-row header", () => {
       await page.screenshot({ path: `test-results/hdr-${test.info().projectName}-${w}.png` });
     });
   }
+});
+
+// Back/forward navigation (scenarios 4-10): Row 2 state and the scroll
+// detector must re-initialise on every page entry, including BFCache
+// restores (pageshow persisted), without a manual reload.
+test.describe("mobile header across navigation", () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+  // Multi-page navigation with settle waits needs more than the 30s default,
+  // especially on emulated mobile WebKit where scrolling animates.
+  test.setTimeout(90_000);
+  test("home -> products -> back -> forward keeps the header working", async ({ page }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator(".bar-row2 .vision-badge")).toBeVisible();
+
+    // scroll down on Home → hidden
+    await scrollAndSettle(page, 600);
+    await expect(page.locator(".site-header")).toHaveClass(/row2-hidden/);
+
+    // Navigate to Products (full page load) → fresh header, both rows
+    await page.evaluate(() => { location.href = "/products/"; });
+    await page.waitForURL("**/products/**");
+    await expect(page.locator(".bar-row2 .vision-badge")).toBeVisible();
+    await expect(page.locator(".site-header")).not.toHaveClass(/row2-hidden/);
+    await scrollAndSettle(page, 600);
+    console.log("S2", page.url(), await page.evaluate(() => scrollY + "|" + document.querySelector(".site-header").className));
+    await expect(page.locator(".site-header")).toHaveClass(/row2-hidden/);
+
+    // Back → Home; scroll detector must work immediately, no reload
+    await page.goBack();
+    await page.waitForURL("**/");
+    await expect(page.locator(".bar-row2 .vision-badge")).toBeVisible();
+    // The browser restores the prior scroll offset (~600) before pageshow,
+    // so the detector initialises there with Row 2 shown — consistent with
+    // the restored position. Continuing to scroll must behave immediately.
+    await scrollAndSettle(page, 900);
+    await expect(page.locator(".site-header")).toHaveClass(/row2-hidden/);
+    await scrollAndSettle(page, 200);
+    await expect(page.locator(".site-header")).not.toHaveClass(/row2-hidden/);
+
+    // Forward → Products again
+    await page.goForward();
+    await page.waitForURL("**/products/**");
+    await scrollAndSettle(page, 1200);
+    await expect(page.locator(".site-header")).toHaveClass(/row2-hidden/);
+    await scrollAndSettle(page, 600);
+    await expect(page.locator(".site-header")).not.toHaveClass(/row2-hidden/);
+  });
+
+  test("home -> catalogue -> contact -> back -> back; no flicker after repeats", async ({ page }) => {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    for (const path of ["/catalogue/", "/contact/"]) {
+      // location.href: a real full page load, like clicking a footer link
+      await page.evaluate((p) => { location.href = p; }, path);
+      await page.waitForURL("**" + path);
+      await expect(page.locator(".bar-row2 .vision-badge")).toBeVisible();
+      await scrollAndSettle(page, 600);
+      await expect(page.locator(".site-header")).toHaveClass(/row2-hidden/);
+    }
+    // Back, Back → Home; each restored page must react to scrolling again
+    await page.goBack();
+    await page.waitForURL("**/catalogue/");
+    await expect(page.locator(".bar-row2 .vision-badge")).toBeVisible();
+    await scrollAndSettle(page, 900);
+    await expect(page.locator(".site-header")).toHaveClass(/row2-hidden/);
+    await page.goBack();
+    await page.waitForURL("**/");
+    await expect(page.locator(".bar-row2 .vision-badge")).toBeVisible();
+
+    // repeated up/down cycling after all that navigation: no flicker,
+    // state always matches the settled scroll direction
+    for (const [pos, hidden] of [[900, true], [500, false], [1100, true], [700, false]] as const) {
+      await scrollAndSettle(page, pos);
+      await expect(page.locator(".site-header")).toHaveClass(
+        hidden ? /row2-hidden/ : /^(?!.*row2-hidden)/,
+      );
+    }
+  });
 });
