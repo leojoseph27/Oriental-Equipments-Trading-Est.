@@ -56,7 +56,9 @@ let booted = false;
 
 type Entry = { img: HTMLImageElement };
 const pageCache = new Map<number, Entry>();
-const CACHE_MAX = 14;
+// Each decoded page is ~14 MB of bitmap (1600×2262 RGBA); iOS Safari discards
+// or refuses to decode images once a tab holds too many, so keep this small.
+const CACHE_MAX = 6;
 
 function evictCache() {
   if (pageCache.size <= CACHE_MAX) return;
@@ -75,7 +77,10 @@ function loadImage(p: number): Promise<HTMLImageElement> {
     const img = new Image();
     img.decoding = "async";
     img.alt = "";
-    img.onload = () => resolve(img);
+    img.onload = () => {
+      if (!img.naturalWidth) { reject(new Error(`empty decode ${pageUrl(p)}`)); return; }
+      resolve(img);
+    };
     img.onerror = () => reject(new Error(`failed to load ${pageUrl(p)}`));
     img.src = pageUrl(p);
   });
@@ -198,6 +203,17 @@ function needsPaint(face: HTMLElement, pageNo: number): boolean {
   return !img || !img.complete || img.naturalWidth === 0;
 }
 
+// Drop page bitmaps from leaves that are not on screen so decoded images do
+// not pile up in hidden DOM as the reader moves through the catalogue.
+function releaseLeaf(leaf: HTMLElement) {
+  for (const face of leaf.querySelectorAll<HTMLElement>(".face")) {
+    const slot = face.querySelector<HTMLElement>(".cr-page-slot")!;
+    if (slot.firstChild) slot.replaceChildren();
+    slot.classList.remove("rendered");
+    delete face.dataset.page;
+  }
+}
+
 function syncLeaves(force = false) {
   const want = new Set<number>();
   for (let j = flipped - 2; j <= flipped + 2; j++) {
@@ -207,8 +223,9 @@ function syncLeaves(force = false) {
 
   for (let j = 0; j < numLeaves; j++) {
     const leaf = leafEl(j);
-    if (!want.has(j)) {
+    if (!want.has(j) || singleMode) {
       if (leaf.style.display !== "none") leaf.style.display = "none";
+      releaseLeaf(leaf);
       continue;
     }
     leaf.style.display = "";
@@ -238,7 +255,12 @@ function syncLeaves(force = false) {
 
   // prefetch one leaf behind at lowest priority (backward navigation)
   const behind = flipped - 2;
-  if (behind >= 0 && behind <= numLeaves - 1) {
+  if (singleMode) {
+    // phone view shows one page: prepare only its immediate neighbours
+    for (const p of [flipped + 2, flipped]) {
+      if (p >= 1 && p <= numPages) { wantedPages.add(p); schedule(p, 2); }
+    }
+  } else if (behind >= 0 && behind <= numLeaves - 1) {
     for (const p of [2 * behind + 1, 2 * behind + 2]) {
       if (p >= 1 && p <= numPages) { wantedPages.add(p); schedule(p, 3); }
     }
@@ -263,15 +285,18 @@ function flip(direction: 1 | -1) {
   const target = flipped + direction;
   const maxFlipped = singleMode ? numPages - 1 : numLeaves - 1;
   if (target < 0 || target > maxFlipped) return;
-  const j = direction === 1 ? flipped : flipped - 1;
-  if (j < 0 || j >= numLeaves) return;
 
+  // Single-page (phone) mode counts pages, not leaves: it must be handled
+  // before the leaf-index guard, which otherwise stops Next at page 16.
   if (singleMode) {
-    flipped = Math.min(target, numPages - 1);
+    flipped = target;
     syncLeaves();
     renderSingle();
     return;
   }
+
+  const j = direction === 1 ? flipped : flipped - 1;
+  if (j < 0 || j >= numLeaves) return;
 
   animating = true; // locked synchronously so rapid clicks can never overlap
   flipped = target;
@@ -317,8 +342,13 @@ function finishFlip(leaf: HTMLElement) {
 function renderSingle() {
   if (!singleMode || !numPages) return;
   const p = Math.min(flipped + 1, numPages);
+  const showing = els.singleImg.dataset.page === String(p) && els.singleImg.complete && els.singleImg.naturalWidth > 0;
+  setSingleState(showing ? "" : "loading", p);
   schedule(p, 1).then((entry) => {
-    if (!singleMode || !entry) return;
+    if (!singleMode || Math.min(flipped + 1, numPages) !== p) return; // user moved on
+    if (!entry) { setSingleState("error", p); return; }
+    setSingleState("", p);
+    els.singleImg.dataset.page = String(p);
     // keep dimensions on the element so the box never shifts while loading
     els.singleImg.width = entry.img.naturalWidth;
     els.singleImg.height = entry.img.naturalHeight;
@@ -326,6 +356,27 @@ function renderSingle() {
     els.singleImg.alt = `Catalogue page ${p}`;
     els.single.classList.add("rendered");
   });
+}
+
+let singleStatus: HTMLElement | null = null;
+function setSingleState(state: "" | "loading" | "error", p: number) {
+  if (!singleStatus) {
+    singleStatus = document.createElement("div");
+    singleStatus.className = "cr-single-status";
+    singleStatus.setAttribute("role", "status");
+    singleStatus.addEventListener("click", (e) => {
+      if ((e.target as Element).closest("button")) renderSingle();
+    });
+    els.single.appendChild(singleStatus);
+  }
+  els.single.dataset.state = state;
+  if (state === "loading") {
+    singleStatus.innerHTML = `<span class="cr-spinner" aria-hidden="true"></span><span class="cr-visually-hidden">Loading page ${p}</span>`;
+  } else if (state === "error") {
+    singleStatus.innerHTML = `<p>Page ${p} could not be loaded.</p><button type="button" class="cr-btn small">Retry</button>`;
+  } else {
+    singleStatus.replaceChildren();
+  }
 }
 
 function jumpToPage(p: number) {
@@ -465,6 +516,18 @@ matchMedia("(max-width: 767px)").addEventListener("change", () => {
   if (numPages) { syncLeaves(true); renderSingle(); }
 });
 
+// iOS may purge decoded bitmaps while Safari is backgrounded; repaint on return.
+function refreshAfterReturn() {
+  if (!numPages || document.visibilityState !== "visible") return;
+  syncLeaves();
+  if (singleMode && (!els.singleImg.complete || els.singleImg.naturalWidth === 0)) {
+    els.singleImg.dataset.page = "";
+  }
+  renderSingle();
+}
+document.addEventListener("visibilitychange", refreshAfterReturn);
+window.addEventListener("pageshow", (e) => { if (e.persisted) refreshAfterReturn(); });
+
 reducedMotion.addEventListener?.("change", () => {
   document.documentElement.classList.toggle("cr-reduced", reducedMotion.matches);
 });
@@ -529,5 +592,5 @@ boot();
 
 // small introspection handle for automated tests
 (window as unknown as Record<string, unknown>).__catalogueReader = {
-  stats: () => ({ cached: pageCache.size, pending: pending.size, active: activeRenders, flipped }),
+  stats: () => ({ cached: pageCache.size, slotImgs: els.leaves.querySelectorAll("img").length, pending: pending.size, active: activeRenders, flipped }),
 };
