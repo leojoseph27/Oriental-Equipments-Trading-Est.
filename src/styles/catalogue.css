@@ -53,10 +53,14 @@
   --cr-zoom: 1;
   position: relative;
   overflow: auto;
+  /* Keep catalogue paging inside the stage: wheel/touch scroll at the
+     stage's edges must not chain-scroll the page behind the reader. */
+  overscroll-behavior: contain;
   background:
     radial-gradient(120% 90% at 50% 0%, #ffffff 0%, var(--paper) 60%);
   border: 1px solid var(--line);
-  border-radius: var(--radius, 8px);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-card);
   padding: clamp(0.75rem, 3vw, 2.5rem);
   display: flex;
   justify-content: center;
@@ -117,7 +121,7 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   background: #ffffff;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 6px 6px 0;
   box-shadow:
     inset 0 0 0 1px var(--line),
     0 1px 3px rgba(35, 31, 32, 0.12);
@@ -125,7 +129,7 @@
 }
 .face.back {
   transform: rotateY(-180deg);
-  border-radius: 4px 0 0 4px;
+  border-radius: 6px 0 0 6px;
 }
 
 /* paper depth near the spine */
@@ -165,7 +169,8 @@
 }
 .cr-page-slot.rendered { opacity: 1; }
 .cr-reduced .cr-page-slot { transition: none; }
-.cr-page-slot canvas {
+.cr-page-slot img {
+  border-radius: 0;
   position: absolute;
   inset: 0;
   width: 100%;
@@ -201,13 +206,14 @@
   aspect-ratio: 0.707 / 1;
   background: #ffffff;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   box-shadow: 0 2px 10px rgba(35, 31, 32, 0.15);
   overflow: hidden;
   position: relative;
   flex: none;
 }
-.cr-single canvas {
+.cr-single img {
+  border-radius: 0;
   position: absolute;
   inset: 0;
   width: 100%;
@@ -216,8 +222,8 @@
   opacity: 0;
   transition: opacity 0.15s ease;
 }
-.cr-single.rendered canvas { opacity: 1; }
-.cr-reduced .cr-single canvas { transition: none; }
+.cr-single.rendered img { opacity: 1; }
+.cr-reduced .cr-single img { transition: none; }
 
 @media (max-width: 767px) {
   .cr-book-perspective, .cr-spine-shadow { display: none; }
@@ -262,24 +268,31 @@
   color: var(--ink);
   background: var(--paper-card, #fff);
   border: 1px solid var(--line);
-  border-radius: var(--radius, 8px);
-  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-pill);
+  padding: 0.55rem 1.15rem;
+  min-height: 44px;
   cursor: pointer;
   text-decoration: none;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  box-shadow: var(--shadow-btn-light);
+  transition: border-color var(--dur-ui) var(--ease-standard), color var(--dur-ui) var(--ease-standard),
+    box-shadow var(--dur-ui) var(--ease-standard), transform var(--dur-ui) var(--ease-standard);
   /* Suppress the double-tap zoom delay/gesture so repeated taps turn pages
      immediately; taps, swipes, mouse and keyboard events are unaffected. */
   touch-action: manipulation;
   -webkit-user-select: none;
   user-select: none;
 }
-.cr-btn:hover:not(:disabled) { border-color: var(--red-brand); color: var(--red-brand); }
+.cr-btn:hover:not(:disabled) { border-color: var(--red-brand); color: var(--red-brand); box-shadow: var(--shadow-btn-hover); }
+@media (prefers-reduced-motion: no-preference) {
+  .cr-btn:hover:not(:disabled) { transform: translateY(-1px); }
+  .cr-btn:active:not(:disabled) { transform: translateY(1px); box-shadow: var(--shadow-btn-active); }
+}
 .cr-btn:disabled { opacity: 0.45; cursor: default; }
 .cr-btn:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
-.cr-btn.small { font-size: 0.85rem; padding: 0.4rem 0.7rem; }
+.cr-btn.small { font-size: 0.85rem; padding: 0.45rem 1rem; min-height: 40px; }
 .cr-btn svg { width: 1.1em; height: 1.1em; }
 
 /* ---------- fullscreen overlay arrows ---------- */
@@ -308,8 +321,8 @@
   background: rgba(28, 24, 25, 0.55);
   color: #fff;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-  transition: background 0.15s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 2px 10px rgba(0, 0, 0, 0.35);
+  transition: background var(--dur-ui) var(--ease-standard);
 }
 .cr-fs-arrow:hover:not(:disabled) { background: rgba(28, 24, 25, 0.78); }
 .cr-fs-arrow:disabled { opacity: 0.35; cursor: default; }
@@ -363,8 +376,8 @@
   color: #fff;
   background: rgba(28, 24, 25, 0.65);
   border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: var(--radius, 8px);
-  padding: 0.55rem 0.9rem;
+  border-radius: var(--radius-pill);
+  padding: 0.55rem 1.1rem;
   cursor: pointer;
   min-height: 44px; /* comfortable touch target */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
@@ -388,11 +401,29 @@
 .cr-compact .cr-reader { min-height: 0; }
 /* thin white frame: just enough to separate page edges and spine */
 .cr-compact .cr-stage { padding: 8px; }
-/* dedicated nav row under the book with breathing room from the band edge */
+/* dedicated nav row under the book: Previous left, counter centred, Next
+   right — grid keeps the counter perfectly centred regardless of button
+   widths and stops Next wrapping onto a second line on mobile. */
 .cr-compact .cr-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-items: center;
   margin-top: 0.75rem;
   padding: 0 0.25rem 0.35rem;
-  gap: 1rem;
+  column-gap: 0.5rem;
+}
+.cr-compact .cr-toolbar > .cr-btn:first-child { justify-self: start; }
+.cr-compact .cr-toolbar > .cr-btn:last-child { justify-self: end; }
+/* narrow screens: slim the pills down so all three controls stay on one row */
+@media (max-width: 414px) {
+  .cr-compact .cr-toolbar .cr-btn {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.75rem;
+    min-height: 40px;
+  }
+  .cr-compact .cr-toolbar .cr-btn svg { width: 1em; height: 1em; }
+  .cr-compact .cr-counter { font-size: 0.8rem; min-width: 9ch; white-space: nowrap; }
 }
 /* page indicator sits on the deep-green band: keep it fully white */
 .cr-compact .cr-counter { color: #ffffff; opacity: 1; }
@@ -402,9 +433,10 @@
 .cr-thumb-panel {
   margin-top: 1rem;
   border: 1px solid var(--line);
-  border-radius: var(--radius, 8px);
+  border-radius: var(--radius-panel);
   background: var(--paper-card, #fff);
-  padding: 1rem;
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem;
 }
 .cr-thumb-panel-head {
   display: flex;
@@ -424,12 +456,14 @@
   gap: 0.75rem;
   max-height: 60vh;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .cr-thumb {
   border: 1px solid var(--line);
   background: #fff;
-  border-radius: 4px;
-  padding: 0.35rem;
+  border-radius: var(--radius-sm);
+  padding: 0.4rem;
+  transition: border-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -441,6 +475,7 @@
   object-fit: contain;
   background: #fff;
   display: block;
+  border-radius: 6px;
 }
 .cr-thumb span {
   font-family: var(--font-mono);

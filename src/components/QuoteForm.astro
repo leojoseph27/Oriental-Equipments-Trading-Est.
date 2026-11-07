@@ -81,7 +81,7 @@ import { categories } from "../data/catalog";
   .req { font-family: var(--font-mono); font-size: 11px; color: var(--red-brand); margin-left: var(--space-1); }
   .opt { font-family: var(--font-mono); font-size: 11px; color: var(--ink-tertiary); margin-left: var(--space-1); }
   input, select, textarea { font: inherit; padding: 10px 12px; border: var(--line-weight) solid var(--line);
-    background: var(--paper-card); color: var(--ink); border-radius: var(--radius); width: 100%;
+    background: var(--paper-card); color: var(--ink); border-radius: var(--radius-input); width: 100%;
     transition: border-color var(--dur-fast) var(--ease-standard); }
   input:hover:not([aria-invalid="true"]), select:hover, textarea:hover:not([aria-invalid="true"]) { border-color: var(--ink-tertiary); }
   input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="true"] {
@@ -91,13 +91,16 @@ import { categories } from "../data/catalog";
   .err { font-size: 14px; color: var(--red-deep); font-weight: 500; margin: 0; }
   .err::before { content: "⚠ "; }
   .qf-summary { border: 2px solid var(--red-brand); background: #fff; padding: var(--space-4);
-    margin-bottom: var(--space-5); }
+    border-radius: var(--radius-panel); margin-bottom: var(--space-5); }
   .qf-summary p { margin: 0 0 var(--space-2); font-weight: 600; }
   .qf-summary ul { margin: 0; padding-left: var(--space-5); }
   .qf-submit { font: inherit; font-weight: 600; background: var(--red-brand); color: #fff;
-    border: none; border-radius: var(--radius); padding: 12px 26px; cursor: pointer; margin-top: var(--space-5);
-    transition: background-color var(--dur-fast) var(--ease-standard); }
-  .qf-submit:hover { background: var(--red-deep); }
+    border: none; border-radius: var(--radius-pill); padding: 12px 28px; min-height: 44px; cursor: pointer; margin-top: var(--space-5);
+    box-shadow: var(--shadow-btn);
+    transition: background-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard),
+      transform var(--dur-ui) var(--ease-standard); }
+  .qf-submit:hover { background: var(--red-deep); box-shadow: var(--shadow-btn-hover); }
+  .qf-submit:active { box-shadow: var(--shadow-btn-active); }
   .qf-submit:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
   .qf-note { font-family: var(--font-mono); font-size: 12px; color: var(--ink-secondary);
     margin-top: var(--space-4); max-width: 70ch; }
@@ -108,8 +111,8 @@ import { categories } from "../data/catalog";
     from { opacity: 0; transform: translateY(var(--dist-1)); }
     to { opacity: 1; transform: none; }
   }
-  .qf-status { border: var(--line-weight) solid var(--green-brand); background: #fff;
-    border-left: 4px solid var(--green-brand); padding: var(--space-4); margin-top: var(--space-4);
+  .qf-status { border: 1px solid var(--green-brand); background: #fff;
+    border-left: 4px solid var(--green-brand); border-radius: var(--radius-sm); padding: var(--space-4); margin-top: var(--space-4);
     max-width: 70ch; }
   #qf-copywrap { margin-top: var(--space-4); max-width: 70ch; }
   #qf-copy { width: 100%; font-family: var(--font-mono); font-size: 13px; }

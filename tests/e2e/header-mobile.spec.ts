@@ -28,7 +28,7 @@ async function scrollAndSettle(page: import("@playwright/test").Page, top: numbe
 }
 
 test.describe("mobile two-row header", () => {
-  for (const [w, h] of [[320, 800], [360, 800], [375, 812], [390, 844], [414, 896], [430, 932]] as const) {
+  for (const [w, h] of [[320, 800], [360, 800], [375, 812], [390, 844], [414, 896], [430, 932], [768, 1024], [900, 1200]] as const) {
     test(`${w}px: layout, scroll hide/show, return to top`, async ({ page }) => {
       await page.setViewportSize({ width: w, height: h });
       await page.emulateMedia({ reducedMotion: "reduce" });
@@ -42,6 +42,13 @@ test.describe("mobile two-row header", () => {
       expect(nameBox!.x + nameBox!.width).toBeLessThanOrEqual(w); // full name visible
       await expect(page.locator(".bar-row2 .vision-badge")).toBeVisible();
       await expect(page.locator(".menu-btn")).toBeVisible();
+      // Row 2 order: Menu on the left, Vision 2030 on the right, both in bounds.
+      const menuBox = await page.locator(".menu-btn").boundingBox();
+      const badgeBox = await page.locator(".bar-row2 .vision-badge").boundingBox();
+      expect(menuBox!.x + menuBox!.width).toBeLessThan(badgeBox!.x);
+      expect(menuBox!.x).toBeGreaterThanOrEqual(0);
+      expect(badgeBox!.x + badgeBox!.width).toBeLessThanOrEqual(w);
+      expect(Math.abs((menuBox!.y + menuBox!.height / 2) - (badgeBox!.y + badgeBox!.height / 2))).toBeLessThan(2);
       expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
 
       const checkScroll = SCROLL_SAFE[test.info().projectName] ?? false;

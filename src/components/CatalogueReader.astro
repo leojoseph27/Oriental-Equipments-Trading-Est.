@@ -7,6 +7,9 @@ import "../styles/catalogue.css";
 interface Props { compact?: boolean }
 const { compact = false } = Astro.props;
 ---
+<!-- warm the first spreads while the manifest fetch and reader boot run -->
+<link rel="preload" as="image" href="/catalogue-pages/page-01.webp" />
+<link rel="preload" as="image" href="/catalogue-pages/page-02.webp" />
 <section class:list={["cr-reader-wrap", { "cr-compact": compact }]} aria-label="Catalogue reader">
   {!compact && (
     <div class="cr-fs-nav">
@@ -42,7 +45,15 @@ const { compact = false } = Astro.props;
           <div id="cr-leaves" class="cr-leaves"></div>
         </div>
         <div id="cr-single" class="cr-single" aria-hidden="true">
-          <canvas id="cr-single-canvas"></canvas>
+          <img
+            id="cr-single-img"
+            src="/catalogue-pages/page-01.webp"
+            alt=""
+            width="1599"
+            height="2261"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div class="cr-spine-shadow" aria-hidden="true"></div>
       </div>

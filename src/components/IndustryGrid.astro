@@ -22,13 +22,13 @@ import { industries } from "../data/catalog";
   .intro { color: var(--ink-secondary); margin-bottom: var(--space-6); }
   .grid { list-style: none; margin: 0; padding: 0; display: grid;
     grid-template-columns: repeat(3, 1fr); gap: var(--space-5) var(--space-4); }
-  .grid li { transition: transform var(--dur-fast) var(--ease-standard); }
+  .grid li { transition: transform var(--dur-ui) var(--ease-standard); }
   .grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
-    border: var(--line-weight) solid var(--line);
-    transition: border-color var(--dur-fast) var(--ease-standard); }
+    border: 1px solid var(--line); border-radius: var(--radius-img); box-shadow: var(--shadow-card);
+    transition: border-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard); }
   @media (prefers-reduced-motion: no-preference) {
-    .grid li:hover { transform: translateY(-2px); }
-    .grid li:hover img { border-color: var(--ink-tertiary); }
+    .grid li:hover { transform: translateY(-3px); }
+    .grid li:hover img { border-color: var(--ink-tertiary); box-shadow: var(--shadow-card-hover); }
   }
   .label { display: block; font-family: var(--font-heading); font-weight: 600;
     font-size: 16px; text-transform: uppercase; text-align: center; padding-top: var(--space-3); }

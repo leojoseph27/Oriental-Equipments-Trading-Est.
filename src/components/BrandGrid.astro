@@ -22,12 +22,15 @@ import { brands } from "../data/catalog";
   .intro { color: var(--ink-secondary); margin-bottom: var(--space-6); }
   .grid { list-style: none; margin: 0; padding: 0; display: grid;
     grid-template-columns: repeat(5, 1fr); gap: var(--space-4); }
-  .tile { background: var(--paper-card); border: var(--line-weight) solid var(--line);
+  .tile { background: var(--paper-card); border: 1px solid var(--line); border-radius: var(--radius-card);
     padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2);
     align-items: center; justify-content: center; min-height: 140px;
-    transition: border-color var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard); }
-  .tile:hover { border-color: var(--ink-tertiary); box-shadow: var(--shadow-1); }
-  .tile img { width: 100%; height: auto; max-height: 96px; object-fit: contain; }
+    transition: border-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard),
+      transform var(--dur-ui) var(--ease-standard); }
+  @media (prefers-reduced-motion: no-preference) {
+    .tile:hover { border-color: var(--ink-tertiary); box-shadow: var(--shadow-card-hover); transform: translateY(-2px); }
+  }
+  .tile img { width: 100%; height: auto; max-height: 96px; object-fit: contain; border-radius: 0; }
   .label { font-family: var(--font-mono); font-size: 11px; color: var(--ink-tertiary);
     text-align: center; }
   @media (max-width: 1000px) { .grid { grid-template-columns: repeat(4, 1fr); } }

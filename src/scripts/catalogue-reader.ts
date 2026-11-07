@@ -3,7 +3,7 @@
  *
  * Pages come from pre-rendered WebP images (scripts/render-catalog-pages.mjs
  * runs at build time from the original PDF), so the browser fetches only the
- * spreads being viewed instead of the whole 24 MB source PDF. The original
+ * spreads being viewed instead of the whole source PDF. The original
  * PDF is still available for download from the toolbar.
  *
  * Leaf j holds page 2j+1 (front) and 2j+2 (back), so flipping leaf f moves
@@ -23,7 +23,7 @@ const els = {
   book: document.getElementById("cr-book") as HTMLElement,
   leaves: document.getElementById("cr-leaves") as HTMLElement,
   single: document.getElementById("cr-single") as HTMLElement,
-  singleCanvas: document.getElementById("cr-single-canvas") as HTMLCanvasElement,
+  singleImg: document.getElementById("cr-single-img") as HTMLImageElement,
   prev: document.getElementById("cr-prev") as HTMLButtonElement,
   next: document.getElementById("cr-next") as HTMLButtonElement,
   counter: document.getElementById("cr-counter") as HTMLElement,
@@ -48,9 +48,13 @@ let singleMode = false;
 let stageWidth = 0;
 let booted = false;
 
-/* ---------- page image cache (LRU) ---------- */
+/* ---------- page image cache (LRU) ----------
+ * Entries hold the decoded <img> element itself (the page IS a WebP image,
+ * so no canvas re-render is needed); the element is moved into the page
+ * slot when its face becomes visible.
+ */
 
-type Entry = { canvas: HTMLCanvasElement };
+type Entry = { img: HTMLImageElement };
 const pageCache = new Map<number, Entry>();
 const CACHE_MAX = 14;
 
@@ -70,6 +74,7 @@ function loadImage(p: number): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.decoding = "async";
+    img.alt = "";
     img.onload = () => resolve(img);
     img.onerror = () => reject(new Error(`failed to load ${pageUrl(p)}`));
     img.src = pageUrl(p);
@@ -78,11 +83,7 @@ function loadImage(p: number): Promise<HTMLImageElement> {
 
 async function renderTask(pageNo: number): Promise<Entry> {
   const img = await loadImage(pageNo);
-  const canvas = document.createElement("canvas");
-  canvas.width = img.naturalWidth;
-  canvas.height = img.naturalHeight;
-  canvas.getContext("2d")!.drawImage(img, 0, 0);
-  const entry = { canvas };
+  const entry = { img };
   pageCache.set(pageNo, entry);
   evictCache();
   return entry;
@@ -184,7 +185,7 @@ function paintFace(face: HTMLElement, pageNo: number, priority = 1) {
     if (!entry) return;
     // face may have moved out of the wanted window while rendering
     if (!face.isConnected || face.dataset.page !== String(pageNo)) return;
-    if (slot.firstChild !== entry.canvas) slot.replaceChildren(entry.canvas);
+    if (slot.firstChild !== entry.img) slot.replaceChildren(entry.img);
     slot.classList.add("rendered");
   });
 }
@@ -193,8 +194,8 @@ function needsPaint(face: HTMLElement, pageNo: number): boolean {
   if (face.dataset.page !== String(pageNo)) return true;
   const slot = face.querySelector<HTMLElement>(".cr-page-slot")!;
   if (!slot.classList.contains("rendered")) return true;
-  const canvas = slot.querySelector("canvas");
-  return !canvas || canvas.width === 0;
+  const img = slot.querySelector("img");
+  return !img || !img.complete || img.naturalWidth === 0;
 }
 
 function syncLeaves(force = false) {
@@ -318,10 +319,11 @@ function renderSingle() {
   const p = Math.min(flipped + 1, numPages);
   schedule(p, 1).then((entry) => {
     if (!singleMode || !entry) return;
-    const ctx = els.singleCanvas.getContext("2d")!;
-    els.singleCanvas.width = entry.canvas.width;
-    els.singleCanvas.height = entry.canvas.height;
-    ctx.drawImage(entry.canvas, 0, 0);
+    // keep dimensions on the element so the box never shifts while loading
+    els.singleImg.width = entry.img.naturalWidth;
+    els.singleImg.height = entry.img.naturalHeight;
+    if (els.singleImg.src !== entry.img.src) els.singleImg.src = entry.img.src;
+    els.singleImg.alt = `Catalogue page ${p}`;
     els.single.classList.add("rendered");
   });
 }

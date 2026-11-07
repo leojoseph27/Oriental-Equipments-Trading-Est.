@@ -160,7 +160,7 @@ import { products } from "../data/catalog";
     to { opacity: 1; transform: none; }
   }
   .hero-content { position: relative; z-index: 1; padding-block: var(--space-10) var(--space-8); width: 100%; }
-  .hero h1 { color: #fff; font-size: clamp(38px, 6vw, 64px); max-width: 22ch; margin-bottom: var(--space-4);
+  .hero h1 { color: #fff; font-size: clamp(36px, 6vw, 58px); max-width: 22ch; margin-bottom: var(--space-4);
     animation: hero-rise var(--dur-reveal) var(--ease-out) both; }
   .hero .support, .hero .actions, .hero .hero-meta { animation: hero-rise var(--dur-reveal) var(--ease-out) both; }
   .hero .support { animation-delay: 100ms; }
@@ -176,18 +176,13 @@ import { products } from "../data/catalog";
     .hero-media { transition: transform 300ms var(--ease-standard); will-change: transform; }
   }
   .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    object-position: 70% 20%; }
+    object-position: 70% 20%; border-radius: 0; }
   .hero-scrim { position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(28, 24, 25, 0.55) 0%, rgba(28, 24, 25, 0.82) 78%); }
   .support { color: #e9e5e2; font-size: 18px; max-width: 58ch; margin-bottom: var(--space-6); }
   .actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
   .hero-meta { margin: var(--space-5) 0 0; color: #cbc4c1; }
-  .btn { display: inline-block; text-decoration: none; font-weight: 600; font-size: 16px;
-    padding: 12px 22px; border-radius: var(--radius); }
-  .btn.primary { background: var(--red-brand); color: #fff; }
-  .btn.primary:hover { background: var(--red-deep); color: #fff; }
-  .btn.ghost { border: 1px solid #cbc4c1; color: #fff; }
-  .btn.ghost:hover { border-color: #fff; color: #fff; }
+  .btn { font-size: 16px; }
 
   /* Positioning */
   h2 { color: var(--red-deep); text-transform: uppercase; margin-bottom: var(--space-4); }
@@ -197,8 +192,8 @@ import { products } from "../data/catalog";
 
   /* Contact */
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
-  .card { background: var(--paper-card); border: var(--line-weight) solid var(--line);
-    padding: var(--space-6); }
+  .card { background: var(--paper-card); border: 1px solid var(--line); border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-card); padding: var(--space-6); }
   .card h3 { font-family: var(--font-mono); font-size: 13px; font-weight: 500;
     text-transform: uppercase; letter-spacing: 0.08em; color: var(--green-brand);
     margin: var(--space-4) 0 var(--space-2); }
@@ -217,7 +212,7 @@ import { products } from "../data/catalog";
   .dcb-inner { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--space-6); align-items: center; }
   .digital-catalogue-band h2 { color: #fff; text-transform: none; }
   .dcb-copy p { color: #d8ded9; max-width: 52ch; }
-  .dcb-book { border-radius: var(--radius); overflow: hidden;
+  .dcb-book { border-radius: var(--radius-panel); overflow: hidden;
     box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
   /* embedded reader: fit the band tightly, no forced extra height */
   .dcb-book .cr-reader-wrap { margin-top: 0; }

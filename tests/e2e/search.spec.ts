@@ -50,7 +50,7 @@ test.describe("search", () => {
     await searchFor(page, "gloves");
     const n = await page.locator("#results li").count();
     expect(n).toBeGreaterThan(5);
-    await expect(page.locator("#status")).toContainText(/results for “gloves”/);
+    await expect(page.locator("#status")).toContainText(/results for “gloves”/i);
   });
 
   test("no-match query shows a helpful empty state", async ({ page }) => {

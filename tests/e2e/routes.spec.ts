@@ -99,14 +99,12 @@ test.describe("routes & navigation", () => {
     await expect(crumb).toHaveText(/Abrasives/i);
   });
 
-  test("product quote links preserve the product id in the contact URL", async ({ page }) => {
-    for (const { category, product } of [{ category: categories[0], product: products[0] }]) {
-      await page.goto(`/products/${category.slug}/`);
-      const link = page.locator(`article.pc[id="${product.id}"] a.enq`);
-      await expect(link).toHaveCount(1);
-      await link.click();
-      await expect(page).toHaveURL(new RegExp(`product=${encodeURIComponent(product.id)}$`));
-    }
+  test("product quote links keep the product id as a no-JS contact fallback", async ({ page }) => {
+    const [category, product] = [categories[0], products[0]];
+    await page.goto(`/products/${category.slug}/`);
+    const link = page.locator(`article.pc[id="${product.id}"] a.enq`);
+    await expect(link).toHaveCount(1);
+    await expect(link).toHaveAttribute("href", `/contact/?product=${encodeURIComponent(product.id)}`);
   });
 
   test("unknown route returns 404 status (Astro default, no custom page)", async ({ page }) => {

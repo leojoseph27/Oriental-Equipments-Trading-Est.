@@ -19,8 +19,8 @@
   --line: #dddad6;
 
   /* type */
-  --font-heading: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --font-body: "Barlow", "Segoe UI", Arial, sans-serif;
+  --font-heading: "Poppins", Arial, sans-serif;
+  --font-body: "Poppins", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", "Consolas", monospace;
 
   /* space (8px scale) */
@@ -29,7 +29,14 @@
   --space-12: 96px;
 
   --container: 1200px;
-  --radius: 4px;
+  /* corner radii (rounded design system) */
+  --radius-sm: 10px;      /* small controls, chips, thumbnails */
+  --radius-img: 14px;     /* image containers and images */
+  --radius-card: 16px;    /* product / category cards */
+  --radius-panel: 20px;   /* larger content panels */
+  --radius-input: 12px;   /* inputs, selects, textareas */
+  --radius-pill: 999px;   /* buttons */
+  --radius: var(--radius-sm);
   --line-weight: 1px;
 
   /* motion (M8.5) — short for interactions, longer for reveals; transform/opacity only */
@@ -42,4 +49,19 @@
   --dist-2: 16px;         /* medium motion distance */
   --shadow-1: 0 1px 3px rgba(35, 31, 32, 0.08);
   --shadow-2: 0 6px 18px rgba(35, 31, 32, 0.12);
+  --dur-ui: 220ms;        /* card / button hover and press */
+
+  /* soft depth for cards and panels */
+  --shadow-card: 0 1px 2px rgba(35, 31, 32, 0.05), 0 4px 14px rgba(35, 31, 32, 0.06);
+  --shadow-card-hover: 0 2px 4px rgba(35, 31, 32, 0.06), 0 12px 28px rgba(35, 31, 32, 0.12);
+
+  /* tactile pill buttons: top highlight, darker bottom edge, soft drop */
+  --shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -2px 0 rgba(0, 0, 0, 0.18),
+    0 2px 4px rgba(35, 31, 32, 0.14), 0 4px 12px rgba(35, 31, 32, 0.10);
+  --shadow-btn-hover: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -2px 0 rgba(0, 0, 0, 0.18),
+    0 4px 8px rgba(35, 31, 32, 0.16), 0 8px 20px rgba(35, 31, 32, 0.12);
+  --shadow-btn-active: inset 0 2px 4px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(35, 31, 32, 0.12);
+  /* light (white/outline) buttons use a subtler edge */
+  --shadow-btn-light: inset 0 -2px 0 rgba(35, 31, 32, 0.08), 0 1px 3px rgba(35, 31, 32, 0.10),
+    0 3px 10px rgba(35, 31, 32, 0.06);
 }

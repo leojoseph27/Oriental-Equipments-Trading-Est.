@@ -5,6 +5,9 @@ import SiteFooter from "../../components/SiteFooter.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import ProductCard from "../../components/ProductCard.astro";
 import { categories, products } from "../../data/catalog";
+import { categoryContent } from "../../data/categoryContent";
+import KeyFeatures from "../../components/KeyFeatures.astro";
+import QuoteModal from "../../components/QuoteModal.astro";
 
 export function getStaticPaths() {
   return categories.map((c) => ({ params: { slug: c.slug }, props: { category: c } }));
@@ -12,14 +15,16 @@ export function getStaticPaths() {
 const { category } = Astro.props;
 const items = products.filter((p) => p.categoryId === category.indexNo);
 const heading = category.pageHeading || category.name;
+const content = categoryContent[category.slug];
+if (!content) throw new Error(`No category content for slug "${category.slug}"`);
 const others = categories.filter((c) => c.indexNo !== category.indexNo);
 ---
 <BaseLayout
   title={`${category.name} — Oriental Equipments Trading Est.`}
-  description={`${items.length} ${category.name.toLowerCase()} items from the Oriental Equipments Trading Est. catalogue — Dammam, Saudi Arabia.`}
+  description={`${category.name} from the Oriental Equipments Trading Est. catalogue — Dammam, Saudi Arabia.`}
 >
   <SiteHeader />
-  <main id="main" tabindex="-1" class="container section">
+  <main id="main" tabindex="-1" class="container section page-top">
     <Breadcrumbs trail={[
       { label: "Home", href: "/" },
       { label: "Products", href: "/products/" },
@@ -29,22 +34,24 @@ const others = categories.filter((c) => c.indexNo !== category.indexNo);
       <span class="index-no" aria-hidden="true">{String(category.indexNo).padStart(2, "0")}</span>
       <div>
         <h1>{heading}</h1>
-        <p class="meta">
-          {items.length} items
-          {category.pageHeading && <span> · page heading as printed: “{category.pageHeading}”</span>}
-        </p>
       </div>
     </div>
-    <p class="intro">
-      {category.name} as listed in the official Oriental Equipments Trading Est.
-      catalogue. Specifications below are transcribed as printed; request a quotation
-      for current availability and pricing.
-    </p>
+    <div class="cat-intro">
+      {content.intro.map((para) => <p>{para}</p>)}
+    </div>
+
+    <KeyFeatures features={content.features} />
 
     <form class="searchbar" action="/search" method="get" role="search">
-      <label class="spec" for="q">Search all {products.length} items</label>
+      <label class="spec" for="q">Search the catalogue</label>
       <div class="row">
-        <input id="q" name="q" type="search" placeholder="e.g. E7018, 24KD, gouging…" autocomplete="off" />
+        <div class="search-field">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input id="q" name="q" type="search" placeholder="e.g. E7018, 24KD, gouging…" autocomplete="off" />
+        </div>
         <button type="submit">Search</button>
       </div>
     </form>
@@ -61,30 +68,41 @@ const others = categories.filter((c) => c.indexNo !== category.indexNo);
     </nav>
   </main>
   <SiteFooter />
+  <QuoteModal />
 </BaseLayout>
 <style>
-  .head-row { display: flex; gap: var(--space-4); align-items: flex-start; }
-  .index-no { font-family: var(--font-heading); font-weight: 600; font-size: 44px;
-    line-height: 1; color: var(--green-brand); }
-  h1 { color: var(--red-deep); text-transform: uppercase; margin-bottom: var(--space-2); }
-  .intro { color: var(--ink-secondary); max-width: 70ch; }
+  .head-row { display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap; }
+  .index-no { font-family: var(--font-heading); font-weight: 600; font-size: 14px;
+    letter-spacing: 0.06em; line-height: 1; color: var(--green-brand);
+    background: #eef5f0; border: 1px solid #cfe0d4; border-radius: var(--radius-pill);
+    padding: 8px 16px; }
+  h1 { color: var(--red-brand); text-transform: uppercase; margin: 0; }
+  .cat-intro { max-width: 70ch; margin-top: var(--space-3); }
+  .cat-intro p { font-size: 16px; line-height: 1.7; color: var(--ink-secondary); margin: 0 0 var(--space-2); }
   .searchbar { margin: var(--space-6) 0; max-width: 560px; }
   .searchbar label { display: block; margin-bottom: var(--space-2); }
   .row { display: flex; gap: var(--space-2); flex-wrap: wrap; }
-  input { flex: 1 1 160px; min-width: 0; font: inherit; padding: 10px 12px; border: var(--line-weight) solid var(--line);
-    background: var(--paper-card); color: var(--ink); border-radius: var(--radius);
+  .search-field { position: relative; flex: 1 1 200px; min-width: 0; }
+  .search-icon { position: absolute; left: 14px; top: 50%; width: 16px; height: 16px;
+    transform: translateY(-50%); color: var(--ink-tertiary); pointer-events: none; }
+  input { width: 100%; font: inherit; padding: 10px 16px 10px 40px; border: var(--line-weight) solid var(--line);
+    background: var(--paper-card); color: var(--ink); border-radius: var(--radius-pill);
     transition: border-color var(--dur-fast) var(--ease-standard); }
+  input::-webkit-search-cancel-button { -webkit-appearance: none; }
   input:hover { border-color: var(--ink-tertiary); }
   input:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
   button { font: inherit; font-weight: 600; background: var(--red-brand); color: #fff;
-    border: none; border-radius: var(--radius); padding: 10px 20px; cursor: pointer;
-    transition: background-color var(--dur-fast) var(--ease-standard); }
-  button:hover { background: var(--red-deep); }
+    border: none; border-radius: var(--radius-pill); padding: 10px 24px; min-height: 44px; cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    transition: background-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard),
+      transform var(--dur-ui) var(--ease-standard); }
+  button:hover { background: var(--red-deep); box-shadow: var(--shadow-btn-hover); }
+  button:active { box-shadow: var(--shadow-btn-active); }
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);
     margin-top: var(--space-5); }
   .others { margin-top: var(--space-10); border-top: var(--line-weight) solid var(--line);
     padding-top: var(--space-6); }
-  .others h2 { font-size: 20px; color: var(--red-deep); text-transform: uppercase;
+  .others h2 { font-size: 20px; color: var(--red-brand); text-transform: uppercase;
     margin-bottom: var(--space-4); }
   .others ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap;
     gap: var(--space-2) var(--space-4); }

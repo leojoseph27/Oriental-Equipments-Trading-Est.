@@ -29,15 +29,15 @@ async function readerStats(page: Page): Promise<ReaderStats> {
   return page.evaluate(() => (window as any).__catalogueReader.stats());
 }
 
-/** Every face of leaf j that has been assigned a page must hold a painted canvas. */
+/** Every face of leaf j that has been assigned a page must hold a loaded page image. */
 async function leafReady(page: Page, j: number): Promise<boolean> {
   return page.evaluate((leafIndex) => {
     const leaf = document.querySelector(`[data-leaf="${leafIndex}"]`);
     if (!leaf) return false;
     return [...leaf.querySelectorAll(".face")].every((f) => {
       if (!f.hasAttribute("data-page")) return true; // beyond the last page
-      const c = f.querySelector("canvas");
-      return !!c && c.width > 0;
+      const img = f.querySelector("img");
+      return !!img && img.complete && img.naturalWidth > 0;
     });
   }, j);
 }
@@ -48,7 +48,7 @@ test.describe("digital catalogue reader", () => {
     await expect(page).toHaveTitle(/Digital Catalogue/);
     await expect(page.locator("#cr-book")).toBeVisible();
     // cover is the front face of leaf 0, on the right half
-    const cover = page.locator('[data-leaf="0"] .face.front .cr-page-slot canvas');
+    const cover = page.locator('[data-leaf="0"] .face.front .cr-page-slot img');
     await expect(cover).toBeVisible();
     await expect(page.locator('[data-leaf="0"]')).not.toHaveClass(/flipped/);
     await expect(page.locator("#cr-prev")).toBeDisabled();

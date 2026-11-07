@@ -1,0 +1,55 @@
+---
+// KeyFeatures — compact horizontal feature strip for category pages.
+// Renders one block per supplied feature (dynamic count), evenly distributed
+// across the full width on desktop, wrapping into a grid on smaller screens.
+import FeatureIcon from "./FeatureIcon.astro";
+import type { CategoryFeature } from "../data/categoryContent";
+
+const { features } = Astro.props as { features: CategoryFeature[] };
+---
+<section class="kf" aria-labelledby="kf-heading">
+  <h2 id="kf-heading">Key Features</h2>
+  <ul class="kf-strip" style={`--kf-count: ${features.length};`}>
+    {features.map((ft) => (
+      <li class="kf-block">
+        <FeatureIcon icon={ft.icon} />
+        <span class="kf-text">{ft.text}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+<style>
+  .kf { margin-top: var(--space-6); }
+  h2 { display: inline-block; color: #fff; font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; line-height: 1;
+    background: var(--green-brand); border-radius: var(--radius-pill);
+    padding: 8px 18px; margin: 0 0 calc(-1 * var(--space-2)) var(--space-4);
+    position: relative; z-index: 1; }
+  .kf-strip { list-style: none; margin: 0; padding: var(--space-6) var(--space-3) var(--space-4);
+    background: #f0f6f2; /* very light brand-green tint */
+    border: 1px solid #cfe0d4; border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-card);
+    display: flex; align-items: stretch; }
+  .kf-block { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column;
+    align-items: center; text-align: center; gap: var(--space-2);
+    padding: var(--space-2) var(--space-3); }
+  /* subtle vertical separators between adjacent blocks */
+  .kf-block + .kf-block { border-left: 1px solid #d8e5dc; }
+  .kf-block :global(.feature-icon) { color: var(--green-brand); }
+  .kf-text { font-family: var(--font-body); font-size: 13.5px; line-height: 1.5;
+    color: var(--ink); max-width: 22ch; }
+
+  /* tablet: wrap into an even grid when one row no longer fits */
+  @media (max-width: 1000px) {
+    .kf-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: var(--space-4); }
+    .kf-block + .kf-block { border-left: none; }
+  }
+  /* mobile: compact two-column grid; an odd count leaves the last cell natural */
+  @media (max-width: 560px) {
+    .kf-strip { grid-template-columns: repeat(2, 1fr); gap: var(--space-2) var(--space-3);
+      padding: var(--space-5) var(--space-2) var(--space-3); }
+    .kf-block { padding: var(--space-1) var(--space-2); gap: var(--space-1); }
+    .kf-text { font-size: 12.5px; line-height: 1.45; max-width: none; }
+  }
+</style>

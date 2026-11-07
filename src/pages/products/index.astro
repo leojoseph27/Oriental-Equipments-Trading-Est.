@@ -3,22 +3,21 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
-import { categories, products } from "../../data/catalog";
+import { categories } from "../../data/catalog";
 import CategoryIcon from "../../components/CategoryIcon.astro";
-const count = (n: number) => products.filter((p) => p.categoryId === n).length;
 ---
 <BaseLayout
   title="Product Catalogue — Oriental Equipments Trading Est."
-  description="Browse 20 categories of welding electrodes, wires, torches, gas equipment, machines, abrasives, chemicals and safety gear — 190 catalogue items from Oriental Equipments Trading Est., Dammam."
+  description="Browse 20 categories of welding electrodes, wires, torches, gas equipment, machines, abrasives, chemicals and safety gear from Oriental Equipments Trading Est., Dammam."
 >
   <SiteHeader />
-  <main id="main" tabindex="-1" class="container section">
+  <main id="main" tabindex="-1" class="container section page-top">
     <Breadcrumbs trail={[{ label: "Home", href: "/" }, { label: "Products" }]} />
     <h1>Product Catalogue</h1>
     <p class="intro">
       Twenty product categories covering welding consumables, torches and torch
-      accessories, gas equipment, machines, abrasives, chemicals and safety gear —
-      {products.length} catalogue items. Select a category to see its products with
+      accessories, gas equipment, machines, abrasives, chemicals and safety gear.
+      Select a category to see its products with
       AWS classifications, model numbers and sizes as printed in the company catalogue.
     </p>
 
@@ -37,7 +36,6 @@ const count = (n: number) => products.filter((p) => p.categoryId === n).length;
           <a class="tile" href={`/products/${c.slug}/`}>
             <CategoryIcon slug={c.slug} />
             <span class="name">{c.name}</span>
-            <span class="meta">{count(c.indexNo)} items</span>
           </a>
         </li>
       ))}
@@ -52,27 +50,32 @@ const count = (n: number) => products.filter((p) => p.categoryId === n).length;
   .searchbar label { display: block; margin-bottom: var(--space-2); }
   .row { display: flex; gap: var(--space-2); flex-wrap: wrap; }
   input { flex: 1 1 160px; min-width: 0; font: inherit; padding: 10px 12px; border: var(--line-weight) solid var(--line);
-    background: var(--paper-card); color: var(--ink); border-radius: var(--radius);
+    background: var(--paper-card); color: var(--ink); border-radius: var(--radius-input);
     transition: border-color var(--dur-fast) var(--ease-standard); }
   input:hover { border-color: var(--ink-tertiary); }
   input:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
   button { font: inherit; font-weight: 600; background: var(--red-brand); color: #fff;
-    border: none; border-radius: var(--radius); padding: 10px 20px; cursor: pointer;
-    transition: background-color var(--dur-fast) var(--ease-standard); }
-  button:hover { background: var(--red-deep); }
+    border: none; border-radius: var(--radius-pill); padding: 10px 24px; min-height: 44px; cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    transition: background-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard),
+      transform var(--dur-ui) var(--ease-standard); }
+  button:hover { background: var(--red-deep); box-shadow: var(--shadow-btn-hover); }
+  button:active { box-shadow: var(--shadow-btn-active); }
   .grid { list-style: none; margin: 0; padding: 0; display: grid;
     grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
   .tile { display: flex; flex-direction: column; gap: var(--space-2); height: 100%;
-    background: var(--paper-card); border: var(--line-weight) solid var(--line);
+    background: var(--paper-card); border: 1px solid var(--line); border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
     padding: var(--space-4); text-decoration: none; color: var(--ink);
-    transition: border-color 120ms ease; }
-  .tile:hover { border-color: var(--ink); }
+    transition: border-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard),
+      transform var(--dur-ui) var(--ease-standard); }
+  @media (prefers-reduced-motion: no-preference) {
+    .tile:hover { border-color: var(--ink-tertiary); box-shadow: var(--shadow-card-hover); transform: translateY(-3px); }
+  }
   .tile:hover .name { color: var(--red-deep); }
   .tile > :global(.cat-icon) { margin-bottom: var(--space-1); }
   .name { font-family: var(--font-heading); font-weight: 600; font-size: 19px;
     line-height: 1.15; text-transform: uppercase; }
-  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--ink-tertiary);
-    margin-top: auto; }
   .visually-hidden { position: absolute; left: -9999px; }
   @media (max-width: 1000px) { .grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 760px) { .grid { grid-template-columns: repeat(2, 1fr); } }

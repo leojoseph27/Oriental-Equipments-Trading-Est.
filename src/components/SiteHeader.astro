@@ -3,7 +3,7 @@
 // In-page anchors are homepage-scoped (/#brands) so they work from every route.
 //
 // Mobile (≤900px) uses two stacked rows: Row 1 = logo + single-line company
-// name, Row 2 = Vision 2030 badge (left) + Menu button (right). Row 2 hides
+// name, Row 2 = Menu button (left) + Vision 2030 badge (right). Row 2 hides
 // on scroll down and returns on scroll up (see the script below). On desktop
 // `.bar-row2` is `display: contents`, so its children behave exactly as
 // direct flex items of `.bar` — the desktop layout is untouched.
@@ -48,24 +48,31 @@ const isActive = (href: string) =>
   .bar-row2 { display: contents; }
   .brand { display: flex; align-items: center; gap: var(--space-3); margin-right: auto;
     text-decoration: none; color: var(--ink); }
-  .brand img { width: 44px; height: 44px; object-fit: contain; }
+  .brand img { width: 44px; height: 44px; object-fit: contain; border-radius: 0; }
   .brand-name { font-family: var(--font-heading); font-weight: 600; font-size: 15px;
     line-height: 1.15; letter-spacing: 0.02em; text-transform: uppercase; }
   .desktop-nav { display: flex; gap: var(--space-5); }
-  .desktop-nav a { color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500;
+  .desktop-nav a { color: var(--ink); text-decoration: none; font-size: 16px; font-weight: 500;
     padding: var(--space-2) 0; border-bottom: 2px solid transparent;
     transition: color var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard); }
   .desktop-nav a:hover { border-bottom-color: var(--red-brand); color: var(--red-deep); }
   .desktop-nav a[aria-current="page"] { border-bottom-color: var(--red-brand); color: var(--red-deep); }
   .cta {
     display: inline-block; background: var(--red-brand); color: #fff; text-decoration: none;
-    font-weight: 600; font-size: 15px; padding: 10px 18px; border-radius: var(--radius);
-    transition: background-color var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
+    font-weight: 600; font-size: 15px; padding: 10px 22px; border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-btn);
+    transition: background-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard),
+      transform var(--dur-ui) var(--ease-standard);
   }
-  .cta:hover { background: var(--red-deep); color: #fff; }
-  .vision-badge { height: 44px; width: auto; object-fit: contain; flex: none; }
-  .menu-btn { display: none; background: none; border: var(--line-weight) solid var(--line);
-    border-radius: var(--radius); padding: 10px 14px; font: inherit; font-weight: 600; color: var(--ink); cursor: pointer; }
+  .cta:hover { background: var(--red-deep); color: #fff; box-shadow: var(--shadow-btn-hover); }
+  .cta:active { box-shadow: var(--shadow-btn-active); }
+  .vision-badge { height: 44px; width: auto; object-fit: contain; flex: none; border-radius: 0; }
+  .menu-btn { display: none; background: var(--paper-card); border: 1px solid var(--line);
+    border-radius: var(--radius-pill); padding: 10px 20px; font: inherit; font-weight: 600; color: var(--ink); cursor: pointer;
+    box-shadow: var(--shadow-btn-light);
+    transition: border-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard),
+      transform var(--dur-ui) var(--ease-standard); }
+  .menu-btn:hover { border-color: var(--ink-tertiary); box-shadow: var(--shadow-btn-hover); }
   .mobile-nav { display: none; }
   @media (max-width: 900px) {
     .desktop-nav, .bar > .cta { display: none; }
@@ -90,6 +97,8 @@ const isActive = (href: string) =>
     }
     .bar > .vision-badge { display: block; height: 34px; margin: 0; }
     .bar > .menu-btn { margin: 0; }
+    /* Menu on the left, badge on the right (visual order only; DOM unchanged). */
+    .bar-row2 > .menu-btn { order: -1; }
     /* Scrolled down: Row 2 slides up and collapses (no empty gap left
        behind); Row 1 stays fixed at the top. */
     .site-header.row2-hidden .bar-row2 { height: 0; opacity: 0; }

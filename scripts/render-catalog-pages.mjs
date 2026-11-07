@@ -1,6 +1,6 @@
 /*
  * Pre-render the catalogue PDF pages to WebP images + thumbnails for the
- * digital catalogue reader, so the browser never downloads the 24 MB source
+ * digital catalogue reader, so the browser never downloads the whole source
  * PDF just to flip pages. The original PDF remains available for download.
  * Run as part of `npm run build` (see package.json).
  */
@@ -29,9 +29,18 @@ for (let i = 0; i < count; i++) {
   const png = pix.asPNG();
   manifest.heights.push(Math.round(PAGE_WIDTH * pix.getHeight() / pix.getWidth()));
   const img = sharp(png);
-  await img.clone().webp({ quality: 78 }).toFile(path.join(OUT_DIR, `page-${String(i + 1).padStart(2, "0")}.webp`));
+  await img.clone().webp({ quality: 87 }).toFile(path.join(OUT_DIR, `page-${String(i + 1).padStart(2, "0")}.webp`));
   await img.clone().resize(THUMB_WIDTH).webp({ quality: 70 }).toFile(path.join(OUT_DIR, `thumb-${String(i + 1).padStart(2, "0")}.webp`));
   if ((i + 1) % 10 === 0 || i === count - 1) console.log(`rendered ${i + 1}/${count}`);
+}
+// remove pages/thumbs from a previous, longer catalogue so stale pages
+// (e.g. old page-30.webp) can never be served
+for (const f of fs.readdirSync(OUT_DIR)) {
+  const m = f.match(/^(?:page|thumb)-(\d+)\.webp$/);
+  if (m && Number(m[1]) > count) {
+    fs.unlinkSync(path.join(OUT_DIR, f));
+    console.log(`removed stale ${f}`);
+  }
 }
 fs.writeFileSync(path.join(OUT_DIR, "manifest.json"), JSON.stringify(manifest));
 const total = fs.readdirSync(OUT_DIR).reduce((a, f) => a + fs.statSync(path.join(OUT_DIR, f)).size, 0);
