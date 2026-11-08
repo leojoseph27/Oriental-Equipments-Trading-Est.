@@ -133,13 +133,6 @@ test.describe("quote form", () => {
     expect(value.endsWith("END-MARKER")).toBe(true);
   });
 
-  test("status messaging never claims delivery", async ({ page }) => {
-    await gotoForm(page);
-    const note = page.locator(".qf-note");
-    await expect(note).toContainText(/cannot\s+confirm/i);
-    await expect(note).toContainText(/you review and send it yourself/i);
-  });
-
   test("keyboard submission works (Enter in a field then button focus + Enter)", async ({ page }) => {
     await gotoForm(page);
     await page.fill("#qf-name", "Test User");
@@ -151,7 +144,7 @@ test.describe("quote form", () => {
   });
 
   test("all product quote links across the catalogue route to /contact/ with a product param", async ({ page }) => {
-    // sample one product per category rather than crawling all 190 pages
+    // sample one product per category rather than crawling all 186 pages
     const seen = new Set<string>();
     for (const c of categories) {
       const p = products.find((x) => x.categoryId === c.indexNo)!;

@@ -9,63 +9,62 @@ import { categories } from "../data/catalog";
 
   <div class="qf-grid">
     <div class="field">
-      <label for="qf-name">Full name <span class="req">required</span></label>
-      <input id="qf-name" name="name" type="text" required maxlength="100" autocomplete="name" />
+      <label for="qf-name">Full name <span class="req" aria-hidden="true">*</span><span class="vh">required</span></label>
+      <input id="qf-name" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Enter your full name" />
       <p class="err" id="qf-name-err" hidden></p>
     </div>
     <div class="field">
-      <label for="qf-company">Company name <span class="opt">optional</span></label>
-      <input id="qf-company" name="company" type="text" maxlength="100" autocomplete="organization" />
+      <label for="qf-company">Company name <span class="opt">Optional</span></label>
+      <input id="qf-company" name="company" type="text" maxlength="100" autocomplete="organization" placeholder="Enter company name" />
       <p class="err" id="qf-company-err" hidden></p>
     </div>
     <div class="field">
-      <label for="qf-email">Email address <span class="req">required</span></label>
-      <input id="qf-email" name="email" type="email" required maxlength="120" autocomplete="email"
+      <label for="qf-email">Email address <span class="req" aria-hidden="true">*</span><span class="vh">required</span></label>
+      <input id="qf-email" name="email" type="email" required maxlength="120" autocomplete="email" placeholder="Enter your email address"
         aria-describedby="qf-email-hint" />
       <p class="hint" id="qf-email-hint">We reply to this address.</p>
       <p class="err" id="qf-email-err" hidden></p>
     </div>
     <div class="field">
-      <label for="qf-phone">Phone number <span class="opt">optional</span></label>
-      <input id="qf-phone" name="phone" type="tel" maxlength="30" autocomplete="tel" />
+      <label for="qf-phone">Phone number <span class="opt">Optional</span></label>
+      <input id="qf-phone" name="phone" type="tel" maxlength="30" autocomplete="tel" placeholder="Enter phone number" />
       <p class="err" id="qf-phone-err" hidden></p>
     </div>
     <div class="field">
-      <label for="qf-category">Product category <span class="opt">optional</span></label>
+      <label for="qf-category">Product category <span class="opt">Optional</span></label>
       <select id="qf-category" name="category">
-        <option value="">— Select a category —</option>
+        <option value="">Select a category</option>
         {categories.map((c) => <option value={c.name}>{c.name}</option>)}
       </select>
       <p class="err" id="qf-category-err" hidden></p>
     </div>
     <div class="field">
-      <label for="qf-product">Product / model of interest <span class="opt">optional</span></label>
-      <input id="qf-product" name="product" type="text" maxlength="150"
+      <label for="qf-product">Product / model of interest <span class="opt">Optional</span></label>
+      <input id="qf-product" name="product" type="text" maxlength="150" placeholder="e.g. MILD STEEL WELDING ELECTRODE"
         aria-describedby="qf-product-hint" />
       <p class="hint" id="qf-product-hint">e.g. “MILD STEEL WELDING ELECTRODE, AWS E7018”. Links in the catalogue fill this automatically.</p>
       <p class="err" id="qf-product-err" hidden></p>
     </div>
-    <div class="field">
-      <label for="qf-quantity">Quantity / requested amount <span class="opt">optional</span></label>
-      <input id="qf-quantity" name="quantity" type="text" maxlength="60" />
+    <div class="field wide">
+      <label for="qf-quantity">Quantity / requested amount <span class="opt">Optional</span></label>
+      <input id="qf-quantity" name="quantity" type="text" maxlength="60" placeholder="Enter quantity or amount" />
       <p class="err" id="qf-quantity-err" hidden></p>
     </div>
     <div class="field wide">
-      <label for="qf-message">Enquiry message <span class="req">required</span></label>
-      <textarea id="qf-message" name="message" required maxlength="2000" rows="6"
+      <label for="qf-message">Enquiry message <span class="req" aria-hidden="true">*</span><span class="vh">required</span></label>
+      <textarea id="qf-message" name="message" required maxlength="2000" rows="6" placeholder="Write your enquiry, requirements or any technical details…"
         aria-describedby="qf-message-hint"></textarea>
       <p class="hint" id="qf-message-hint">Include sizes, grades or any technical requirements (max 2000 characters).</p>
       <p class="err" id="qf-message-err" hidden></p>
     </div>
   </div>
 
-  <button type="submit" class="qf-submit">Open Email Draft</button>
-  <p class="qf-note">
-    This form opens a pre-filled email in your own email application, addressed to
-    orientaltradest@gmail.com — you review and send it yourself. The website cannot
-    confirm on its own that an email was sent or received. If you prefer, email us
-    directly at <a href="mailto:orientaltradest@gmail.com">orientaltradest@gmail.com</a>.
-  </p>
+  <div class="qf-actions">
+  <button type="submit" class="qf-submit">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+    Open Email Draft
+  </button>
+  </div>
   <div id="qf-status" class="qf-status" role="status" aria-live="polite" hidden></div>
   <div id="qf-copywrap" hidden>
     <p class="hint">Your enquiry text is long for an automatic email draft. Please copy it into a
@@ -74,48 +73,52 @@ import { categories } from "../data/catalog";
   </div>
 </form>
 <style>
-  .qf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4) var(--space-5); }
-  .field { display: flex; flex-direction: column; gap: var(--space-1); }
+  .qf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; }
+  .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
   .field.wide { grid-column: 1 / -1; }
-  label { font-weight: 600; font-size: 15px; }
-  .req { font-family: var(--font-mono); font-size: 11px; color: var(--red-brand); margin-left: var(--space-1); }
-  .opt { font-family: var(--font-mono); font-size: 11px; color: var(--ink-tertiary); margin-left: var(--space-1); }
-  input, select, textarea { font: inherit; padding: 10px 12px; border: var(--line-weight) solid var(--line);
-    background: var(--paper-card); color: var(--ink); border-radius: var(--radius-input); width: 100%;
-    transition: border-color var(--dur-fast) var(--ease-standard); }
+  label { font-weight: 600; font-size: 15px; color: var(--ink); display: flex; align-items: baseline; gap: 6px; }
+  .req { color: var(--red-brand); font-weight: 700; }
+  .opt { font-size: 12px; font-weight: 500; color: var(--ink-tertiary); }
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  input, select, textarea { font: inherit; font-size: 16px; padding: 0 14px; height: 48px; border: 1px solid var(--line);
+    background: #fff; color: var(--ink); border-radius: 10px; width: 100%;
+    transition: border-color var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard); }
+  textarea { height: auto; min-height: 150px; padding: 12px 14px; resize: vertical; line-height: 1.5; }
+  select { appearance: none; padding-right: 40px; cursor: pointer;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23231F20' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center; }
+  ::placeholder { color: #9a9592; }
   input:hover:not([aria-invalid="true"]), select:hover, textarea:hover:not([aria-invalid="true"]) { border-color: var(--ink-tertiary); }
   input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="true"] {
-    border-color: var(--red-brand); border-width: 2px; }
-  input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
-  .hint { font-family: var(--font-mono); font-size: 12px; color: var(--ink-tertiary); margin: 0; }
+    border-color: var(--red-brand); box-shadow: 0 0 0 1px var(--red-brand); }
+  input:focus-visible, select:focus-visible, textarea:focus-visible { outline: none; border-color: var(--green-brand);
+    box-shadow: 0 0 0 3px rgba(21, 122, 68, 0.18); }
+  .hint { font-size: 12.5px; color: var(--ink-tertiary); margin: 0; line-height: 1.45; }
   .err { font-size: 14px; color: var(--red-deep); font-weight: 500; margin: 0; }
   .err::before { content: "⚠ "; }
   .qf-summary { border: 2px solid var(--red-brand); background: #fff; padding: var(--space-4);
-    border-radius: var(--radius-panel); margin-bottom: var(--space-5); }
+    border-radius: 10px; margin-bottom: var(--space-5); }
   .qf-summary p { margin: 0 0 var(--space-2); font-weight: 600; }
   .qf-summary ul { margin: 0; padding-left: var(--space-5); }
-  .qf-submit { font: inherit; font-weight: 600; background: var(--red-brand); color: #fff;
-    border: none; border-radius: var(--radius-pill); padding: 12px 28px; min-height: 44px; cursor: pointer; margin-top: var(--space-5);
-    box-shadow: var(--shadow-btn);
-    transition: background-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard),
-      transform var(--dur-ui) var(--ease-standard); }
+  .qf-actions { display: flex; align-items: center; gap: 24px; margin-top: 26px; }
+  .qf-submit { flex: none; display: inline-flex; align-items: center; gap: 10px; font: inherit; font-weight: 600; font-size: 16px;
+    background: var(--red-brand); color: #fff; border: none; border-radius: var(--radius-pill);
+    padding: 0 30px; min-height: 52px; cursor: pointer; box-shadow: var(--shadow-btn);
+    transition: background-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard); }
   .qf-submit:hover { background: var(--red-deep); box-shadow: var(--shadow-btn-hover); }
   .qf-submit:active { box-shadow: var(--shadow-btn-active); }
   .qf-submit:focus-visible, a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-  .qf-note { font-family: var(--font-mono); font-size: 12px; color: var(--ink-secondary);
-    margin-top: var(--space-4); max-width: 70ch; }
   @media (prefers-reduced-motion: no-preference) {
     .qf-status:not([hidden]), #qf-copywrap:not([hidden]) { animation: qf-in var(--dur-med) var(--ease-out); }
   }
-  @keyframes qf-in {
-    from { opacity: 0; transform: translateY(var(--dist-1)); }
-    to { opacity: 1; transform: none; }
+  @keyframes qf-in { from { opacity: 0; transform: translateY(var(--dist-1)); } to { opacity: 1; transform: none; } }
+  .qf-status { border: 1px solid var(--green-brand); background: #fff; border-left: 4px solid var(--green-brand);
+    border-radius: 8px; padding: var(--space-4); margin-top: var(--space-4); }
+  #qf-copywrap { margin-top: var(--space-4); }
+  #qf-copy { height: auto; padding: 12px; font-family: var(--font-mono); font-size: 13px; }
+  @media (max-width: 760px) {
+    .qf-grid { grid-template-columns: 1fr; }
+    .qf-actions { flex-direction: column; align-items: stretch; gap: 14px; }
+    .qf-submit { justify-content: center; }
   }
-  .qf-status { border: 1px solid var(--green-brand); background: #fff;
-    border-left: 4px solid var(--green-brand); border-radius: var(--radius-sm); padding: var(--space-4); margin-top: var(--space-4);
-    max-width: 70ch; }
-  #qf-copywrap { margin-top: var(--space-4); max-width: 70ch; }
-  #qf-copy { width: 100%; font-family: var(--font-mono); font-size: 13px; }
-  @media (max-width: 700px) { .qf-grid { grid-template-columns: 1fr; } }
 </style>
 <script src="../scripts/quote.ts"></script>

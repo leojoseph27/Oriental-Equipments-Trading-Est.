@@ -1,5 +1,6 @@
 // Customer-facing product descriptions, sourced verbatim from
-// "product description.txt" (18 slides). Keyed by product id from catalog.ts.
+// "product description.txt" (slides 1–18) and
+// "product description 2.txt" (slides 19–23). Keyed by product id from catalog.ts.
 // Descriptions are display-only; do not remove this file's independence from
 // the generated catalog — descriptions never go into catalog.ts records.
 
@@ -203,14 +204,6 @@ export const productDescriptions: Record<string, string> = {
     "Gouging torch K3000 is a heavy-duty air carbon arc torch rated up to 800A, designed for efficient metal removal, weld preparation, and defect removal. It provides reliable performance and precise control for industrial gouging applications.",
   "gouging-rod":
     "Gouging Rods are designed for air carbon arc gouging to remove excess metal, weld defects, and unwanted material. Copper-coated for improved conductivity, they deliver stable arc performance and efficient metal removal.",
-  "gouging-rod-2":
-    "Gouging Rods are designed for air carbon arc gouging to remove excess metal, weld defects, and unwanted material. Copper-coated for improved conductivity, they deliver stable arc performance and efficient metal removal.",
-  "gouging-rod-3":
-    "Gouging Rods are designed for air carbon arc gouging to remove excess metal, weld defects, and unwanted material. Copper-coated for improved conductivity, they deliver stable arc performance and efficient metal removal.",
-  "gouging-rod-4":
-    "Gouging Rods are designed for air carbon arc gouging to remove excess metal, weld defects, and unwanted material. Copper-coated for improved conductivity, they deliver stable arc performance and efficient metal removal.",
-  "gouging-rod-5":
-    "Gouging Rods are designed for air carbon arc gouging to remove excess metal, weld defects, and unwanted material. Copper-coated for improved conductivity, they deliver stable arc performance and efficient metal removal.",
 
   // Slide 12 — gas cylinders & trolleys (cat 9)
   "oxygen-cylinder":
@@ -337,4 +330,85 @@ export const productDescriptions: Record<string, string> = {
     "ESAB HandyArc is a compact and portable inverter welding machine designed for smooth arc performance and easy operation. Ideal for maintenance, light fabrication, and general-purpose MMA welding applications.",
   "200-acdc-edon":
     "200A AC/DC Welding Machine provide versatile welding performance with both alternating and direct current output. Suitable for TIG and MMA welding applications, they deliver stable arc performance and reliable results for fabrication and maintenance work.",
+  // Slide 19 — abrasives (cat 16)
+  "cutting-disc":
+    "Cutting Discs are designed for fast and precise cutting of metal, stainless steel, and other materials. Featuring high cutting efficiency and durability, they deliver clean cuts and reliable performance in fabrication and industrial applications.",
+  "grinding-disc":
+    "Grinding Discs are designed for efficient metal removal, weld cleaning, and surface preparation. Offering high durability and consistent grinding performance, they are ideal for fabrication, finishing, and industrial applications.",
+  "flap-disc":
+    "Flap Discs are designed for grinding, blending, and finishing metal surfaces with consistent results. Featuring overlapping abrasive flaps, they provide smooth surface finishing and efficient material removal in fabrication and industrial applications.",
+  "sandpaper-disc":
+    "Sandpaper Discs are designed for sanding, smoothing, and surface preparation on metal, wood, and other materials. Available in various grit sizes, they provide consistent abrasion and smooth finishing for industrial and workshop applications.",
+  "sand-cloth-roll":
+    "Sand Cloth Rolls are designed for sanding, cleaning, and finishing metal surfaces. Featuring a flexible abrasive backing, they provide consistent material removal and smooth surface preparation for fabrication, maintenance, and industrial applications.",
+  "diamond-cutting-disc":
+    "Diamond Cutting Discs are designed for fast, precise cutting of hard materials such as concrete, tiles, stone, and masonry. Featuring a durable diamond-embedded cutting edge, they provide efficient cutting performance and long service life in construction and industrial applications.",
+  "mounting-stone":
+    "Mounting Stones are used for precision grinding, deburring, and finishing metal surfaces. Designed for use with compatible rotary tools, they provide controlled material removal in fabrication, toolroom, and maintenance applications.",
+  "sanding-belt":
+    "Sanding Belts are designed for sanding, grinding, and finishing metal and other surfaces. Their durable abrasive construction provides consistent material removal and a smooth finish for fabrication, maintenance, and industrial applications.",
+  // Slide 20 — industrial chemicals (cat 17)
+  "zinc-spray":
+    "Zinc Spray provides a protective coating that helps prevent rust and corrosion on metal surfaces. Ideal for repairing galvanised coatings and protecting welded joints, cut edges, and fabricated metal components in industrial applications.",
+  "pickling-gel":
+    "Pickling Gel is used to remove weld discoloration, heat tint, and surface oxides from stainless steel after welding. Its gel consistency allows controlled application on weld seams and surrounding areas, helping restore a clean surface finish.",
+  "passivator":
+    "Passivator is used to promote the formation of a protective passive layer on stainless steel surfaces after cleaning or pickling. It helps improve corrosion resistance and maintain the clean finish of stainless steel components in industrial applications.",
+  "brittle-wash":
+    "Brittle Wash is used as a protective coating to help prevent molten metal spatter from sticking to welding surfaces and equipment. It helps keep work areas, welding fixtures, and nearby components cleaner, reducing cleaning time and maintenance effort.",
+  "antispatter-spray":
+    "Anti-Spatter Spray helps prevent welding spatter from adhering to workpieces, welding nozzles, and surrounding surfaces. It makes post-weld cleaning easier, reduces rework, and supports cleaner, more efficient welding operations.",
+  "antispatter-gel":
+    "Anti-Spatter Gel helps prevent molten welding spatter from sticking to welding nozzles, tips, and surrounding equipment. Its gel-based formula provides targeted application, making cleaning easier and reducing maintenance during welding operations.",
+  "hypertherm-coolant":
+    "Hypertherm Coolant is specially formulated for compatible plasma cutting systems to help regulate operating temperature and protect internal components. It supports efficient system performance and helps maintain reliable operation during plasma cutting applications.",
+  "welding-scanner":
+    "Welding Scanners are used to inspect and evaluate weld quality by detecting surface defects and irregularities. They support quality control and inspection processes, helping ensure welds meet required standards in fabrication and industrial applications.",
+  // Slide 21 — safety (cat 18)
+  "face-shield-visor-clear":
+    "Face Shield Visor Clear provide a transparent protective barrier against flying particles, dust, and splashes during industrial work. Designed for use with compatible face shields, they offer clear visibility while helping protect the face during grinding, cutting, and general workshop operations.",
+  "face-shield-visor-bracket":
+    "Face Shield Visor Brackets are designed to securely attach and support visors on compatible safety helmets or headgear. They provide stable visor positioning and allow convenient lifting and lowering during grinding, cutting, and other industrial applications.",
+  "face-shield-visor-head-gear":
+    "Face shield Visor with Headgear provides facial protection against flying particles, dust, and splashes during industrial operations. Featuring an adjustable headgear and clear visor, it offers comfortable wear, clear visibility, and reliable protection for grinding, cutting, and workshop applications.",
+  "safety-goggles-dark-clear":
+    "Safety Goggles provide eye protection against dust, flying particles, and splashes during industrial and workshop operations. Designed for a secure and comfortable fit, they offer clear visibility and help protect the eyes in demanding work environments.",
+  "safety-glass-with-anti-fog-lens":
+    "Safety Glasses with Anti-Fog Lenses protect the eyes from dust, flying particles, and workplace hazards while helping maintain clear vision. The anti-fog coating reduces lens condensation, making them suitable for industrial, workshop, and maintenance applications.",
+  "welding-goggles":
+    "Welding Goggles provide eye protection from harmful welding radiation, sparks, and flying particles during welding and gas-cutting operations. Designed with suitable filter lenses, they help protect the eyes while ensuring clear visibility for welding tasks.",
+  "face-shield-visor-black":
+    "Face Shield Visor Black provide facial protection against flying particles, dust, and splashes during industrial operations. Designed for use with compatible face shield brackets and headgear, they offer reliable coverage for grinding, cutting, and workshop applications.",
+  "ear-plug":
+    "Ear Plugs help reduce exposure to harmful workplace noise during industrial and workshop operations. Designed for a comfortable fit, they provide hearing protection in environments with high noise levels, such as fabrication, grinding, and machinery operations.",
+  "flip-goggles":
+    "Flip Goggles provide eye protection against sparks, dust, and flying particles during welding, grinding, and cutting operations. Their hinged lens design allows convenient lifting and lowering, making them practical for industrial and workshop applications.",
+  // Slide 22 — hand protections (cat 19)
+  "cotton-gloves":
+    "Cotton Gloves provide basic hand protection and comfort during general handling, assembly, and light industrial tasks. Made from breathable cotton fabric, they help reduce dirt and minor abrasions while allowing flexibility and ease of movement.",
+  "crinkled-gloves":
+    "Crinkled Gloves feature a textured surface that provides improved grip when handling tools, materials, and equipment. Designed for comfort and flexibility, they are suitable for general handling, assembly, and light industrial applications.",
+  "rubber-gloves":
+    "Rubber Gloves provide a protective barrier against water, dirt, oils, and selected chemicals, depending on the material and glove specification. Designed for a secure and flexible fit, they are suitable for cleaning, maintenance, and various industrial handling tasks.",
+  "welding-gloves":
+    "Welding Gloves are designed to protect hands from heat, sparks, and molten metal spatter during welding operations. Made with heat-resistant materials, they provide durability, comfort, and a secure grip for demanding welding and fabrication applications.",
+  "blue-dotted-gloves":
+    "Blue Dotted Gloves feature a textured PVC dot coating on the palm to provide improved grip when handling tools, materials, and equipment. Designed for comfort and flexibility, they are suitable for general handling, assembly, and light industrial applications.",
+  "white-dotted-gloves":
+    "White Dotted Gloves feature a textured PVC dot coating on the palm to provide improved grip when handling tools, materials, and equipment. Their lightweight and breathable fabric offers comfort and flexibility for general handling, assembly, and light industrial applications.",
+  "tig-gloves-short":
+    "TIG Gloves Short are designed to protect hands from heat, sparks, and minor spatter during TIG welding operations. Their lightweight and flexible construction provides enhanced finger control and a comfortable grip for precise welding tasks.",
+  "tig-gloves-long":
+    "TIG Gloves Long provide extended protection for the hands and wrists against heat, sparks, and minor welding spatter. Their flexible construction allows precise finger movement and a comfortable grip during TIG welding operations.",
+  // Slide 23 — protective clothing (cat 20)
+  "welding-jacket-grey":
+    "Welding Jacket Grey are designed to protect the upper body from sparks, heat, and light welding spatter during welding and fabrication operations. Made from durable protective material, they provide comfortable coverage and support safer working conditions in industrial environments.",
+  "welding-jacket-yellow":
+    "Welding Jacket Yellow are designed to protect the upper body from sparks, heat, and light welding spatter during welding and fabrication operations. Made from durable protective material, they provide comfortable coverage and help support safer working conditions in industrial environments.",
+  "welding-apron":
+    "Welding Apron provides front-body protection against sparks, heat, and molten metal spatter during welding and fabrication operations. Made from durable, heat-resistant materials, they offer practical coverage and help protect clothing and the wearer in industrial environments.",
+  "hand-sleeve":
+    "Hand Sleeve provide extended protection for the forearms against sparks, heat, and light welding spatter. Made from durable protective materials, they offer comfortable coverage and help protect the arms during welding, fabrication, and other industrial operations.",
+  "leg-sleeve":
+    "Leg Sleeve provide protection for the lower legs against sparks, heat, and light welding spatter during welding and fabrication operations. Made from durable protective materials, they offer comfortable coverage and help protect clothing and skin in industrial environments.",
 };

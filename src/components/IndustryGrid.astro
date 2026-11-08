@@ -1,6 +1,12 @@
 ---
 // IndustryGrid — the six industries from PDF file p.3 with their exact captions.
 import { industries } from "../data/catalog";
+// The source crops carry a thin white frame from the PDF page; scale each
+// photo just enough inside its clipped frame to push that border out of view.
+const fit: Record<string, { scale: number; pos?: string }> = {
+  "/images/industries/03-00.webp": { scale: 1.065, pos: "40% 50%" },
+};
+const DEFAULT_FIT = { scale: 1.025 };
 ---
 <section class="section container" id="industries" aria-labelledby="industries-heading" data-reveal>
   <h2 id="industries-heading">Industries We Serve</h2>
@@ -11,7 +17,10 @@ import { industries } from "../data/catalog";
   <ul class="grid" data-reveal-group>
     {industries.map((ind) => (
       <li>
-        <img src={ind.image} alt={`${ind.name} — industry photo from the company catalogue`} loading="lazy" width="460" height="460" />
+        <div class="frame">
+          <img src={ind.image} alt={`${ind.name} — industry photo from the company catalogue`} loading="lazy" width="460" height="460"
+            style={`--fit-scale: ${(fit[ind.image] ?? DEFAULT_FIT).scale}; object-position: ${fit[ind.image]?.pos ?? "50% 50%"}`} />
+        </div>
         <span class="label">{ind.name}</span>
       </li>
     ))}
@@ -23,12 +32,14 @@ import { industries } from "../data/catalog";
   .grid { list-style: none; margin: 0; padding: 0; display: grid;
     grid-template-columns: repeat(3, 1fr); gap: var(--space-5) var(--space-4); }
   .grid li { transition: transform var(--dur-ui) var(--ease-standard); }
-  .grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+  .frame { aspect-ratio: 1 / 1; overflow: hidden; background: var(--paper);
     border: 1px solid var(--line); border-radius: var(--radius-img); box-shadow: var(--shadow-card);
     transition: border-color var(--dur-ui) var(--ease-standard), box-shadow var(--dur-ui) var(--ease-standard); }
+  .grid img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 0;
+    transform: scale(var(--fit-scale, 1)); }
   @media (prefers-reduced-motion: no-preference) {
     .grid li:hover { transform: translateY(-3px); }
-    .grid li:hover img { border-color: var(--ink-tertiary); box-shadow: var(--shadow-card-hover); }
+    .grid li:hover .frame { border-color: var(--ink-tertiary); box-shadow: var(--shadow-card-hover); }
   }
   .label { display: block; font-family: var(--font-heading); font-weight: 600;
     font-size: 16px; text-transform: uppercase; text-align: center; padding-top: var(--space-3); }

@@ -30,7 +30,8 @@ import { brands } from "../data/catalog";
   @media (prefers-reduced-motion: no-preference) {
     .tile:hover { border-color: var(--ink-tertiary); box-shadow: var(--shadow-card-hover); transform: translateY(-2px); }
   }
-  .tile img { width: 100%; height: auto; max-height: 96px; object-fit: contain; border-radius: 0; }
+  .tile img { width: 100%; height: 96px; object-fit: contain; object-position: center; border-radius: 0; }
+  @media (max-width: 500px) { .tile img { height: 80px; } }
   .label { font-family: var(--font-mono); font-size: 11px; color: var(--ink-tertiary);
     text-align: center; }
   @media (max-width: 1000px) { .grid { grid-template-columns: repeat(4, 1fr); } }

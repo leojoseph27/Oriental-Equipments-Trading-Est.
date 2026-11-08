@@ -1,0 +1,10 @@
+import { products, categories } from "./src/data/catalog.ts";
+import { productDescriptions as d } from "./src/data/product-descriptions.ts";
+const cat = (id:number)=>categories.find(c=>c.indexNo===id)!.name;
+const code = (p:any)=>p.awsNo||p.model||"";
+const groups = (key:(p:any)=>string)=>{const m=new Map<string,any[]>();for(const p of products){const k=key(p);(m.get(k)??m.set(k,[]).get(k)!).push(p);}return [...m.values()].filter(g=>g.length>1);};
+const show=(t:string,gs:any[][])=>{console.log(`\n== ${t}: ${gs.length} group(s)`);for(const g of gs)console.log("  -",g.map(p=>`${p.id} [${cat(p.categoryId)}] "${p.name}" code="${code(p)}"`).join("\n    "));};
+show("Same name + same description + same code (exact duplicates)", groups(p=>[p.name,d[p.id]??"",code(p)].join("|")));
+show("Same name + same code", groups(p=>p.name+"|"+code(p)));
+show("Same description text", groups(p=>d[p.id]??"__none__"+p.id));
+console.log("\ntotal products:",products.length,"| ids unique:",new Set(products.map(p=>p.id)).size===products.length);

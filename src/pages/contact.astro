@@ -16,48 +16,121 @@ import QuoteForm from "../components/QuoteForm.astro";
     <p class="intro">
       Enquire about welding electrodes, wires, torches, gas equipment, machines,
       abrasives, chemicals or safety gear. Send the form below, or reach us directly
-      by phone or email. You can also browse the
+      by phone or email. You can also browse the{" "}
       <a href="/products/">product catalogue</a> and use the enquiry link on any item.
     </p>
 
     <div class="layout">
-      <div class="info" data-reveal>
-        <h2>Company Details</h2>
+      <div class="side">
+      <aside class="info panel" data-reveal aria-labelledby="details-heading">
+        <h2 id="details-heading">
+          <svg class="h-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+          Company Details
+        </h2>
         <p class="name">Oriental Equipments Trading Est.</p>
-        <h3>Address</h3>
-        <p>
-          Abu Obaidah Ibn Al Harith, Al Amamrah,<br />
-          Dammam, Eastern Province,<br />
-          Kingdom of Saudi Arabia
-        </p>
-        <h3>Phone</h3>
-        <p><a href="tel:+966580208504">+966-58-020-8504</a><br />
-           <a href="tel:+966594345166">+966-59-434-5166</a></p>
-        <h3>Email</h3>
-        <p><a href="mailto:orientaltradest@gmail.com">orientaltradest@gmail.com</a></p>
-        <h3>Product catalogue</h3>
-        <p>Browse all <a href="/products/">20 product categories</a>, or{" "}
-        <a href="/search">search the catalogue</a> by name, AWS number or model.</p>
+        <div class="list">
+          <div class="row">
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div><p class="lbl">Address</p><p class="val">
+              Abu Obaidah Ibn Al Harith, Al Amamrah,<br />
+              Dammam, Eastern Province,<br />
+              Kingdom of Saudi Arabia
+            </p></div>
+          </div>
+          <div class="row">
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <div><p class="lbl">Phone</p><p class="val">
+              <a href="tel:+966580208504">+966-58-020-8504</a><br />
+              <a href="tel:+966594345166">+966-59-434-5166</a>
+            </p></div>
+          </div>
+          <div class="row">
+            <span class="ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </span>
+            <div><p class="lbl">Email</p><p class="val"><a href="mailto:orientaltradest@gmail.com">orientaltradest@gmail.com</a></p></div>
+          </div>
+        </div>
+        <a class="cat-btn" href="/products/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+          Open Product Catalogue
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+      </aside>
+      <section class="map" aria-labelledby="map-heading" data-reveal>
+        <h2 id="map-heading">
+          <svg class="h-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          Find Us
+        </h2>
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572.3511967224495!2d50.10682607520745!3d26.444406176929625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49fb432d0f46e3%3A0xfc4888d4ac19efcf!2sOriental%20Equipments%20Trading%20Est.!5e0!3m2!1sen!2skw!4v1794170616298!5m2!1sen!2skw"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Map showing the location of Oriental Equipments Trading Est. in Dammam"></iframe>
+        </div>
+      </section>
       </div>
-      <div class="form-col" data-reveal>
-        <h2>Request a Quotation</h2>
+      <section class="form-col card" data-reveal aria-labelledby="quote-heading">
+        <h2 id="quote-heading">
+          <svg class="h-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+          Request a Quotation
+        </h2>
         <QuoteForm />
-      </div>
+      </section>
     </div>
   </main>
   <SiteFooter />
 </BaseLayout>
 <style>
   h1 { color: var(--red-deep); text-transform: uppercase; }
-  .intro { color: var(--ink-secondary); max-width: 72ch; }
-  .layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--space-8); margin-top: var(--space-6); }
-  h2 { color: var(--red-deep); text-transform: uppercase; font-size: 22px; margin-bottom: var(--space-4); }
-  .name { font-family: var(--font-heading); font-weight: 600; font-size: 20px;
-    text-transform: uppercase; margin-bottom: var(--space-4); }
-  h3 { font-family: var(--font-mono); font-size: 13px; font-weight: 500; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--green-brand); margin: var(--space-4) 0 var(--space-1); }
-  .info p { margin: 0 0 var(--space-2); font-size: 16px; }
-  .info a { color: var(--ink); }
-  .info a:hover { color: var(--red-brand); }
-  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; gap: var(--space-6); } }
+  .intro { color: var(--ink-secondary); max-width: 72ch; font-size: 17px; line-height: 1.65; }
+  .intro a { color: var(--ink); font-weight: 500; text-decoration: underline;
+    text-decoration-color: var(--green-brand); text-underline-offset: 3px; }
+  .intro a:hover { color: var(--red-brand); }
+  .layout { display: grid; grid-template-columns: 2fr 3fr; gap: var(--space-6); margin-top: var(--space-6);
+    align-items: stretch; }
+  .side { display: flex; flex-direction: column; gap: var(--space-6); min-width: 0; }
+  .panel { background: #fbf0ef; border: 1px solid #eccfcb; border-radius: 16px; padding: 30px 28px; }
+  .card { background: var(--paper-card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 30px 30px 28px; box-shadow: var(--shadow-card); }
+  h2 { display: flex; align-items: center; gap: 10px; color: var(--red-deep); text-transform: uppercase;
+    font-size: 22px; margin: 0 0 var(--space-5); }
+  .h-ic { width: 22px; height: 22px; flex: none; color: var(--red-brand); }
+  .info .name { font-family: var(--font-heading); font-weight: 600; font-size: 19px; text-transform: uppercase;
+    line-height: 1.3; margin: 0 0 var(--space-5); }
+  .info .list { margin: 0; display: flex; flex-direction: column; gap: 22px; }
+  .info .row { display: flex; gap: 14px; align-items: flex-start; }
+  .info .ic { flex: none; width: 38px; height: 38px; border-radius: 10px; background: #fff; border: 1px solid #eccfcb;
+    display: grid; place-items: center; color: var(--red-brand); }
+  .info .ic svg { width: 18px; height: 18px; }
+  .info .lbl { font-family: var(--font-mono); font-size: 12px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--green-brand); margin: 0 0 3px; }
+  .info .val { margin: 0; font-size: 16px; line-height: 1.55; overflow-wrap: anywhere; }
+  .info .val a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px;
+    text-decoration-color: transparent;
+    transition: color var(--dur-fast) var(--ease-standard), text-decoration-color var(--dur-fast) var(--ease-standard); }
+  .info .val a:hover { color: var(--red-brand); text-decoration-color: currentColor; }
+  .cat-btn { margin-top: 26px; display: flex; align-items: center; gap: 10px;
+    min-height: 50px; padding: 0 22px; border: 2px solid var(--red-brand); border-radius: 999px;
+    font-weight: 600; font-size: 15.5px; color: var(--red-brand); text-decoration: none;
+    transition: background-color var(--dur-ui) var(--ease-standard), color var(--dur-ui) var(--ease-standard); }
+  .cat-btn svg:first-child { width: 19px; height: 19px; flex: none; }
+  .cat-btn .chev { width: 17px; height: 17px; margin-left: auto; flex: none; }
+  .cat-btn:hover { background: var(--red-brand); color: #fff; }
+  .cat-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .map { margin: 0; flex: 1; display: flex; flex-direction: column; }
+  .map h2 { margin-bottom: var(--space-4); }
+  .map-frame { border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+    box-shadow: var(--shadow-card); flex: 1; min-height: 300px; background: var(--paper); }
+  .map-frame iframe { display: block; width: 100%; height: 100%; }
+  @media (max-width: 1100px) { .layout { grid-template-columns: 1fr; } .map-frame { aspect-ratio: 16 / 9; } }
+  @media (max-width: 700px) {
+    .map-frame { aspect-ratio: 4 / 5; }
+    .panel, .card { padding: 24px 20px; }
+  }
 </style>

@@ -4,8 +4,8 @@ test.beforeEach(async ({ page }) => {
   await disableIntro(page);
 });
 test.describe("catalogue & data integrity", () => {
-  test("canonical counts: 190 products, 20 categories, 30 brands, 6 industries", () => {
-    expect(products).toHaveLength(190);
+  test("canonical counts: 186 products, 20 categories, 30 brands, 6 industries", () => {
+    expect(products).toHaveLength(186);
     expect(categories).toHaveLength(20);
     expect(brands).toHaveLength(30);
     expect(industries).toHaveLength(6);
