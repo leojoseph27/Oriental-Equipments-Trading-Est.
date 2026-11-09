@@ -97,7 +97,7 @@ export const productDescriptions: Record<string, string> = {
   "tig-welding-wire-er4043-2":
     "ER4043 is an aluminium-silicon TIG filler wire offering excellent fluidity, good crack resistance, and smooth weld appearance. Suitable for welding and repairing aluminium alloys in automotive, fabrication, and industrial applications.",
   "tig-welding-wire-er5356":
-    "ER5356 is an aluminium-magnesium TIG filler wire offering high tensile strength, excellent corrosion resistance, and good weldability. Suitable for welding and aluminium alloys in marine, automotive, and industrial applications.",
+    "ER5356 is an aluminium-magnesium TIG filler wire containing approximately 5% magnesium. It offers good strength, excellent corrosion resistance, and good weldability, making it suitable for welding 5XXX-series aluminium alloys and selected 6XXX-series alloys. Common applications include marine fabrication, shipbuilding, automotive, railway, and general aluminium fabrication.",
 
   // Slide 6 — electrode holders, earth clamps, connectors (cat 4)
   "welding-electrode-holder-american-type":
@@ -411,4 +411,6 @@ export const productDescriptions: Record<string, string> = {
     "Hand Sleeve provide extended protection for the forearms against sparks, heat, and light welding spatter. Made from durable protective materials, they offer comfortable coverage and help protect the arms during welding, fabrication, and other industrial operations.",
   "leg-sleeve":
     "Leg Sleeve provide protection for the lower legs against sparks, heat, and light welding spatter during welding and fabrication operations. Made from durable protective materials, they offer comfortable coverage and help protect clothing and skin in industrial environments.",
+  "solid-wire-er5356":
+    "ER5356 is an aluminium-magnesium TIG filler wire containing approximately 5% magnesium. It offers good strength, excellent corrosion resistance, and good weldability, making it suitable for welding 5XXX-series aluminium alloys and selected 6XXX-series alloys. Common applications include marine fabrication, shipbuilding, automotive, railway, and general aluminium fabrication.",
 };

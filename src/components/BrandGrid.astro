@@ -12,7 +12,6 @@ import { brands } from "../data/catalog";
     {brands.map((b) => (
       <li class="tile">
         <img src={b.image} alt={`${b.name} logo`} loading="lazy" width="220" height="146" />
-        <span class="label">{b.name}</span>
       </li>
     ))}
   </ul>
@@ -32,8 +31,6 @@ import { brands } from "../data/catalog";
   }
   .tile img { width: 100%; height: 96px; object-fit: contain; object-position: center; border-radius: 0; }
   @media (max-width: 500px) { .tile img { height: 80px; } }
-  .label { font-family: var(--font-mono); font-size: 11px; color: var(--ink-tertiary);
-    text-align: center; }
   @media (max-width: 1000px) { .grid { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 760px) { .grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 500px) { .grid { grid-template-columns: repeat(2, 1fr); } }
