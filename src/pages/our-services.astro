@@ -1,0 +1,423 @@
+---
+// our-services.astro — "Our Services" page with three client-side tabs
+// (Retail / Delivery / Wholesale). All content comes verbatim from the
+// approved Our Services.txt; tab content is rendered server-side and toggled
+// locally so switching is instant with no network or navigation.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+<BaseLayout
+  title="Our Services — Retail, Delivery & Wholesale Supply — Oriental Equipments Trading Est."
+  description="Retail welding supply for individual customers and small workshops, product availability and delivery enquiries, and wholesale supply for large-scale projects — Oriental Equipments Trading Est., Dammam, Saudi Arabia."
+>
+  <SiteHeader />
+  <main id="main" tabindex="-1">
+    <section class="sv-hero">
+      <img
+        src="/images/hero/hero-tig-gear.webp"
+        srcset="/images/hero/hero-tig-gear-m.webp 800w, /images/hero/hero-tig-gear.webp 1600w"
+        sizes="100vw"
+        width="1600" height="500"
+        alt="" aria-hidden="true"
+        fetchpriority="high" decoding="async"
+      />
+      <div class="sv-hero-overlay" aria-hidden="true"></div>
+      <div class="sv-hero-accent" aria-hidden="true"></div>
+      <div class="container sv-hero-inner">
+        <nav class="sv-crumbs" aria-label="Breadcrumb" data-reveal>
+          <a href="/">Home</a><span aria-hidden="true"> / </span><span aria-current="page">Our Services</span>
+        </nav>
+        <h1 data-reveal style="--reveal-i:1">Our <em>Services</em></h1>
+        <p class="sv-hero-sub" data-reveal style="--reveal-i:2">Trust Oriental for Reliable Welding Solutions.</p>
+      </div>
+    </section>
+
+    <div class="container section sv-main">
+      <!-- Tabs -->
+      <div class="sv-tabs" role="tablist" aria-label="Our services" data-reveal>
+        <button type="button" class="sv-tab active" id="sv-tab-retail" role="tab" aria-selected="true" aria-controls="sv-panel-retail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg>
+          Retail Customers
+        </button>
+        <button type="button" class="sv-tab" id="sv-tab-delivery" role="tab" aria-selected="false" aria-controls="sv-panel-delivery" tabindex="-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18h-5"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35a1 1 0 0 0-.78-.38h-4V18"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+          Delivery
+        </button>
+        <button type="button" class="sv-tab" id="sv-tab-wholesale" role="tab" aria-selected="false" aria-controls="sv-panel-wholesale" tabindex="-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 20.5 6.5 12 11 3.5 6.5 12 2z"/><path d="m20.5 11.5-8.5 4.5-8.5-4.5"/><path d="m20.5 16.5-8.5 4.5-8.5-4.5"/></svg>
+          Wholesale Customers
+        </button>
+      </div>
+
+      <!-- Retail -->
+      <section class="sv-panel active" id="sv-panel-retail" role="tabpanel" aria-labelledby="sv-tab-retail" data-reveal>
+        <div class="sv-panel-card">
+          <div class="sv-panel-grid">
+            <div class="sv-text">
+              <p class="sv-label">Retail Customers</p>
+              <h2>Direct Purchases for Individual Customers and Small Workshops</h2>
+              <p>At Oriental Equipments Trading Est., we offer a wide range of high-quality welding products designed to meet the needs of individual customers, welders, and small workshops. Whether you're looking for welding consumables, equipment, accessories, abrasives, or safety products, our extensive product range helps you find the right solutions for your welding and fabrication requirements.</p>
+              <p>Our team is committed to providing excellent customer service and product assistance, helping retail customers choose the right products to suit their specific needs.</p>
+            </div>
+            <div class="sv-media">
+              <img src="/images/hero/hero-consumables.webp" width="800" height="500" loading="lazy" decoding="async" alt="Welding consumables on supply shelves" />
+            </div>
+            <div class="sv-ctawrap">
+              <a class="sv-cta" href="/products/">
+                Explore Products
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+          <ul class="sv-strip" aria-label="Retail highlights">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+              Product Assistance
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 8 8.48 5.25a1 1 0 0 1 0 1.7L12 20l-8.48-5.05a1 1 0 0 1 0-1.7L12 8z"/><path d="m12 17.93 6.37-3.82"/><path d="M20.48 10.25 12 15.5l-8.48-5.25L12 5l8.48 5.25z" transform="translate(0 -1.2)"/></svg>
+              Wide Product Range
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              Quality Brands
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+              Reliable Solutions
+            </li>
+          </ul>
+          <ul class="sv-strip-m" aria-label="Retail features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+              Product Assistance
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h3M8 3v13a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a3 3 0 0 1 3-3h3"/><path d="m15 9 4.5-4.5M18.5 8.5 15 5l-4.5 4.5"/></svg>
+              Welding Consumables
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M12 12v4"/><path d="M9 16h6"/></svg>
+              Equipment &amp; Accessories
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><path d="M20 15v-3a6 6 0 0 0-6-6"/></svg>
+              Safety Products
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Delivery -->
+      <section class="sv-panel" id="sv-panel-delivery" role="tabpanel" aria-labelledby="sv-tab-delivery" data-reveal hidden>
+        <div class="sv-panel-card">
+          <div class="sv-panel-grid">
+            <div class="sv-text">
+              <p class="sv-label">Delivery</p>
+              <h2>Welding Products and Industrial Supplies for Your Next Project</h2>
+              <p>Looking for reliable welding products and industrial supplies for your next project? Oriental Equipments Trading Est. offers a comprehensive range of welding consumables, machines, accessories, abrasives, and safety equipment to meet your requirements.</p>
+              <p>Whether you need welding supplies for fabrication workshops, construction sites, commercial establishments, or industrial operations, we are here to help you find the right products. Get in touch with our team to check product availability and discuss delivery options.</p>
+              <p class="sv-callout">Call us and let us assist you!</p>
+            </div>
+            <div class="sv-media">
+              <img src="/images/hero/hero-laser-cutting.webp" width="800" height="500" loading="lazy" decoding="async" alt="Industrial cutting equipment at work" />
+            </div>
+            <div class="sv-ctawrap">
+              <a class="sv-cta" href="/contact/">
+                Contact Our Sales Team
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </a>
+            </div>
+          </div>
+          <ul class="sv-strip" aria-label="Delivery support">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+              Dedicated Support Team
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+              Product Enquiries &amp; Orders
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18h-5"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35a1 1 0 0 0-.78-.38h-4V18"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+              Availability &amp; Quotations
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+              Delivery Discussions
+            </li>
+          </ul>
+          <div class="sv-note">
+            <h3>Need more information?</h3>
+            <p>Contact us today or visit our store to explore our welding solutions and get started with your requirements.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Wholesale -->
+      <section class="sv-panel" id="sv-panel-wholesale" role="tabpanel" aria-labelledby="sv-tab-wholesale" data-reveal hidden>
+        <div class="sv-panel-card">
+          <div class="sv-panel-grid">
+            <div class="sv-text">
+              <p class="sv-label">Wholesale Customers</p>
+              <h2>Wholesale Supply for Large-Scale Projects and Industrial Operations</h2>
+              <p>At Oriental Equipments Trading Est., we understand that wholesale customers have specific requirements for their large scale projects and industrial operations. That's why we offer an extensive range of welding consumables, equipment, accessories, abrasives, and safety products to meet their diverse needs. Our focus is on supplying quality products from recognised brands to support reliable performance across various applications.</p>
+              <p>From fabrication workshops and construction projects to manufacturing facilities and industrial operations, we strive to provide dependable welding supply solutions that meet our customers' requirements. Our team is committed to assisting wholesale customers with product selection, bulk enquiries, and quotations.</p>
+            </div>
+            <div class="sv-media">
+              <img src="/images/hero/hero-grinder.webp" width="800" height="500" loading="lazy" decoding="async" alt="Welder grinding steel with sparks" />
+            </div>
+            <div class="sv-ctawrap">
+              <a class="sv-cta" href="/contact/">
+                Request a Quotation
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+          <ul class="sv-strip" aria-label="Wholesale highlights">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><path d="M20 20V10a2 2 0 0 0-2-2h-4"/><path d="M4 20V16a2 2 0 0 1 2-2h4"/><path d="M2 20h20"/></svg>
+              Bulk Enquiries
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 8 8.48 5.25a1 1 0 0 1 0 1.7L12 20l-8.48-5.05a1 1 0 0 1 0-1.7L12 8z"/><path d="M20.48 10.25 12 15.5l-8.48-5.25L12 5l8.48 5.25z" transform="translate(0 -1.2)"/></svg>
+              Extensive Product Range
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              Recognised Brands
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+              Quotation Assistance
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+  <SiteFooter />
+  <script>
+    const tabs = [...document.querySelectorAll<HTMLButtonElement>('.sv-tab')];
+    const panels = [...document.querySelectorAll<HTMLElement>('.sv-panel')];
+
+    function select(tab: HTMLButtonElement) {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach((p) => {
+        const on = p.id === tab.getAttribute('aria-controls');
+        p.hidden = !on;
+        p.classList.toggle('active', on);
+      });
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        next.focus();
+        select(next);
+      });
+    });
+  </script>
+  <style>
+    /* ----- hero ----- */
+    .sv-hero { position: relative; overflow: hidden; background: #17130f; }
+    .sv-hero img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 30%;
+    }
+    .sv-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(20, 15, 11, 0.93) 0%, rgba(20, 15, 11, 0.76) 45%, rgba(20, 15, 11, 0.3) 100%);
+    }
+    .sv-hero-accent {
+      position: absolute; right: -60px; top: -40px; width: 260px; height: 140%;
+      background: linear-gradient(115deg, rgba(184, 32, 32, 0.85), rgba(122, 18, 18, 0.55));
+      transform: skewX(-18deg); pointer-events: none;
+    }
+    .sv-hero-inner { position: relative; padding-block: var(--space-9, 56px) var(--space-8, 48px); }
+    .sv-crumbs { color: rgba(255, 255, 255, 0.85); font-size: 0.92rem; margin: 0 0 var(--space-3, 16px); }
+    .sv-crumbs a { color: inherit; text-decoration: none; }
+    .sv-crumbs a:hover { text-decoration: underline; }
+    .sv-hero h1 {
+      color: #fff; margin: 0 0 var(--space-3, 16px);
+      font-size: clamp(2rem, 4.8vw, 3.4rem); line-height: 1.1;
+    }
+    .sv-hero h1 em { font-style: normal; color: var(--red-brand, #b82020); }
+    .sv-hero-sub { color: rgba(255, 255, 255, 0.88); margin: 0; font-size: 1.05rem; }
+
+    .sv-main { padding-top: 32px; padding-bottom: 28px; }
+    /* cancel the global footer top margin so the footer follows the content
+       card closely on this page (scoped here, other pages unaffected) */
+    .sv-main { margin-bottom: calc(-1 * var(--space-12, 96px)); }
+    @media (max-width: 620px) {
+      .sv-main { padding-top: 20px; padding-bottom: 40px; }
+      /* mobile hero: drop the red accent shapes — the dark gradient alone
+         keeps the text readable and the image keeps its natural colours */
+      .sv-hero-accent { display: none; }
+      .sv-hero-overlay {
+        background: linear-gradient(180deg, rgba(20, 15, 11, 0.78) 0%, rgba(20, 15, 11, 0.55) 100%);
+      }
+    }
+
+    /* ----- tabs ----- */
+    .sv-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .sv-tab {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 16px 20px; border: 1.5px solid var(--line, #e2dbd4);
+      background: #fff; border-radius: 14px; cursor: pointer;
+      font: inherit; font-size: 1.02rem; font-weight: 700; color: var(--ink, #1f1a17);
+      box-shadow: 0 2px 10px rgba(31, 26, 23, 0.05);
+      transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease,
+        box-shadow 150ms ease, transform 150ms ease;
+    }
+    .sv-tab svg { width: 26px; height: 26px; color: #157a44; flex: none; transition: color 150ms ease; }
+    .sv-tab:hover { box-shadow: 0 6px 18px rgba(31, 26, 23, 0.1); transform: translateY(-1px); }
+    .sv-tab:focus-visible { outline: 3px solid var(--red-brand, #b82020); outline-offset: 2px; }
+    .sv-tab.active {
+      background: var(--red-brand, #b82020); border-color: var(--red-brand, #b82020);
+      color: #fff; box-shadow: 0 8px 20px rgba(184, 32, 32, 0.3);
+    }
+    .sv-tab.active svg { color: #fff; }
+    @media (prefers-reduced-motion: reduce) {
+      .sv-tab, .sv-tab svg { transition: none !important; }
+    }
+
+    /* ----- panels ----- */
+    .sv-panel[hidden] { display: none; }
+    .sv-panel-card {
+      margin-top: 24px; background: #fff;
+      border: 1.5px solid var(--line, #e2dbd4); border-radius: 18px;
+      box-shadow: 0 4px 16px rgba(31, 26, 23, 0.06); overflow: hidden;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .sv-panel.active:not([hidden]) .sv-panel-card { animation: sv-panel-in 160ms ease; }
+      @keyframes sv-panel-in { from { opacity: 0; } }
+    }
+    .sv-panel-grid {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 46%);
+      grid-template-areas: "text media" "cta media";
+      gap: var(--space-6, 32px);
+      padding: var(--space-6, 32px);
+      align-items: center;
+    }
+    .sv-text { grid-area: text; }
+    .sv-ctawrap { grid-area: cta; }
+    .sv-media { grid-area: media; }
+    .sv-text h2 {
+      margin: 0 0 var(--space-5, 24px); font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      line-height: 1.25; color: var(--ink, #1f1a17);
+      padding-left: 14px; border-left: 4px solid var(--red-brand, #b82020);
+    }
+    .sv-label {
+      display: inline-block; margin: 0 0 14px;
+      background: #fdeceb; color: var(--red-brand, #b82020);
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.02em;
+      padding: 5px 14px; border-radius: 999px;
+    }
+    .sv-text p { margin: 0 0 var(--space-4, 16px); color: #4c443f; line-height: 1.65; font-size: 0.98rem; }
+    .sv-callout { font-weight: 700; color: var(--red-brand, #b82020); font-size: 1.05rem; }
+    .sv-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 6px; padding: 13px 26px; border-radius: 999px;
+      background: var(--red-brand, #b82020); color: #fff; text-decoration: none;
+      font-weight: 700; font-size: 0.98rem;
+      transition: background-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+    }
+    .sv-cta:hover { background: var(--red-deep, #9c1a1a); box-shadow: 0 8px 18px rgba(184, 32, 32, 0.25); transform: translateY(-1px); }
+    .sv-cta:focus-visible { outline: 3px solid #1f1a17; outline-offset: 2px; }
+    .sv-cta svg { width: 18px; height: 18px; }
+    .sv-media img {
+      width: 100%; height: 100%; min-height: 280px; max-height: 420px;
+      object-fit: cover; border-radius: 12px; display: block;
+    }
+    @media (max-width: 900px) {
+      .sv-panel-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: "text" "media" "cta";
+      }
+      .sv-media img { max-height: 300px; }
+    }
+
+    /* ----- feature strip ----- */
+    .sv-strip {
+      list-style: none; margin: 0; padding: 20px var(--space-6, 32px);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: #fdf5f4; border-top: 1.5px solid #f0e2e0; gap: 12px;
+    }
+    .sv-strip li {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      color: var(--ink, #1f1a17); font-weight: 700; font-size: 0.92rem;
+      text-align: left; padding: 4px 8px;
+    }
+    .sv-strip li + li { border-left: 1px solid #ecd9d6; }
+    .sv-strip svg { width: 22px; height: 22px; color: var(--red-brand, #b82020); flex: none; }
+    @media (max-width: 900px) {
+      .sv-strip { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .sv-strip li { justify-content: flex-start; }
+      .sv-strip li:nth-child(odd) { border-left: 0; }
+    }
+    @media (max-width: 620px) {
+      .sv-tabs { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .sv-tab { padding: 14px 12px; font-size: 0.92rem; flex-direction: column; text-align: center; gap: 6px; }
+      .sv-tab svg { width: 24px; height: 24px; }
+      .sv-tab:last-child { grid-column: 1 / -1; }
+      .sv-panel-grid { padding: 22px 18px; gap: 20px; }
+      .sv-panel-card { margin-top: 18px; }
+      .sv-cta { width: 100%; justify-content: center; }
+      /* retail uses its dedicated mobile feature cards; Delivery/Wholesale
+         strips get the same white-card treatment */
+      #sv-panel-retail .sv-strip { display: none; }
+      .sv-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+        background: none; border-top: 0; padding: 0 18px 18px;
+      }
+      .sv-strip li {
+        min-width: 0;
+        background: #fff; border: 1px solid var(--line, #e2dbd4);
+        border-radius: 12px; padding: 12px;
+        border-left: 1px solid var(--line, #e2dbd4);
+        font-size: 0.85rem; line-height: 1.3;
+      }
+      .sv-strip li:nth-child(odd) { border-left: 1px solid var(--line, #e2dbd4); }
+      .sv-strip svg { color: #157a44; width: 20px; height: 20px; }
+      .sv-strip-m {
+        display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+        list-style: none; margin: 0; padding: 0 18px 18px;
+      }
+      .sv-strip-m li {
+        min-width: 0;
+        display: flex; align-items: center; gap: 10px;
+        background: #fff; border: 1px solid var(--line, #e2dbd4);
+        border-radius: 12px; padding: 12px;
+        font-size: 0.85rem; font-weight: 700; color: var(--ink, #1f1a17);
+        line-height: 1.3;
+      }
+      .sv-strip-m svg { width: 20px; height: 20px; color: #157a44; flex: none; }
+      @media (max-width: 360px) {
+        .sv-strip li, .sv-strip-m li { font-size: 0.78rem; padding: 10px; gap: 8px; overflow-wrap: anywhere; }
+        .sv-strip svg, .sv-strip-m svg { width: 18px; height: 18px; }
+        .sv-strip, .sv-strip-m { gap: 8px; }
+      }
+    }
+    @media (min-width: 621px) {
+      .sv-strip-m { display: none; }
+    }
+
+    /* ----- delivery note ----- */
+    .sv-note {
+      border-top: 1.5px solid #f0e2e0; padding: 20px var(--space-6, 32px);
+      background: #fbf8f6;
+    }
+    .sv-note h3 { margin: 0 0 6px; font-size: 1.05rem; color: var(--ink, #1f1a17); }
+    .sv-note p { margin: 0; color: #4c443f; font-size: 0.93rem; line-height: 1.6; }
+  </style>
+</BaseLayout>

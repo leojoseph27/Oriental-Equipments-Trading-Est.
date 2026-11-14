@@ -1,0 +1,414 @@
+---
+// faq.astro — Frequently Asked Questions page. Content comes from
+// src/data/faqs.ts (14 approved Q&As, wording preserved verbatim). Search,
+// category filters and the accordion run on a small inline script; scroll
+// reveals reuse the site-wide [data-reveal] IntersectionObserver from
+// BaseLayout so no extra animation library is needed.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { FAQS, FAQ_CATEGORIES, faqCount } from "../data/faqs";
+---
+<BaseLayout
+  title="Frequently Asked Questions — Oriental Equipments Trading Est."
+  description="Answers to common questions about welding products, consumables, brands, technical specifications, electrodes, safety gear and ordering from Oriental Equipments Trading Est., Dammam, Saudi Arabia."
+>
+  <SiteHeader />
+  <main id="main" tabindex="-1">
+    <section class="faq-hero">      <img
+        src="/images/hero/hero-consumables.webp"
+        srcset="/images/hero/hero-consumables-m.webp 800w, /images/hero/hero-consumables.webp 1600w"
+        sizes="100vw"
+        width="1600" height="500"
+        alt="" aria-hidden="true"
+        fetchpriority="high" decoding="async"
+      />
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <p class="eyebrow" data-reveal>FAQ <span class="rule" aria-hidden="true"></span></p>
+        <h1 data-reveal style="--reveal-i:1">Frequently Asked <em>Questions</em></h1>
+        <p class="hero-sub" data-reveal style="--reveal-i:2">
+          Find quick answers to common questions about our welding products, consumables,
+          brands, technical specifications, and services.
+        </p>
+      </div>
+    </section>
+
+    <div class="container section faq-main">
+      <!-- no breadcrumbs: the hero anchors the page, keeping the search bar close below it -->
+
+
+      <!-- Search + filters -->
+      <div class="faq-controls" data-reveal>
+        <form class="faq-search" id="faq-search-form" role="search" aria-label="Search FAQs">
+          <span class="search-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </span>
+          <input
+            type="search"
+            id="faq-search"
+            name="q"
+            placeholder="Search for a question..."
+            autocomplete="off"
+            aria-label="Search for a question"
+          />
+          <button type="submit" class="search-btn">Search</button>
+        </form>
+        <div class="faq-filters" role="group" aria-label="Filter questions by category">
+          {FAQ_CATEGORIES.map((c, i) => (
+            <button
+              type="button"
+              class={`filter-chip${i === 0 ? ' active' : ''}`}
+              data-cat={c.id}
+              aria-pressed={i === 0 ? 'true' : 'false'}
+            >
+              {c.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Accordion + support card -->
+      <div class="faq-layout">
+        <div class="faq-list" id="faq-list">
+          <p id="faq-empty" class="faq-empty" hidden>
+            No questions match your search. Try a different word, or
+            <button type="button" class="reset-link" id="faq-reset">reset the search</button>
+            to see all 14 questions.
+          </p>
+          {FAQS.map((f, i) => (
+            <article
+              class={`faq-item${i === 0 ? ' open' : ''}`}
+              data-cat={f.cat}
+              data-reveal
+              style={`--reveal-i:${Math.min(i, 11)}`}
+            >
+              <h2 class="faq-q">
+                <button
+                  type="button"
+                  class="faq-trigger"
+                  id={`faq-t-${f.id}`}
+                  aria-expanded={i === 0 ? 'true' : 'false'}
+                  aria-controls={`faq-a-${f.id}`}
+                >
+                  <span class="faq-num" aria-hidden="true">{String(f.id).padStart(2, '0')}</span>
+                  <span class="faq-qtext">{f.q}</span>
+                  <span class="faq-toggle" aria-hidden="true">
+                    <svg class="ic-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                    <svg class="ic-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg>
+                  </span>
+                </button>
+              </h2>
+              <div class="faq-a" id={`faq-a-${f.id}`} role="region" aria-labelledby={`faq-t-${f.id}`}>
+                <div class="faq-a-inner"><p>{f.a}</p></div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <aside class="faq-support" data-reveal aria-labelledby="support-heading">
+          <div class="support-head">
+            <span class="support-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>
+            </span>
+            <div>
+              <h2 id="support-heading">Need more help?</h2>
+              <p>Our team can assist you with product selection, technical guidance, quotations and more.</p>
+            </div>
+          </div>
+          <a class="support-cta" href="/contact/">
+            Contact Our Team
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <ul class="support-list">
+            <li>
+              <svg class="li-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+              Product advice &amp; technical support
+            </li>
+            <li>
+              <svg class="li-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              Datasheets &amp; certifications
+            </li>
+            <li>
+              <svg class="li-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18h-5"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35a1 1 0 0 0-.78-.38h-4V18"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+              Quotations, bulk orders &amp; delivery
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+  <script>
+    const form = document.getElementById('faq-search-form') as HTMLFormElement;
+    const input = document.getElementById('faq-search') as HTMLInputElement;
+    const empty = document.getElementById('faq-empty')!;
+    const resetBtn = document.getElementById('faq-reset')!;
+    const items = [...document.querySelectorAll<HTMLElement>('.faq-item')];
+    const chips = [...document.querySelectorAll<HTMLButtonElement>('.filter-chip')];
+    let activeCat = 'all';
+    let activeTerm = '';
+
+    function apply() {
+      const term = activeTerm.trim().toLowerCase();
+      let visible = 0;
+      for (const item of items) {
+        const matchesCat = activeCat === 'all' || item.dataset.cat === activeCat;
+        const text = (item.textContent || '').toLowerCase();
+        const matchesTerm = !term || text.includes(term);
+        const show = matchesCat && matchesTerm;
+        item.hidden = !show;
+        if (show) {
+          visible++;
+          // never leave a visible card trapped at opacity 0 by the site-wide
+          // scroll-reveal gate — filtering must render instantly
+          item.classList.add('revealed');
+        }
+      }
+      empty.hidden = visible !== 0;
+    }
+
+    input.addEventListener('input', () => { activeTerm = input.value; apply(); });
+    form.addEventListener('submit', (e) => { e.preventDefault(); activeTerm = input.value; apply(); });
+
+    chips.forEach((chip) => chip.addEventListener('click', () => {
+      chips.forEach((c) => { c.classList.toggle('active', c === chip); c.setAttribute('aria-pressed', String(c === chip)); });
+      activeCat = chip.dataset.cat || 'all';
+      apply();
+    }));
+
+    function resetSearch() {
+      input.value = '';
+      activeTerm = '';
+      apply();
+      input.focus();
+    }
+    resetBtn.addEventListener('click', resetSearch);
+
+    // accordion: one open at a time
+    items.forEach((item) => {
+      const trigger = item.querySelector<HTMLButtonElement>('.faq-trigger')!;
+      trigger.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        items.forEach((other) => {
+          other.classList.remove('open');
+          other.querySelector('.faq-trigger')!.setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+  <style>
+    /* ----- hero ----- */
+    .faq-hero { position: relative; overflow: hidden; background: #17130f; }
+    .faq-hero img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 30%;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(20, 15, 11, 0.93) 0%, rgba(20, 15, 11, 0.78) 45%, rgba(20, 15, 11, 0.35) 100%);
+    }
+    .hero-inner { position: relative; padding-block: var(--space-10, 64px) var(--space-9, 56px); }
+    .eyebrow {
+      display: flex; align-items: center; gap: 12px;
+      color: #fff; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      font-size: 0.9rem; margin: 0 0 var(--space-3, 16px);
+    }
+    .eyebrow .rule { width: 64px; height: 2px; background: var(--red-brand, #b82020); }
+    .faq-hero h1 {
+      color: #fff; margin: 0 0 var(--space-3, 16px);
+      font-size: clamp(1.9rem, 4.6vw, 3.2rem); line-height: 1.1;
+    }
+    .faq-hero h1 em { font-style: normal; color: var(--red-brand, #b82020); }
+    .hero-sub { color: rgba(255, 255, 255, 0.85); max-width: 56ch; margin: 0; font-size: 1.02rem; }
+
+    /* ----- controls ----- */
+    .faq-main { padding-top: 24px; }
+    .faq-controls { margin-top: 0; }
+    /* filtering must feel immediate: cap the site-wide reveal fade on FAQ
+       cards to a subtle 150ms instead of the long default, keeping card
+       hover transitions */
+    .faq-item[data-reveal] {
+      transition: opacity 150ms ease, border-color 180ms ease, box-shadow 180ms ease !important;
+    }
+    @media (max-width: 620px) {
+      .faq-main { padding-top: 18px; }
+    }
+    .faq-search {
+      display: flex; align-items: center; gap: 10px;
+      background: #fff; border: 1px solid var(--line, #e2dbd4);
+      border-radius: 999px; padding: 8px 8px 8px 20px;
+      box-shadow: 0 4px 18px rgba(31, 26, 23, 0.06);
+    }
+    .search-ic { display: grid; place-items: center; color: #6b625c; flex: none; }
+    .search-ic svg { width: 20px; height: 20px; }
+    .faq-search input {
+      flex: 1; min-width: 0; border: 0; background: none;
+      font: inherit; font-size: 1rem; color: var(--ink, #1f1a17); padding: 10px 0;
+    }
+    .faq-search input:focus { outline: none; }
+    .faq-search:focus-within { border-color: var(--red-brand, #b82020); }
+    .search-btn {
+      flex: none; border: 0; cursor: pointer;
+      background: var(--red-brand, #b82020); color: #fff;
+      font: inherit; font-weight: 600; font-size: 0.95rem;
+      padding: 10px 28px; border-radius: 999px;
+      transition: background-color 150ms ease;
+    }
+    .search-btn:hover { background: var(--red-deep, #9c1a1a); }
+    .search-btn:focus-visible { outline: 3px solid #1f1a17; outline-offset: 2px; }
+
+    .faq-filters { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--space-5, 24px); }
+    .filter-chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--line, #e2dbd4); background: #fff;
+      border-radius: 999px; padding: 10px 20px; cursor: pointer;
+      font: inherit; font-size: 0.92rem; font-weight: 600; color: var(--ink, #1f1a17);
+      box-shadow: 0 2px 8px rgba(31, 26, 23, 0.05);
+      transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease,
+        box-shadow 150ms ease, transform 150ms ease;
+    }
+    .filter-chip:hover { box-shadow: 0 4px 14px rgba(31, 26, 23, 0.1); transform: translateY(-1px); }
+    .filter-chip:focus-visible { outline: 3px solid var(--red-brand, #b82020); outline-offset: 2px; }
+    .filter-chip.active {
+      background: var(--red-brand, #b82020); border-color: var(--red-brand, #b82020); color: #fff;
+      box-shadow: 0 6px 16px rgba(184, 32, 32, 0.28);
+    }
+
+    /* ----- layout ----- */
+    .faq-layout {
+      display: grid; grid-template-columns: minmax(0, 1fr) 340px;
+      gap: var(--space-7, 40px); margin-top: var(--space-7, 40px); align-items: start;
+    }
+    @media (max-width: 900px) {
+      .faq-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ----- accordion ----- */
+    .faq-list { display: grid; gap: 14px; }
+    .faq-item {
+      background: #fff; border: 1.5px solid var(--line, #e2dbd4);
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 2px 10px rgba(31, 26, 23, 0.05);
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+    .faq-item:hover { box-shadow: 0 6px 18px rgba(31, 26, 23, 0.1); }
+    .faq-item.open { border-color: rgba(184, 32, 32, 0.55); box-shadow: 0 6px 20px rgba(184, 32, 32, 0.1); }
+    .faq-item[hidden] { display: none; }
+    .faq-q { margin: 0; font-size: 1rem; max-width: none; text-wrap: initial; }
+    .faq-trigger {
+      display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center; gap: 14px; width: 100%;
+      background: none; border: 0; cursor: pointer; text-align: left;
+      padding: 16px 18px; font: inherit; color: var(--ink, #1f1a17);
+    }
+    .faq-trigger:focus-visible { outline: 3px solid var(--red-brand, #b82020); outline-offset: -3px; border-radius: 14px; }
+    .faq-num {
+      display: grid; place-items: center; width: 44px; height: 30px;
+      background: #fdeceb; color: var(--red-brand, #b82020);
+      font-weight: 700; font-size: 0.85rem; border-radius: 8px;
+    }
+    .faq-qtext { font-weight: 700; font-size: 1.02rem; line-height: 1.35; min-width: 0; }
+    .faq-toggle { position: relative; width: 22px; height: 22px; color: var(--red-brand, #b82020); }
+    .faq-toggle svg { position: absolute; inset: 0; width: 22px; height: 22px; transition: opacity 180ms ease, transform 180ms ease; }
+    .ic-minus { opacity: 0; transform: rotate(-90deg); }
+    .faq-item.open .ic-plus { opacity: 0; transform: rotate(90deg); }
+    .faq-item.open .ic-minus { opacity: 1; transform: rotate(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .faq-toggle svg, .faq-item, .filter-chip { transition: none !important; }
+    }
+
+    .faq-a {
+      display: grid; grid-template-rows: 0fr;
+      transition: grid-template-rows 260ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .faq-item.open .faq-a { grid-template-rows: 1fr; }
+    .faq-a-inner { overflow: hidden; }
+    .faq-a-inner p {
+      margin: 0; padding: 2px 18px 18px 76px; /* 18px card pad + 44px number + 14px gap */
+      color: #4c443f; line-height: 1.65; font-size: 0.95rem;
+    }
+    @media (max-width: 620px) {
+      .faq-a-inner p { padding: 0 18px 16px 60px; }
+      .faq-num { width: 38px; }
+      .faq-trigger { gap: 8px; padding: 14px 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .faq-a { transition: none; }
+    }
+
+    /* filtered-in cards render instantly on filter changes (no stagger —
+       category switching must feel immediate); the scroll reveal on first
+       paint still comes from the site-wide [data-reveal] system */
+
+    /* ----- empty state ----- */
+    .faq-empty {
+      background: #fff; border: 1.5px dashed var(--line, #e2dbd4);
+      border-radius: 14px; padding: 28px; color: #4c443f; margin: 0;
+    }
+    .reset-link {
+      background: none; border: 0; padding: 0; cursor: pointer;
+      font: inherit; color: var(--red-brand, #b82020); font-weight: 700;
+      text-decoration: underline;
+    }
+
+    /* ----- support card ----- */
+    .faq-support {
+      background: #fff; border: 1.5px solid var(--line, #e2dbd4);
+      border-radius: 16px; padding: 26px;
+      box-shadow: 0 4px 16px rgba(31, 26, 23, 0.07);
+      position: sticky; top: 96px;
+    }
+    .support-head { display: flex; gap: 14px; align-items: flex-start; }
+    .support-ic {
+      flex: none; display: grid; place-items: center; width: 52px; height: 52px;
+      background: #fdeceb; color: var(--red-brand, #b82020); border-radius: 14px;
+    }
+    .support-ic svg { width: 26px; height: 26px; }
+    .support-head h2 { margin: 0; font-size: 1.3rem; color: var(--ink, #1f1a17); }
+    .support-head p { margin: 6px 0 0; font-size: 0.9rem; color: #6b625c; line-height: 1.55; }
+    .support-cta {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-top: 18px; padding: 13px 18px; border-radius: 999px;
+      background: var(--red-brand, #b82020); color: #fff; text-decoration: none;
+      font-weight: 700; font-size: 0.98rem;
+      transition: background-color 150ms ease;
+    }
+    .support-cta:hover { background: var(--red-deep, #9c1a1a); }
+    .support-cta:focus-visible { outline: 3px solid #1f1a17; outline-offset: 2px; }
+    .support-cta svg { width: 18px; height: 18px; }
+    .support-list { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 14px; }
+    .support-list li {
+      display: flex; align-items: center; gap: 12px;
+      color: var(--ink, #1f1a17); font-size: 0.93rem; font-weight: 600;
+    }
+    .li-ic { flex: none; width: 22px; height: 22px; color: #1d7a3e; }
+
+    @media (max-width: 620px) {
+      /* hero: compact height, keep the welder visible on the right */
+      .faq-hero img { object-position: 72% 30%; }
+      .hero-inner { padding-block: 34px 32px; }
+      .faq-hero h1 { font-size: clamp(1.75rem, 8.4vw, 2.3rem); max-width: 11em; }
+      .hero-sub { font-size: 0.95rem; }
+
+      /* search stays a single row: icon + input + button inside the bar */
+      .faq-search { border-radius: 999px; padding: 6px 6px 6px 16px; gap: 8px; }
+      .search-btn { padding: 10px 22px; font-size: 0.92rem; }
+
+      /* category filters: two-column grid with wrapping labels */
+      .faq-filters {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px;
+      }
+      .filter-chip {
+        justify-content: flex-start; text-align: left;
+        padding: 10px 16px; white-space: normal; line-height: 1.3;
+      }
+      .faq-a-inner p { padding-bottom: 16px; }
+      .faq-support { position: static; }
+    }
+  </style>
+</BaseLayout>

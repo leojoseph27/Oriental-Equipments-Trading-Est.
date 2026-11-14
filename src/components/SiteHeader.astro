@@ -11,6 +11,8 @@ const nav = [
   { label: 'Home', href: '/' },
   { label: 'Products', href: '/products/' },
   { label: 'Catalogue', href: '/catalogue/' },
+  { label: 'FAQ', href: '/faq/' },
+  { label: 'Our Services', href: '/our-services/' },
   { label: 'Contact', href: '/contact/' },
   { label: 'Search', href: '/search/' },
 ];
@@ -45,10 +47,18 @@ const isActive = (href: string) =>
     border-bottom: var(--line-weight) solid var(--line);
   }
   .bar { display: flex; align-items: center; gap: var(--space-5); min-height: 64px; }
+  /* desktop: tighter, single-row distribution (mobile header is redefined in
+     the ≤900px block below and is unaffected by these overrides) */
+  @media (min-width: 901px) {
+    .bar { gap: 14px; padding-inline: 14px; }
+    .desktop-nav { gap: 16px; }
+    .desktop-nav a { font-size: 14.5px; white-space: nowrap; }
+    .cta { font-size: 13.5px; padding: 9px 18px; white-space: nowrap; }
+  }
   .bar-row2 { display: contents; }
   .brand { display: flex; align-items: center; gap: var(--space-3); margin-right: auto;
     text-decoration: none; color: var(--ink); }
-  .brand img { width: 44px; height: 44px; object-fit: contain; border-radius: 0; }
+  .brand img { width: 60.5px; height: 60.5px; object-fit: contain; border-radius: 0; }
   .brand-name { font-family: var(--font-heading); font-weight: 600; font-size: 15px;
     line-height: 1.15; letter-spacing: 0.02em; text-transform: uppercase; }
   .desktop-nav { display: flex; gap: var(--space-5); }
@@ -90,7 +100,7 @@ const isActive = (href: string) =>
       flex: 1 1 100%; margin: 0; gap: 12px;
       min-height: 64px; /* Row 1 height */
     }
-    .brand img { width: 40px; height: 40px; }
+    .brand img { width: 48px; height: 48px; }
     /* ~14px on typical phones, easing down to ~11px at 320px so the full
        name always fits on one line. */
     .brand-name { font-size: clamp(11px, 3.6vw, 16px); letter-spacing: 0.02em;
@@ -106,6 +116,9 @@ const isActive = (href: string) =>
     .bar > .menu-btn { margin: 0 0 0 -10px; }
     /* Menu on the left, badge on the right (visual order only; DOM unchanged). */
     .bar-row2 > .menu-btn { order: -1; }
+    /* Vision 2030 badge with extra breathing room on the right (12px on
+       phones, 20px above 640px); the hamburger stays where it is. */
+    .bar-row2 { margin-right: -4px; width: calc(100% + 4px); }
     /* Scrolled down: Row 2 slides up and collapses (no empty gap left
        behind); Row 1 stays fixed at the top. */
     .site-header.row2-hidden .bar-row2 { height: 0; opacity: 0; }

@@ -18,10 +18,36 @@ import { products } from "../data/catalog";
     <section class="hero" aria-labelledby="hero-heading">
       <div class="hero-media" id="hero-media" aria-hidden="false">
         <img
+          class="hero-img is-active"
+          src="/images/hero/hero-grinder.webp"
+          srcset="/images/hero/hero-grinder-m.webp 960w, /images/hero/hero-grinder.webp 1724w"
+          sizes="100vw"
+          alt="Welder grinding steel with a shower of sparks"
+          width="1724" height="912" fetchpriority="high" data-hero-slide
+        />
+        <img
           class="hero-img"
-          src="/images/hero/hero.webp"
-          alt="Welder at work with sparks — cover image from the company catalogue"
-          width="1600" height="849" fetchpriority="high"
+          data-src="/images/hero/hero-laser-cutting.webp"
+          data-srcset="/images/hero/hero-laser-cutting-m.webp 960w, /images/hero/hero-laser-cutting.webp 1723w"
+          sizes="100vw"
+          alt="CNC laser cutter slicing steel plate"
+          width="1723" height="913" decoding="async" aria-hidden="true" data-hero-slide
+        />
+        <img
+          class="hero-img"
+          data-src="/images/hero/hero-consumables.webp"
+          data-srcset="/images/hero/hero-consumables-m.webp 960w, /images/hero/hero-consumables.webp 1722w"
+          sizes="100vw"
+          alt="Welding consumables — wire spools, electrodes, flux, helmet and machine"
+          width="1722" height="913" decoding="async" aria-hidden="true" data-hero-slide
+        />
+        <img
+          class="hero-img"
+          data-src="/images/hero/hero-tig-gear.webp"
+          data-srcset="/images/hero/hero-tig-gear-m.webp 960w, /images/hero/hero-tig-gear.webp 1721w"
+          sizes="100vw"
+          alt="TIG welding kit — helmet, gas cylinder, tungsten electrodes and torch"
+          width="1721" height="914" decoding="async" aria-hidden="true" data-hero-slide
         />
       </div>
       <div class="hero-scrim" aria-hidden="true"></div>
@@ -125,6 +151,53 @@ import { products } from "../data/catalog";
   <script src="../scripts/catalogue-reader.ts"></script>
 </BaseLayout>
 <script>
+  // Hero carousel: crossfade dissolve, one image at a time, endless loop.
+  // Slides 2+ start with no src — each is loaded (srcset applied) and decoded
+  // one hold-period ahead so a transition never shows a blank frame, and no
+  // more than two large images are decoded at a time.
+  const slides = Array.from(document.querySelectorAll("[data-hero-slide]")) as HTMLImageElement[];
+  const prefersCalm = matchMedia("(prefers-reduced-motion: reduce)");
+  const FADE_MS = 1800; // dissolve duration
+  const HOLD_MS = 5500; // time each image is fully visible
+  if (slides.length > 1 && !prefersCalm.matches) {
+    let current = 0;
+    let timer = 0;
+    const ensureLoaded = (img: HTMLImageElement) => {
+      if (!img.src) {
+        img.srcset = img.dataset.srcset ?? "";
+        img.src = img.dataset.src ?? "";
+      }
+    };
+    const goTo = async (n: number) => {
+      const img = slides[n];
+      ensureLoaded(img);
+      try { await img.decode(); } catch { /* decode failed — fade anyway; decode error shows nothing */ }
+      // Dissolve: incoming fades in ON TOP of the outgoing slide, which stays
+      // fully visible underneath until the fade completes — this keeps the
+      // stack fully opaque throughout, so the page background never shows
+      // through as a grey flash at the crossover.
+      const prev = slides[current];
+      img.classList.add("is-fading");
+      await new Promise((r) => setTimeout(r, FADE_MS));
+      img.classList.add("is-active");
+      img.classList.remove("is-fading");
+      prev.classList.remove("is-active");
+      current = n;
+      // Prime the slide after next so its bytes are ready without decoding it yet
+      ensureLoaded(slides[(n + 1) % slides.length]);
+    };
+    const schedule = () => {
+      timer = window.setTimeout(() => {
+        if (document.hidden) { schedule(); return; }
+        goTo((current + 1) % slides.length).then(schedule);
+      }, HOLD_MS);
+    };
+    ensureLoaded(slides[1]);
+    schedule();
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden && !timer) schedule();
+    });
+  }
   // Balanced 3D: a bounded (≤2°) pointer tilt on the hero image only.
   // Fine pointers + no reduced motion only; rAF-throttled; resets on leave.
   const media = document.getElementById("hero-media");
@@ -176,7 +249,16 @@ import { products } from "../data/catalog";
     .hero-media { transition: transform 300ms var(--ease-standard); will-change: transform; }
   }
   .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    object-position: 70% 20%; border-radius: 0; }
+    object-position: 72% 20%; border-radius: 0; opacity: 0; z-index: 0;
+    transition: opacity 1800ms ease-in-out; }
+  /* base slide (fully visible, sits underneath) */
+  .hero-img.is-active { opacity: 1; z-index: 1; }
+  /* incoming slide fades in ABOVE the base slide so combined coverage never dips —
+     no background bleed-through / grey flash at the crossover */
+  .hero-img.is-fading { opacity: 1; z-index: 2; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-img { transition: none; }
+  }
   .hero-scrim { position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(28, 24, 25, 0.55) 0%, rgba(28, 24, 25, 0.82) 78%); }
   .support { color: #e9e5e2; font-size: 18px; max-width: 58ch; margin-bottom: var(--space-6); }
@@ -222,6 +304,6 @@ import { products } from "../data/catalog";
   @media (max-width: 800px) {
     .pos-grid, .contact-grid { grid-template-columns: 1fr; }
     .hero { min-height: 72svh; }
-    .hero-img { object-position: 65% 15%; }
+    .hero-img { object-position: 78% 15%; }
   }
 </style>

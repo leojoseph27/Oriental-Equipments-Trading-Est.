@@ -40,50 +40,54 @@ const INTRO_KEY = `oriental-intro-shown:${BUILD_DAY}`;
     pointer-events: auto;
   }
   .loader-logo {
-    /* Desktop: starts at ~18% of the viewport width and zooms to ~50%. */
+    /* Desktop: starts at ~18% of the viewport width. Direction is reversed:
+       the animation begins at the same large size the old zoom ended at
+       (scale 2.0) and shrinks back to the same small size it began at
+       (scale 1). Endpoint dimensions are unchanged. */
     width: 18vw;
     height: auto;
     object-fit: contain;
-    opacity: 0;
+    opacity: 1;
     will-change: transform, opacity;
     border-radius: 0;
   }
   :global(html.intro-active:not(.intro-reduced)) .loader-logo {
-    animation: loader-intro 4s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+    animation: loader-intro 5s cubic-bezier(0.45, 0, 0.25, 1) forwards;
   }
+  /* One 5s timeline, two stages. Stage 1 (0–3.8s): the opaque #fcfcfc veil
+     hides the homepage while the logo shrinks, fully visible. Stage 2
+     (3.8–5s): the veil fades to transparent and the logo dissolves — at the
+     same time, on the same clock — so the logo dissolves directly into the
+     freshly revealed homepage and the white background never stands alone.
+     The overlay's animationend removes the loader; the failsafe timer is a
+     backstop only. */
   :global(html.intro-active:not(.intro-reduced)) .site-loader {
-    animation: loader-out 0.5s ease 3.5s forwards;
+    animation: loader-out 5s cubic-bezier(0.45, 0, 0.25, 1) forwards;
   }
   @keyframes loader-intro {
-    0%   { opacity: 0; transform: scale(1); }
-    12%  { opacity: 1; transform: scale(1); }
-    80%  { opacity: 1; transform: scale(2.0); }
-    100% { opacity: 1; transform: scale(2.0); }
+    0%   { opacity: 1; transform: scale(2.0); }
+    76%  { opacity: 1; }
+    100% { opacity: 0; transform: scale(1); }
   }
   @keyframes loader-out {
-    from { opacity: 1; }
-    to   { opacity: 0; }
+    0%, 76% { opacity: 1; }
+    100%    { opacity: 0; }
   }
-  /* Phones (≤767px): the existing dramatic zoom — starts small and keeps
-     growing past the viewport edges over 5 seconds. */
+  /* Phones (≤767px): same coordinated 5s timeline and endpoints — starts
+     at the size the old zoom ended on (scale 2.8), shrinks to the size it
+     began at (scale 0.3), fading as the homepage reveals beneath it. */
   @media (max-width: 767px) {
     .loader-logo {
       width: min(38vmin, 300px);
-      transform: scale(0.3);
     }
     :global(html.intro-active:not(.intro-reduced)) .loader-logo {
-      animation: loader-intro-mobile 5s cubic-bezier(0.6, 0, 0.3, 1) forwards;
-    }
-    :global(html.intro-active:not(.intro-reduced)) .site-loader {
-      animation: loader-out 0.6s ease 4.4s forwards;
+      animation: loader-intro-mobile 5s cubic-bezier(0.45, 0, 0.25, 1) forwards;
     }
   }
   @keyframes loader-intro-mobile {
-    0%   { opacity: 0; transform: scale(0.3); }
-    10%  { opacity: 1; transform: scale(0.3); }
-    84%  { opacity: 1; transform: scale(1.9); }
-    92%  { opacity: 1; transform: scale(2.4); }
-    100% { opacity: 0; transform: scale(2.8); }
+    0%   { opacity: 1; transform: scale(2.8); }
+    76%  { opacity: 1; }
+    100% { opacity: 0; transform: scale(0.3); }
   }
   /* Reduced motion: no zoom at all — brief plain fade. */
   :global(html.intro-active.intro-reduced) .site-loader {

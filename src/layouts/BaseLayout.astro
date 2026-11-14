@@ -1,6 +1,7 @@
 ---
 import "../styles/base.css";
 import SiteLoader from "../components/SiteLoader.astro";
+import ContactWidget from "../components/ContactWidget.astro";
 interface Props { title: string; description?: string }
 const { title, description = "Oriental Equipments Trading Est. — industrial welding equipment and consumables supplier, Dammam, Saudi Arabia." } = Astro.props;
 ---
@@ -35,10 +36,7 @@ const { title, description = "Oriental Equipments Trading Est. — industrial we
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <SiteLoader />
-    <a class="wa-float" href="https://wa.me/966580208504" target="_blank" rel="noopener noreferrer"
-      aria-label="Chat with us on WhatsApp">
-      <img src="/images/whatsapp.webp" alt="" width="56" height="56" loading="lazy" decoding="async" />
-    </a>
+    <ContactWidget />
     <slot />
     <script is:inline>
       (function () {
